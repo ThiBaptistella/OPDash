@@ -2,6 +2,7 @@
 import { Request, Response } from "express";
 import { extractInvoiceData } from "../utils/invoiceProcessor";
 import Invoice from "../models/Invoice";
+import { IInvoice } from "../types/Invoice";
 
 export const postInvoice = async (req: Request, res: Response) => {
   try {
@@ -10,7 +11,7 @@ export const postInvoice = async (req: Request, res: Response) => {
     }
 
     const { path } = req.file;
-    const invoiceData = await extractInvoiceData(path);
+    const invoiceData: IInvoice = await extractInvoiceData(path);
 
     const invoice = new Invoice(invoiceData);
     await invoice.save();

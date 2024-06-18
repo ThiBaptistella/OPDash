@@ -65,14 +65,22 @@ const Invoices: React.FC = () => {
     formData.append("file", file);
 
     try {
-      const response = await fetch("http://localhost:5001/api/invoices", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "http://localhost:5001/api/invoices/uploadInvoices",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to upload invoice");
+      }
       const data = await response.json();
       setInvoices((prev) => [...prev, data]); // Update invoices list
     } catch (error) {
       console.error("Error uploading file:", error);
+      // Display error message to user
+      alert("Failed to upload and process invoice. Please try again.");
     }
   };
 
@@ -125,6 +133,7 @@ const Invoices: React.FC = () => {
             )}`}
             chartData={[100, 200, 300]}
             status=""
+            color="#8e44ad" // Your desired color
           />
         </Grid>
         <Grid item xs={12} sm={3}>
@@ -140,6 +149,7 @@ const Invoices: React.FC = () => {
               )}`}
             chartData={[50, 100, 150]}
             status="Paid"
+            color="#27ae60" // Your desired color
           />
         </Grid>
         <Grid item xs={12} sm={3}>
@@ -155,6 +165,7 @@ const Invoices: React.FC = () => {
               )}`}
             chartData={[30, 60, 90]}
             status="Pending"
+            color="#f1c40f" // Your desired color
           />
         </Grid>
         <Grid item xs={12} sm={3}>
@@ -170,6 +181,7 @@ const Invoices: React.FC = () => {
               )}`}
             chartData={[20, 40, 60]}
             status="Overdue"
+            color="#e74c3c" // Your desired color
           />
         </Grid>
       </Grid>
@@ -289,9 +301,9 @@ const Invoices: React.FC = () => {
                           );
                         }}
                         sx={{
-                          color: theme.palette.secondary.dark,
+                          color: theme.palette.primary.dark,
                           "&.Mui-checked": {
-                            color: theme.palette.secondary.dark,
+                            color: theme.palette.primary.dark,
                           },
                         }}
                       />

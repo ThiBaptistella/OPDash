@@ -17,7 +17,7 @@ import {
   Grid,
   Chip,
   Card,
-  CardHeader,
+  useTheme,
   CardContent,
   CssBaseline,
   Button,
@@ -59,6 +59,7 @@ const Users: React.FC = () => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const theme = useTheme();
   const rowsPerPage = 20;
 
   const handleChangePage = (
@@ -136,57 +137,34 @@ const Users: React.FC = () => {
         ))}
       </Grid>
 
-      <Card elevation={0} sx={{ mb: 2 }}>
-        <CardHeader
-          title={
-            <Typography variant="h6" component="div">
-              List
-            </Typography>
-          }
-        />
+      <Card elevation={0} sx={{ boxShadow: "none" }}>
         <CardContent>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+          <Grid container spacing={2} alignItems="center">
+            <Grid item xs={12} sm={9}>
+              <Typography
+                variant="h6"
+                component="div"
+                color={theme.palette.grey[900]}
+                sx={{ fontWeight: "bold" }}
+              >
+                List
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={3}>
               <TextField
                 label="Search"
                 variant="outlined"
                 fullWidth
                 value={search}
                 onChange={handleSearchChange}
+                size="small"
               />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <input
-                accept="application/pdf"
-                style={{ display: "none" }}
-                id="contained-button-file"
-                type="file"
-                onChange={handleFileChange}
-              />
-              <label htmlFor="contained-button-file">
-                <Button
-                  variant="contained"
-                  color="primary"
-                  component="span"
-                  sx={{ mr: 2 }}
-                >
-                  Upload Invoice
-                </Button>
-              </label>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={handleAddInvoice}
-                disabled={!file}
-              >
-                Add Invoice
-              </Button>
             </Grid>
           </Grid>
         </CardContent>
       </Card>
 
-      <Paper sx={{ width: "100%", overflow: "hidden" }}>
+      <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader>
             <TableHead>

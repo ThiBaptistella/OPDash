@@ -1,37 +1,32 @@
 // src/utils/invoiceProcessor.ts
-import fs from "fs";
-import pdf from "pdf-parse";
+import { spawn } from "child_process";
+import path from "path";
+import { IInvoice } from "../types/Invoice";
 
-export const extractInvoiceData = async (filePath: string) => {
-  const dataBuffer = fs.readFileSync(filePath);
-  const pdfData = await pdf(dataBuffer);
+export const extractInvoiceData = async (
+  filePath: string
+): Promise<IInvoice> => {
+  return new Promise((resolve, reject) => {
+    const scriptPath = path.join(__dirname, "../../../ai-ml/utils/extract.py");
+    console.log(`Executing Python script at: ${scriptPath}`);
+    const process = spawn("python3", [scriptPath, filePath]);
 
-  // Extract the relevant data from pdfData.text
-  const receiptId = extractField(pdfData.text, "Receipt ID") || "N/A";
-  const issueDate = extractField(pdfData.text, "Issue Date") || "N/A";
-  const accountName = extractField(pdfData.text, "Account Name") || "N/A";
-  const accountCity = extractField(pdfData.text, "Account City") || "N/A";
-  const paymentDate = extractField(pdfData.text, "Payment Date") || "N/A";
-  const dueDate = extractField(pdfData.text, "Due Date") || "N/A";
-  const tax = extractField(pdfData.text, "Tax") || "N/A";
-  const balance = extractField(pdfData.text, "Balance") || "N/A";
+    process.stdout.on("data", (data) => {
+      try {
+        resolve(JSON.parse(data.toString()));
+      } catch (error) {
+        reject(`Error parsing JSON: ${(error as any).message}`);
+      }
+    });
 
-  return {
-    receiptId,
-    issueDate,
-    accountName,
-    accountCity,
-    paymentDate,
-    dueDate,
-    tax,
-    balance,
-    status: "Pending" as "Pending",
-  };
-};
+    process.stderr.on("data", (data) => {
+      reject(data.toString());
+    });
 
-// Helper function to extract fields from PDF text
-const extractField = (text: string, fieldName: string) => {
-  const regex = new RegExp(`${fieldName}:\\s*(.*)`, "i");
-  const match = text.match(regex);
-  return match ? match[1].trim() : "";
+    process.on("close", (code) => {
+      if (code !== 0) {
+        reject(`Python script exited with code ${code}`);
+      }
+    });
+  });
 };

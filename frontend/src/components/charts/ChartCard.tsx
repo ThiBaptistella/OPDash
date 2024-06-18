@@ -1,7 +1,8 @@
 // src/components/charts/ChartCard.tsx
 import React from "react";
-import { Card, CardContent, Typography, Box } from "@mui/material";
-import Chart from "react-apexcharts";
+import { Card, CardContent, Typography, Box, Grid } from "@mui/material";
+import ReactApexChart from "react-apexcharts";
+import { ApexOptions } from "apexcharts";
 
 interface ChartCardProps {
   title: string;
@@ -9,6 +10,7 @@ interface ChartCardProps {
   amount: string;
   chartData: number[];
   status: string;
+  color: string;
 }
 
 const ChartCard: React.FC<ChartCardProps> = ({
@@ -17,20 +19,43 @@ const ChartCard: React.FC<ChartCardProps> = ({
   amount,
   chartData,
   status,
+  color,
 }) => {
-  const options: ApexCharts.ApexOptions = {
+  const options: ApexOptions = {
     chart: {
-      type: "line",
-      height: 350,
-    },
-    xaxis: {
-      categories: Array(chartData.length).fill(""),
-    },
-    dataLabels: {
-      enabled: false,
+      type: "area",
+      height: 100,
+      sparkline: {
+        enabled: true,
+      },
     },
     stroke: {
-      curve: "smooth" as const,
+      curve: "smooth",
+    },
+    fill: {
+      type: "gradient",
+      gradient: {
+        shadeIntensity: 1,
+        opacityFrom: 0.7,
+        opacityTo: 0.9,
+      },
+    },
+    colors: [color],
+    tooltip: {
+      fixed: {
+        enabled: false,
+      },
+      x: {
+        show: false,
+      },
+      y: {
+        title: {
+          formatter: () => "",
+        },
+      },
+      marker: {
+        show: false,
+      },
     },
   };
 
@@ -44,13 +69,26 @@ const ChartCard: React.FC<ChartCardProps> = ({
   return (
     <Card>
       <CardContent>
-        <Typography variant="h6">{title}</Typography>
-        <Typography variant="subtitle1">{subtitle}</Typography>
-        <Typography variant="h4">{amount}</Typography>
-        <Box>
-          <Chart options={options} series={series} type="line" height={350} />
-        </Box>
+        <Grid container spacing={2}>
+          <Grid item xs={8}>
+            <Typography variant="h6">{title}</Typography>
+            <Typography variant="subtitle1">{subtitle}</Typography>
+          </Grid>
+          <Grid item xs={4}>
+            <Typography variant="h4" align="right">
+              {amount}
+            </Typography>
+          </Grid>
+        </Grid>
       </CardContent>
+      <Box mt={2}>
+        <ReactApexChart
+          options={options}
+          series={series}
+          type="area"
+          height={100}
+        />
+      </Box>
     </Card>
   );
 };
