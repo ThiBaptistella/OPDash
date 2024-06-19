@@ -7,7 +7,8 @@ import { IInvoice } from "../types/Invoice";
 export const extractInvoiceData = async (
   filePath: string
 ): Promise<IInvoice> => {
-  const apiEndpoint = "http://localhost:5001/predict";
+  // const apiEndpoint = "http://localhost:5001/predict";
+  const apiEndpoint = "http://127.0.0.1:5001/predict";
 
   return new Promise((resolve, reject) => {
     const scriptPath = path.join(__dirname, "../../../ai-ml/utils/extract.py");
