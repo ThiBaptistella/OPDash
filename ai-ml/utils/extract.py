@@ -52,18 +52,26 @@ def extract_data(text):
     if prediction > 0.5:
         # Extract specific fields if it is predicted to be an invoice
         print("Extracting fields from invoice text...")
-        receipt_id = re.search(r'Receipt[ \t]*ID[ \t]*:[ \t]*(#[0-9]+)', text)
-        issue_date = re.search(r'Issue[ \t]*Date[ \t]*:[ \t]*([0-9./-]+)', text)
-        account_name = re.search(r'Account[ \t]*Name[ \t]*:[ \t]*([a-zA-Z ]+)', text)
-        account_city = re.search(r'Account[ \t]*City[ \t]*:[ \t]*([a-zA-Z ]+)', text)
-        payment_date = re.search(r'Payment[ \t]*Date[ \t]*:[ \t]*([0-9./-]+)', text)
-        due_date = re.search(r'Due[ \t]*Date[ \t]*:[ \t]*([0-9./-]+)', text)
-        tax = re.search(r'Tax[ \t]*:[ \t]*([0-9.%]+)', text)
-        balance = re.search(r'Balance[ \t]*:[ \t]*\$?([0-9.,]+)', text)
-
+        receipt_id = re.search(r'Receipt\s*ID\s*[:\s]*([#\d]+)', text, re.IGNORECASE)
+        print(f"Receipt ID match: {receipt_id}")
+        issue_date = re.search(r'(Issue\s*Date|Invoice\s*Date)\s*[:\s]*([0-9./-]+)', text, re.IGNORECASE)
+        print(f"Issue Date match: {issue_date}")
+        account_name = re.search(r'Account\s*Name\s*[:\s]*([\w\s]+)', text, re.IGNORECASE)
+        print(f"Account Name match: {account_name}")
+        account_city = re.search(r'Account\s*City\s*[:\s]*([\w\s]+)', text, re.IGNORECASE)
+        print(f"Account City match: {account_city}")
+        payment_date = re.search(r'Payment\s*Date\s*[:\s]*([0-9./-]+)', text, re.IGNORECASE)
+        print(f"Payment Date match: {payment_date}")
+        due_date = re.search(r'Due\s*Date\s*[:\s]*([0-9./-]+)', text, re.IGNORECASE)
+        print(f"Due Date match: {due_date}")
+        tax = re.search(r'Tax\s*[:\s]*([0-9.,%]+)', text, re.IGNORECASE)
+        print(f"Tax match: {tax}")
+        balance = re.search(r'Balance\s*[:\s]*\$?([0-9.,]+)', text, re.IGNORECASE)
+        print(f"Balance match: {balance}")
+        
         data = {
             "receiptId": receipt_id.group(1) if receipt_id else "N/A",
-            "issueDate": issue_date.group(1) if issue_date else "N/A",
+            "issueDate": issue_date.group(2) if issue_date else "N/A",
             "accountName": account_name.group(1) if account_name else "N/A",
             "accountCity": account_city.group(1) if account_city else "N/A",
             "paymentDate": payment_date.group(1) if payment_date else "N/A",
@@ -72,6 +80,7 @@ def extract_data(text):
             "balance": balance.group(1) if balance else "N/A",
             "status": "Pending"  # Default status
         }
+        print(f"Extracted fields: {data}")
     else:
         data = {
             "receiptId": "N/A",
@@ -99,7 +108,8 @@ if __name__ == "__main__":
         text = ""
         for page in doc:
             text += page.get_text()
-        print("Text extracted from PDF.")
+        print("Text extracted from PDF:")
+        print(text)  # Print the extracted text for review
     except Exception as e:
         print(f"Error reading PDF file: {e}")
         sys.exit(1)

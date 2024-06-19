@@ -7,12 +7,12 @@ from sklearn.metrics import classification_report
 import joblib
 import numpy as np
 
-# Sample data
+# Improved sample data with more diverse examples
 data = [
     {"text": "Receipt ID: #123456\nIssue Date: 10.12.2020\nAccount Name: Sample Account", "label": "invoice"},
     {"text": "Receipt ID: #123457\nIssue Date: 11.12.2020\nAccount Name: Another Account", "label": "invoice"},
-    {"text": "Invoice Number: 05534\nInvoice Date: 5 June 2024\nOrder Number: 05534\n Order Date: 5 June 2024\n Order Reference: BEL-060", "label": "invoice"},
-    {"text": "Invoice Date: 10 Jun 2024\nInvoice Number: INV-03119\nReference: #MAN-170\n Subtotal: 2,055.40\n TOTAL GST 10%: 205.54\n TOTAL AUD: 2,260.94", "label": "invoice"},
+    {"text": "Invoice Number: 05534\nInvoice Date: 5 June 2024\nOrder Number: 05534\nOrder Date: 5 June 2024\nOrder Reference: BEL-060", "label": "invoice"},
+    {"text": "Invoice Date: 10 Jun 2024\nInvoice Number: INV-03119\nReference: #MAN-170\nSubtotal: 2,055.40\nTOTAL GST 10%: 205.54\nTOTAL AUD: 2,260.94", "label": "invoice"},
     {"text": "Invoice Date: 10 Jun 2024", "label": "invoice"},
     {"text": "Reference: #MAN-170", "label": "invoice"},
     {"text": "Invoice Number: INV-03119", "label": "invoice"},
@@ -25,11 +25,13 @@ data = [
     {"text": "Subtotal: $535.50", "label": "invoice"},
     {"text": "GST: $53.55", "label": "invoice"},
     {"text": "Total: $589.05", "label": "invoice"},
-    # Add non-invoice samples
+    # Add more realistic non-invoice samples
     {"text": "This is a random text that does not contain any invoice information.", "label": "non-invoice"},
     {"text": "Another random text that should be classified as non-invoice.", "label": "non-invoice"},
     {"text": "Meeting minutes from the last conference call.", "label": "non-invoice"},
-    {"text": "Notes from the client meeting on 2021-12-01.", "label": "non-invoice"}
+    {"text": "Notes from the client meeting on 2021-12-01.", "label": "non-invoice"},
+    {"text": "Email correspondence regarding project status.", "label": "non-invoice"},
+    {"text": "Team outing photos and event details.", "label": "non-invoice"},
 ]
 
 # Extract texts and labels
