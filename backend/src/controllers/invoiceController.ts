@@ -11,9 +11,12 @@ export const postInvoice = async (req: Request, res: Response) => {
     }
 
     const { path } = req.file;
+    console.log("path", path);
     const invoiceData: IInvoice = await extractInvoiceData(path);
+    console.log("invoiceData", invoiceData);
 
     const invoice = new Invoice(invoiceData);
+    console.log("invoice", invoice);
     await invoice.save();
 
     res.status(200).json(invoice);

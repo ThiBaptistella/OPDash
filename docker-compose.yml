@@ -3,7 +3,7 @@ services:
   backend:
     build: ./backend
     ports:
-      - "5000:5000"
+      - "5002:5002"
     env_file: ./backend/.env
   frontend:
     build: ./frontend

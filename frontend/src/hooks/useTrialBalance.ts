@@ -21,7 +21,7 @@ const useTrialBalance = () => {
       try {
         console.log("Fetching trial balance...");
         const response = await axios.get<TrialBalanceReport>(
-          "http://localhost:5001/api/reports/trialBalance",
+          "http://localhost:5002/api/reports/trialBalance",
           {
             headers: {
               Authorization: `Bearer ${token}`,

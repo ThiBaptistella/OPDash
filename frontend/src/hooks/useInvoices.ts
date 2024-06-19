@@ -25,7 +25,7 @@ const useInvoices = () => {
     const fetchInvoices = async () => {
       try {
         const response = await axios.get<Invoice[]>(
-          "http://localhost:5001/api/invoices/invoices"
+          "http://localhost:5002/api/invoices/invoices"
         );
         setInvoices(response.data);
       } catch (error) {

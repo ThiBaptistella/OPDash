@@ -1,15 +1,44 @@
+# ai-ml/api/app.py
+
 from flask import Flask, request, jsonify
-import numpy as np
 import tensorflow as tf
+import joblib
+import os
 
 app = Flask(__name__)
+
+model_path = os.path.join(os.path.dirname(__file__), '../models/invoice_model.h5')
+tokenizer_path = os.path.join(os.path.dirname(__file__), '../models/tokenizer.pkl')
+
+print(f"Loading model from: {model_path}")
+print(f"Loading tokenizer from: {tokenizer_path}")
+
+try:
+    model = tf.keras.models.load_model(model_path)
+    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])  # Ensure model is compiled
+    tokenizer = joblib.load(tokenizer_path)
+    print("Model and tokenizer loaded successfully.")
+except Exception as e:
+    print(f"Error loading model or tokenizer: {e}")
+    raise
 
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
-    # Assume data preprocessing and model prediction here
-    prediction = model.predict(data)
-    return jsonify(prediction.tolist())
+    print(f"Received data: {data}")
+
+    cleaned_text = clean_text(data['text'])
+    seq = tokenizer.texts_to_sequences([cleaned_text])
+    padded_seq = tf.keras.preprocessing.sequence.pad_sequences(seq, maxlen=100)
+    prediction = model.predict(padded_seq)[0][0]
+
+    print(f"Prediction: {prediction}")
+    return jsonify({"prediction": float(prediction)})
+
+def clean_text(text):
+    text = re.sub(r'\s+', ' ', text)
+    text = re.sub(r'\n+', ' ', text)
+    return text
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)

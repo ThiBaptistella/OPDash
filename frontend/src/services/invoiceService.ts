@@ -2,7 +2,7 @@
 import axios from "axios";
 import { Invoice } from "../hooks/useInvoices";
 
-const API_URL = "http://localhost:5001/api/invoices";
+const API_URL = "http://localhost:5002/api/invoices";
 
 const getInvoices = () => {
   return axios.get<Invoice[]>(API_URL);

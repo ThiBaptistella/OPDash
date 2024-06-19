@@ -1,4 +1,5 @@
 // src/types/Invoice.ts
+
 export interface IInvoice {
   receiptId: string;
   issueDate: string;
@@ -8,5 +9,5 @@ export interface IInvoice {
   dueDate: string;
   tax: string;
   balance: string;
-  status: string;
+  status: "Paid" | "Pending" | "Overdue";
 }

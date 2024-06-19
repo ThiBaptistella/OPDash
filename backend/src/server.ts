@@ -10,7 +10,7 @@ import invoiceRoutes from "./routes/invoicesRoutes";
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 5001;
+const port = process.env.PORT || 5002;
 
 // Middleware
 app.use(cors());
@@ -22,7 +22,7 @@ connectDB();
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/xero", xeroRoutes);
-app.use("/api/reports", reportRoutes); // OR Reports, test later
+app.use("/api/reports", reportRoutes);
 app.use("/api/invoices", invoiceRoutes);
 
 app.listen(port, () => {

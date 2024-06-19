@@ -5,7 +5,7 @@ interface IUser extends Document {
   email: string;
   password: string;
   createdAt: Date;
-  xeroTokens?: any; // Add this line to store Xero tokens
+  xeroTokens?: any;
 }
 
 const UserSchema: Schema = new Schema({
@@ -13,7 +13,7 @@ const UserSchema: Schema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
-  xeroTokens: { type: Object }, // Add this line to store Xero tokens
+  xeroTokens: { type: Object },
 });
 
 const User = model<IUser>("User", UserSchema);

@@ -66,7 +66,7 @@ const Invoices: React.FC = () => {
 
     try {
       const response = await fetch(
-        "http://localhost:5001/api/invoices/uploadInvoices",
+        "http://localhost:5002/api/invoices/uploadInvoices",
         {
           method: "POST",
           body: formData,
@@ -189,7 +189,7 @@ const Invoices: React.FC = () => {
       <Card elevation={0} sx={{ boxShadow: "none" }}>
         <CardContent>
           <Grid container spacing={2} alignItems="center">
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={3}>
               <Typography
                 variant="h6"
                 component="div"
@@ -209,7 +209,7 @@ const Invoices: React.FC = () => {
                 size="small"
               />
             </Grid>
-            <Grid item xs={12} sm={3}>
+            <Grid item xs={12} sm={6}>
               <input
                 accept="application/pdf"
                 style={{ display: "none" }}

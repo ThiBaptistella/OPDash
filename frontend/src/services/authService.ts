@@ -1,7 +1,7 @@
 // src/services/authService.ts
 import axios from "axios";
 
-const API_URL = "http://localhost:5001/api/auth";
+const API_URL = "http://localhost:5002/api/auth";
 
 const register = (name: string, email: string, password: string) => {
   return axios.post(`${API_URL}/register`, { name, email, password });

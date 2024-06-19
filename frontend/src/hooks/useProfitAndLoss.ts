@@ -19,7 +19,7 @@ const useProfitAndLoss = () => {
 
       try {
         const response = await axios.get<ProfitAndLossReport>(
-          "http://localhost:5001/api/Reports/ProfitAndLoss",
+          "http://localhost:5002/api/Reports/ProfitAndLoss",
           {
             headers: {
               Authorization: `Bearer ${token}`,

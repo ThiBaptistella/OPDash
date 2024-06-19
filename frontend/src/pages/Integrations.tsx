@@ -15,7 +15,7 @@ export default function Integrations() {
     }
 
     try {
-      const response = await fetch("http://localhost:5001/xero/connect", {
+      const response = await fetch("http://localhost:5002/xero/connect", {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
