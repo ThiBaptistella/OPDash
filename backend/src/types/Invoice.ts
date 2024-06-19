@@ -9,5 +9,10 @@ export interface IInvoice {
   dueDate: string;
   tax: string;
   balance: string;
-  status: "Paid" | "Pending" | "Overdue";
+  status: "Paid" | "Pending" | "Overdue" | "N/A";
+}
+
+export interface IInvoiceResponse {
+  prediction: number;
+  extracted_data: IInvoice;
 }

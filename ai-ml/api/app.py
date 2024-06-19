@@ -23,33 +23,55 @@ except Exception as e:
     print(f"Error loading model or tokenizer: {e}")
     raise
 
-# Recompile the model to suppress the warning
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
-
-def clean_text(text):
-    print("Cleaning text...")
-    # Remove unnecessary spaces and newlines
-    text = re.sub(r'\s+', ' ', text)
-    text = re.sub(r'\n+', ' ', text)
-    print("Text cleaned.")
-    return text
 
 @app.route('/predict', methods=['POST'])
 def predict():
     data = request.json
     print(f"Received data: {data}")
     
-    cleaned_text = clean_text(data['text'])
+    text = data['text']
     
-    # Tokenize and pad the text
+    cleaned_text = clean_text(text)
+    
     seq = tokenizer.texts_to_sequences([cleaned_text])
     padded_seq = tf.keras.preprocessing.sequence.pad_sequences(seq, maxlen=100)
     
-    # Predict using the trained model
     prediction = model.predict(padded_seq)[0][0]
-    print(f"Prediction: {prediction}")
     
-    return jsonify({"prediction": float(prediction)})
+    extracted_data = extract_data(text)
+    return jsonify({"prediction": float(prediction), "extracted_data": extracted_data})
+
+def clean_text(text):
+    text = re.sub(r'\s+', ' ', text)
+    text = re.sub(r'\n+', ' ', text)
+    return text
+
+def extract_data(text):
+    receipt_id = re.search(r'Receipt[ \t]*ID[ \t]*:[ \t]*(#[0-9]+)', text)
+    issue_date = re.search(r'Issue[ \t]*Date[ \t]*:[ \t]*([0-9./-]+)', text)
+    account_name = re.search(r'Account[ \t]*Name[ \t]*:[ \t]*([a-zA-Z ]+)', text)
+    account_city = re.search(r'Account[ \t]*City[ \t]*:[ \t]*([a-zA-Z ]+)', text)
+    payment_date = re.search(r'Payment[ \t]*Date[ \t]*:[ \t]*([0-9./-]+)', text)
+    subtotal = re.search(r'Subtotal[ \t]*:[ \t]*\$?([0-9.,]+)', text)
+    total_aud = re.search(r'TOTAL[ \t]*AUD[ \t]*:[ \t]*([0-9.,]+)', text)
+    amount_due = re.search(r'Amount[ \t]*Due[ \t]*:[ \t]*([0-9.,]+)', text)
+    due_date = re.search(r'Due[ \t]*Date[ \t]*:[ \t]*([0-9./-]+)', text)
+    tax = re.search(r'Tax[ \t]*:[ \t]*([0-9.,]+)', text)
+    balance = re.search(r'Balance[ \t]*:[ \t]*([0-9.,]+)', text)
+
+    data = {
+        "receiptId": receipt_id.group(1) if receipt_id else "N/A",
+        "issueDate": issue_date.group(1) if issue_date else "N/A",
+        "accountName": account_name.group(1) if account_name else "N/A",
+        "accountCity": account_city.group(1) if account_city else "N/A",
+        "paymentDate": payment_date.group(1) if payment_date else "N/A",
+        "dueDate": due_date.group(1) if due_date else "N/A",
+        "tax": tax.group(1) if tax else "N/A",
+        "balance": balance.group(1) if balance else "N/A",
+        "status": "Pending"
+    }
+    return data
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
