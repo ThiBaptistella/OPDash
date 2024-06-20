@@ -18,12 +18,10 @@
   },
   "labels":{
     "ner":[
-      "AMOUNT",
-      "DATE_ORDERED",
-      "DAYS_TO_PAY",
-      "DUE_DATE",
-      "GST",
+      "ACCOUNTNAME",
       "INVOICE_NUMBER",
+      "RECEIPTID",
+      "STATUS",
       "SUPPLIER"
     ]
   },
