@@ -24,7 +24,6 @@
       "DUE_DATE",
       "GST",
       "INVOICE_NUMBER",
-      "REFERENCE_NUMBER",
       "SUPPLIER"
     ]
   },

@@ -1,13 +1,13 @@
-import path from "path";
 import { spawn } from "child_process";
+import path from "path";
 import axios from "axios";
-import { IInvoice } from "../types/Invoice";
+import { IInvoiceResponse } from "../types/Invoice";
 
-export const extractInvoiceData = async (
+const apiEndpoint = "http://127.0.0.1:5001/predict"; // Change this to your API endpoint if different
+
+export const extractInvoiceData = (
   filePath: string
-): Promise<IInvoice> => {
-  const apiEndpoint = "http://127.0.0.1:5001/predict";
-
+): Promise<IInvoiceResponse> => {
   return new Promise((resolve, reject) => {
     const scriptPath = path.join(__dirname, "../../../ai-ml/utils/extract.py");
     console.log(`Executing Python script at: ${scriptPath}`);
@@ -40,11 +40,11 @@ export const extractInvoiceData = async (
         } else {
           try {
             console.log(`Extracted Text: ${extractedText}`);
-            const response = await axios.post(apiEndpoint, {
+            const response = await axios.post<IInvoiceResponse>(apiEndpoint, {
               text: extractedText,
             });
             console.log("API response data:", response.data);
-            resolve(response.data.extracted_data); // Adjust to get the extracted_data part
+            resolve(response.data);
           } catch (error) {
             console.error("Error processing invoice data:", error);
             reject(`Error processing invoice data: ${(error as any).message}`);

@@ -11,8 +11,9 @@ export const postInvoice = async (req: Request, res: Response) => {
 
     const { path } = req.file;
     console.log("path", path);
-    const extractedData = await extractInvoiceData(path);
-    console.log("extractedData", extractedData);
+    const response = await extractInvoiceData(path);
+    const extractedData = response.extracted_data;
+    console.log("extractedData", extractedData.balance);
 
     // Prepare data for the database model
     const invoiceData: IInvoice = {
