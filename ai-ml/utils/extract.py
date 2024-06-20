@@ -2,6 +2,7 @@ import spacy
 import fitz  # PyMuPDF
 import os
 import sys
+import json
 
 # Load the NER model
 model_path = os.path.join(os.path.dirname(__file__), '../models/invoice_ner_model')
@@ -28,12 +29,9 @@ def extract_data(text):
     }
 
     return extracted_data
- 
-
 
 if __name__ == "__main__":
     file_path = sys.argv[1]
-    print(f"Reading file at: {file_path}")
 
     # Extract text from the PDF file
     try:
@@ -41,12 +39,12 @@ if __name__ == "__main__":
         text = ""
         for page in doc:
             text += page.get_text()
-        print("Text extracted from PDF:\n", text)
     except Exception as e:
         print(f"Error reading PDF file: {e}")
         sys.exit(1)
     
-    print("Extracting data from text...")
     cleaned_text = clean_text(text)
     extracted_data = extract_data(cleaned_text)
-    print(f"Extracted data: {extracted_data}")
+    
+    # Print JSON directly to ensure it's the only output
+    print(json.dumps(extracted_data))

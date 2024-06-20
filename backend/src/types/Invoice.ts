@@ -1,6 +1,7 @@
 // src/types/Invoice.ts
 
 export interface IInvoiceResponse {
+  extracted_text: string;
   prediction: number;
   extracted_data: IInvoice;
 }

@@ -2,6 +2,39 @@ import { Request, Response } from "express";
 import { extractInvoiceData } from "../utils/invoiceProcessor";
 import Invoice from "../models/Invoice";
 import { IInvoice } from "../types/Invoice";
+import { saveAnnotatedData } from "../utils/saveAnnotatedData";
+import { exec } from "child_process";
+import path from "path";
+
+type ExtractedData = {
+  receiptId: string;
+  issueDate: string;
+  accountName: string;
+  accountCity: string;
+  paymentDate: string;
+  dueDate: string;
+  tax: string;
+  balance: string;
+  status: string;
+};
+
+const trainNerModel = () => {
+  const scriptPath = path.join(
+    __dirname,
+    "../../../ai-ml/scripts/train_ner_model.py"
+  );
+  exec(`python3 ${scriptPath}`, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error executing script: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`stderr: ${stderr}`);
+      return;
+    }
+    console.log(`stdout: ${stdout}`);
+  });
+};
 
 export const postInvoice = async (req: Request, res: Response) => {
   try {
@@ -12,7 +45,7 @@ export const postInvoice = async (req: Request, res: Response) => {
     const { path } = req.file;
     console.log("path", path);
     const response = await extractInvoiceData(path);
-    const extractedData = response.extracted_data;
+    const extractedData: ExtractedData = response.extracted_data;
     console.log("extractedData", extractedData.balance);
 
     const invoiceData: IInvoice = {
@@ -30,6 +63,26 @@ export const postInvoice = async (req: Request, res: Response) => {
     const invoice = new Invoice(invoiceData);
     console.log("invoice", invoice);
     await invoice.save();
+
+    // Format the entities correctly
+    const entities = Object.keys(extractedData).map((key) => {
+      const value = extractedData[key as keyof ExtractedData];
+      const start = response.extracted_text.indexOf(value);
+      return {
+        start,
+        end: start + value.length,
+        label: key.toUpperCase(),
+      };
+    });
+
+    // Save annotated data
+    saveAnnotatedData({
+      text: response.extracted_text,
+      entities,
+    });
+
+    // Trigger model training
+    trainNerModel();
 
     res.status(200).json(invoice);
   } catch (error) {

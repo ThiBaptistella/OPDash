@@ -1,0 +1,196 @@
+[
+  {
+    "text": "Glanbia Performance Nutrition Pty Ltd",
+    "entities": [
+      [
+        0,
+        33,
+        "SUPPLIER"
+      ]
+    ]
+  },
+  {
+    "text": "Invoice Number INV-676903",
+    "entities": [
+      [
+        15,
+        24,
+        "INVOICE_NUMBER"
+      ]
+    ]
+  },
+  {
+    "text": "Reference BEL-057 EliteSupps Belmont",
+    "entities": [
+      [
+        10,
+        16,
+        "REFERENCE_NUMBER"
+      ]
+    ]
+  },
+  {
+    "text": "Issue Date 05/06/2024",
+    "entities": [
+      [
+        11,
+        21,
+        "DATE_ORDERED"
+      ]
+    ]
+  },
+  {
+    "text": "Due Date 21/07/2024",
+    "entities": [
+      [
+        9,
+        19,
+        "DUE_DATE"
+      ]
+    ]
+  },
+  {
+    "text": "45 Days",
+    "entities": [
+      [
+        0,
+        7,
+        "DAYS_TO_PAY"
+      ]
+    ]
+  },
+  {
+    "text": "Amount 2,703.56",
+    "entities": [
+      [
+        7,
+        15,
+        "AMOUNT"
+      ]
+    ]
+  },
+  {
+    "text": "GST 245.78",
+    "entities": [
+      [
+        4,
+        10,
+        "GST"
+      ]
+    ]
+  },
+  {
+    "text": "{\"receiptId\": \"1753086\", \"issueDate\": \":\", \"accountName\": \"Glanbia Performance Nutrition Pty\", \"accountCity\": \"N/A\", \"paymentDate\": \"N/A\", \"dueDate\": \"20.05.2024\", \"tax\": \": 437375001\", \"balance\": \"-001\", \"status\": \"Pending\"}\n",
+    "entities": {
+      "receiptId": "1753086",
+      "issueDate": ":",
+      "accountName": "Glanbia Performance Nutrition Pty",
+      "accountCity": "N/A",
+      "paymentDate": "N/A",
+      "dueDate": "20.05.2024",
+      "tax": ": 437375001",
+      "balance": "-001",
+      "status": "Pending"
+    }
+  },
+  {
+    "text": "{\"receiptId\": \"1753086\", \"issueDate\": \":\", \"accountName\": \"Glanbia Performance Nutrition Pty\", \"accountCity\": \"N/A\", \"paymentDate\": \"N/A\", \"dueDate\": \"20.05.2024\", \"tax\": \": 437375001\", \"balance\": \"-001\", \"status\": \"Pending\"}\n",
+    "entities": [
+      {
+        "start": 15,
+        "end": 22,
+        "label": "RECEIPTID"
+      },
+      {
+        "start": 12,
+        "end": 13,
+        "label": "ISSUEDATE"
+      },
+      {
+        "start": 59,
+        "end": 92,
+        "label": "ACCOUNTNAME"
+      },
+      {
+        "start": 111,
+        "end": 114,
+        "label": "ACCOUNTCITY"
+      },
+      {
+        "start": 111,
+        "end": 114,
+        "label": "PAYMENTDATE"
+      },
+      {
+        "start": 151,
+        "end": 161,
+        "label": "DUEDATE"
+      },
+      {
+        "start": 172,
+        "end": 183,
+        "label": "TAX"
+      },
+      {
+        "start": 198,
+        "end": 202,
+        "label": "BALANCE"
+      },
+      {
+        "start": 216,
+        "end": 223,
+        "label": "STATUS"
+      }
+    ]
+  },
+  {
+    "text": "{\"receiptId\": \")\", \"issueDate\": \":\", \"accountName\": \": Total Invoice\", \"accountCity\": \"N/A\", \"paymentDate\": \"N/A\", \"dueDate\": \"%\", \"tax\": \"245.78\", \"balance\": \"2,703.56\", \"status\": \"Pending\"}\n",
+    "entities": [
+      {
+        "start": 15,
+        "end": 16,
+        "label": "RECEIPTID"
+      },
+      {
+        "start": 12,
+        "end": 13,
+        "label": "ISSUEDATE"
+      },
+      {
+        "start": 53,
+        "end": 68,
+        "label": "ACCOUNTNAME"
+      },
+      {
+        "start": 87,
+        "end": 90,
+        "label": "ACCOUNTCITY"
+      },
+      {
+        "start": 87,
+        "end": 90,
+        "label": "PAYMENTDATE"
+      },
+      {
+        "start": 127,
+        "end": 128,
+        "label": "DUEDATE"
+      },
+      {
+        "start": 139,
+        "end": 145,
+        "label": "TAX"
+      },
+      {
+        "start": 160,
+        "end": 168,
+        "label": "BALANCE"
+      },
+      {
+        "start": 182,
+        "end": 189,
+        "label": "STATUS"
+      }
+    ]
+  }
+]

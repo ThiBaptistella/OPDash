@@ -1,9 +1,6 @@
 import { spawn } from "child_process";
 import path from "path";
-import axios from "axios";
 import { IInvoiceResponse } from "../types/Invoice";
-
-const apiEndpoint = "http://127.0.0.1:5001/predict"; // Change this to your API endpoint if different
 
 export const extractInvoiceData = (
   filePath: string
@@ -40,11 +37,12 @@ export const extractInvoiceData = (
         } else {
           try {
             console.log(`Extracted Text: ${extractedText}`);
-            const response = await axios.post<IInvoiceResponse>(apiEndpoint, {
-              text: extractedText,
+            const response = JSON.parse(extractedText.trim());
+            resolve({
+              prediction: 1,
+              extracted_text: extractedText,
+              extracted_data: response,
             });
-            console.log("API response data:", response.data);
-            resolve(response.data);
           } catch (error) {
             console.error("Error processing invoice data:", error);
             reject(`Error processing invoice data: ${(error as any).message}`);
