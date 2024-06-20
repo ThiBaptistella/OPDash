@@ -1,7 +1,7 @@
-// src/controllers/invoiceController.ts
 import { Request, Response } from "express";
 import { extractInvoiceData } from "../utils/invoiceProcessor";
 import Invoice from "../models/Invoice";
+import { IInvoice } from "../types/Invoice";
 
 export const postInvoice = async (req: Request, res: Response) => {
   try {
@@ -11,13 +11,24 @@ export const postInvoice = async (req: Request, res: Response) => {
 
     const { path } = req.file;
     console.log("path", path);
-    const invoiceResponse = await extractInvoiceData(path);
-
-    const extractedData = invoiceResponse.extracted_data;
-
+    const extractedData = await extractInvoiceData(path);
     console.log("extractedData", extractedData);
-    const invoice = new Invoice(extractedData);
-    console.log("invoices", invoice);
+
+    // Prepare data for the database model
+    const invoiceData: IInvoice = {
+      receiptId: extractedData.receiptId || "N/A",
+      issueDate: extractedData.issueDate || "N/A",
+      accountName: extractedData.accountName || "N/A",
+      accountCity: extractedData.accountCity || "N/A",
+      paymentDate: extractedData.paymentDate || "N/A",
+      dueDate: extractedData.dueDate || "N/A",
+      tax: extractedData.tax || "N/A",
+      balance: extractedData.balance || "N/A",
+      status: extractedData.status || "Pending",
+    };
+
+    const invoice = new Invoice(invoiceData);
+    console.log("invoice", invoice);
     await invoice.save();
 
     res.status(200).json(invoice);
