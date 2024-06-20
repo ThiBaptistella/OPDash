@@ -1,7 +1,7 @@
 // src/models/Invoice.ts
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Document, Schema } from "mongoose";
 
-interface IInvoice extends Document {
+export interface IInvoice extends Document {
   receiptId: string;
   issueDate: string;
   accountName: string;
@@ -10,21 +10,24 @@ interface IInvoice extends Document {
   dueDate: string;
   tax: string;
   balance: string;
-  status: "Paid" | "Pending" | "Overdue";
+  status: string;
 }
 
-const InvoiceSchema: Schema = new Schema({
-  receiptId: { type: String, required: true },
-  issueDate: { type: String, required: true },
-  accountName: { type: String, required: true },
-  accountCity: { type: String, required: true },
-  paymentDate: { type: String, required: true },
-  dueDate: { type: String, required: true },
-  tax: { type: String, required: true },
-  balance: { type: String, required: true },
-  status: { type: String, required: true },
-});
+const InvoiceSchema: Schema = new Schema(
+  {
+    receiptId: { type: String, required: true, unique: true },
+    issueDate: { type: String, required: true },
+    accountName: { type: String, required: true },
+    accountCity: { type: String, required: true },
+    paymentDate: { type: String, required: true },
+    dueDate: { type: String, required: true },
+    tax: { type: String, required: true },
+    balance: { type: String, required: true },
+    status: { type: String, required: true },
+  },
+  { timestamps: true }
+);
 
-const Invoice = mongoose.model<IInvoice>("Invoice", InvoiceSchema);
+InvoiceSchema.index({ receiptId: 1 });
 
-export default Invoice;
+export default mongoose.model<IInvoice>("Invoice", InvoiceSchema);

@@ -1,4 +1,3 @@
-// src/pages/Invoices.tsx
 import React, { useState, useMemo } from "react";
 import {
   Container,
@@ -22,23 +21,19 @@ import {
   Checkbox,
   Button,
 } from "@mui/material";
-import Breadcrumb from "../components/Breadcrumb"; // Adjust the path as necessary
-import ChartCard from "../components/charts/ChartCard"; // Adjust the path as necessary
+import Breadcrumb from "../components/Breadcrumb";
+import ChartCard from "../components/charts/ChartCard";
 import useInvoices, { Invoice, Status } from "../hooks/useInvoices";
 
 const Invoices: React.FC = () => {
   const [page, setPage] = useState<number>(1);
   const [search, setSearch] = useState<string>("");
   const [file, setFile] = useState<File | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editingField, setEditingField] = useState<string | null>(null);
   const rowsPerPage = 10;
   const theme = useTheme();
   const { invoices, setInvoices, loading, error } = useInvoices();
-
-  const determineOriginalStatus = (invoice: Invoice): Status => {
-    const dueDate = new Date(invoice.dueDate);
-    const currentDate = new Date();
-    return currentDate > dueDate ? "Overdue" : "Pending";
-  };
 
   const handleChangePage = (
     event: React.ChangeEvent<unknown>,
@@ -81,6 +76,35 @@ const Invoices: React.FC = () => {
       console.error("Error uploading file:", error);
       // Display error message to user
       alert("Failed to upload and process invoice. Please try again.");
+    }
+  };
+
+  const handleUpdateInvoice = async (
+    id: string,
+    updatedFields: Partial<Invoice>
+  ) => {
+    try {
+      const response = await fetch(
+        `http://localhost:5002/api/invoices/invoices/${id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedFields),
+        }
+      );
+      if (!response.ok) {
+        throw new Error("Failed to update invoice");
+      }
+      const updatedInvoice = await response.json();
+      setInvoices((prevInvoices) =>
+        prevInvoices.map((invoice) =>
+          invoice._id === id ? updatedInvoice : invoice
+        )
+      );
+    } catch (error) {
+      console.error("Error updating invoice:", error);
     }
   };
 
@@ -260,14 +284,202 @@ const Invoices: React.FC = () => {
               {filteredInvoices
                 .slice((page - 1) * rowsPerPage, page * rowsPerPage)
                 .map((invoice) => (
-                  <TableRow key={invoice.receiptId} hover>
-                    <TableCell>{invoice.receiptId}</TableCell>
-                    <TableCell>{invoice.issueDate}</TableCell>
-                    <TableCell>{invoice.accountName}</TableCell>
-                    <TableCell>{invoice.paymentDate}</TableCell>
-                    <TableCell>{invoice.dueDate}</TableCell>
-                    <TableCell>{invoice.tax}</TableCell>
-                    <TableCell>{invoice.balance}</TableCell>
+                  <TableRow key={invoice._id} hover>
+                    <TableCell>
+                      {editingId === invoice._id &&
+                      editingField === "receiptId" ? (
+                        <TextField
+                          size="small"
+                          value={invoice.receiptId}
+                          onChange={(e) =>
+                            handleUpdateInvoice(invoice._id, {
+                              receiptId: e.target.value,
+                            })
+                          }
+                          onBlur={() => {
+                            setEditingId(null);
+                            setEditingField(null);
+                          }}
+                          autoFocus
+                        />
+                      ) : (
+                        <span
+                          onClick={() => {
+                            setEditingId(invoice._id);
+                            setEditingField("receiptId");
+                          }}
+                        >
+                          {invoice.receiptId}
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {editingId === invoice._id &&
+                      editingField === "issueDate" ? (
+                        <TextField
+                          size="small"
+                          value={invoice.issueDate}
+                          onChange={(e) =>
+                            handleUpdateInvoice(invoice._id, {
+                              issueDate: e.target.value,
+                            })
+                          }
+                          onBlur={() => {
+                            setEditingId(null);
+                            setEditingField(null);
+                          }}
+                          autoFocus
+                        />
+                      ) : (
+                        <span
+                          onClick={() => {
+                            setEditingId(invoice._id);
+                            setEditingField("issueDate");
+                          }}
+                        >
+                          {invoice.issueDate}
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {editingId === invoice._id &&
+                      editingField === "accountName" ? (
+                        <TextField
+                          size="small"
+                          value={invoice.accountName}
+                          onChange={(e) =>
+                            handleUpdateInvoice(invoice._id, {
+                              accountName: e.target.value,
+                            })
+                          }
+                          onBlur={() => {
+                            setEditingId(null);
+                            setEditingField(null);
+                          }}
+                          autoFocus
+                        />
+                      ) : (
+                        <span
+                          onClick={() => {
+                            setEditingId(invoice._id);
+                            setEditingField("accountName");
+                          }}
+                        >
+                          {invoice.accountName}
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {editingId === invoice._id &&
+                      editingField === "paymentDate" ? (
+                        <TextField
+                          size="small"
+                          value={invoice.paymentDate}
+                          onChange={(e) =>
+                            handleUpdateInvoice(invoice._id, {
+                              paymentDate: e.target.value,
+                            })
+                          }
+                          onBlur={() => {
+                            setEditingId(null);
+                            setEditingField(null);
+                          }}
+                          autoFocus
+                        />
+                      ) : (
+                        <span
+                          onClick={() => {
+                            setEditingId(invoice._id);
+                            setEditingField("paymentDate");
+                          }}
+                        >
+                          {invoice.paymentDate}
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {editingId === invoice._id &&
+                      editingField === "dueDate" ? (
+                        <TextField
+                          size="small"
+                          value={invoice.dueDate}
+                          onChange={(e) =>
+                            handleUpdateInvoice(invoice._id, {
+                              dueDate: e.target.value,
+                            })
+                          }
+                          onBlur={() => {
+                            setEditingId(null);
+                            setEditingField(null);
+                          }}
+                          autoFocus
+                        />
+                      ) : (
+                        <span
+                          onClick={() => {
+                            setEditingId(invoice._id);
+                            setEditingField("dueDate");
+                          }}
+                        >
+                          {invoice.dueDate}
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {editingId === invoice._id && editingField === "tax" ? (
+                        <TextField
+                          size="small"
+                          value={invoice.tax}
+                          onChange={(e) =>
+                            handleUpdateInvoice(invoice._id, {
+                              tax: e.target.value,
+                            })
+                          }
+                          onBlur={() => {
+                            setEditingId(null);
+                            setEditingField(null);
+                          }}
+                          autoFocus
+                        />
+                      ) : (
+                        <span
+                          onClick={() => {
+                            setEditingId(invoice._id);
+                            setEditingField("tax");
+                          }}
+                        >
+                          {invoice.tax}
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {editingId === invoice._id &&
+                      editingField === "balance" ? (
+                        <TextField
+                          size="small"
+                          value={invoice.balance}
+                          onChange={(e) =>
+                            handleUpdateInvoice(invoice._id, {
+                              balance: e.target.value,
+                            })
+                          }
+                          onBlur={() => {
+                            setEditingId(null);
+                            setEditingField(null);
+                          }}
+                          autoFocus
+                        />
+                      ) : (
+                        <span
+                          onClick={() => {
+                            setEditingId(invoice._id);
+                            setEditingField("balance");
+                          }}
+                        >
+                          {invoice.balance}
+                        </span>
+                      )}
+                    </TableCell>
                     <TableCell>
                       <Chip
                         label={invoice.status}
@@ -288,12 +500,12 @@ const Invoices: React.FC = () => {
                         onChange={() => {
                           setInvoices((prevInvoices) =>
                             prevInvoices.map((inv) =>
-                              inv.receiptId === invoice.receiptId
+                              inv._id === invoice._id
                                 ? {
                                     ...inv,
                                     status:
                                       inv.status === "Paid"
-                                        ? determineOriginalStatus(inv)
+                                        ? "Pending"
                                         : "Paid",
                                   }
                                 : inv

@@ -5,6 +5,7 @@ import axios from "axios";
 export type Status = "Paid" | "Pending" | "Overdue";
 
 export interface Invoice {
+  _id: any;
   receiptId: string;
   issueDate: string;
   accountName: string;

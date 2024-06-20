@@ -15,7 +15,6 @@ export const postInvoice = async (req: Request, res: Response) => {
     const extractedData = response.extracted_data;
     console.log("extractedData", extractedData.balance);
 
-    // Prepare data for the database model
     const invoiceData: IInvoice = {
       receiptId: extractedData.receiptId || "N/A",
       issueDate: extractedData.issueDate || "N/A",
@@ -46,5 +45,22 @@ export const getInvoices = async (req: Request, res: Response) => {
   } catch (error) {
     console.error("Error fetching invoices:", error);
     res.status(500).json({ message: "Failed to fetch invoices" });
+  }
+};
+
+export const updateInvoice = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const updates = req.body;
+    const updatedInvoice = await Invoice.findByIdAndUpdate(id, updates, {
+      new: true,
+    });
+    if (!updatedInvoice) {
+      return res.status(404).json({ message: "Invoice not found" });
+    }
+    res.status(200).json(updatedInvoice);
+  } catch (error) {
+    console.error("Error updating invoice:", error);
+    res.status(500).json({ message: "Failed to update invoice", error });
   }
 };

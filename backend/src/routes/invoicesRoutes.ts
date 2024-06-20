@@ -1,18 +1,17 @@
-// src/routes/invoiceRoutes.ts
 import express from "express";
 import multer from "multer";
-import { postInvoice, getInvoices } from "../controllers/invoiceController";
+import {
+  postInvoice,
+  getInvoices,
+  updateInvoice,
+} from "../controllers/invoiceController";
 import authMiddleware from "../middlewares/authMiddleware";
 
 const router = express.Router();
 const upload = multer({ dest: "uploads/" });
 
-router.post(
-  "/uploadInvoices",
-  upload.single("file"),
-  postInvoice,
-  authMiddleware
-);
-router.get("/invoices", getInvoices, authMiddleware);
+router.post("/uploadInvoices", upload.single("file"), postInvoice);
+router.get("/invoices", getInvoices);
+router.put("/invoices/:id", updateInvoice);
 
 export default router;
