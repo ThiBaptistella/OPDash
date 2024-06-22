@@ -13,6 +13,7 @@ import UserDetail from "./pages/UserDetail";
 import Integrations from "./pages/Integrations";
 import Invoices from "./pages/Invoices";
 import responsiveTheme from "./utils/theme";
+import Inventory from "./pages/Inventory";
 
 const App: React.FC = () => {
   return (
@@ -32,11 +33,11 @@ const App: React.FC = () => {
             }
           >
             <Route path="" element={<Dashboard />} />
-            <Route path="clients" element={<CustomerProfile />} />
             <Route path="users" element={<UserList />} />
             <Route path="users/:id" element={<UserDetail />} />
             <Route path="integrations" element={<Integrations />} />
             <Route path="invoices" element={<Invoices />} />
+            <Route path="inventory" element={<Inventory />} />
             {/* Add more routes here as needed */}
           </Route>
         </Routes>

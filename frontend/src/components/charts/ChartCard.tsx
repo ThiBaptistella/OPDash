@@ -33,7 +33,7 @@ const ChartCard: React.FC<ChartCardProps> = ({
       curve: "smooth",
     },
     fill: {
-      type: "gradient",
+      type: "",
       gradient: {
         shadeIntensity: 1,
         opacityFrom: 0.7,
@@ -67,7 +67,7 @@ const ChartCard: React.FC<ChartCardProps> = ({
   ];
 
   return (
-    <Card>
+    <Card style={{ backgroundColor: color }}>
       <CardContent>
         <Grid container spacing={2}>
           <Grid item xs={8}>

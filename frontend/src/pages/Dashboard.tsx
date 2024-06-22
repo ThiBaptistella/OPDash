@@ -69,8 +69,7 @@ export default function Dashboard() {
   return (
     <Container maxWidth={false} disableGutters>
       <Grid container spacing={3}>
-        <Grid item xs={6} md={6}></Grid>
-        <Grid item xs={6} md={6}>
+        <Grid item xs={12}>
           <HistoricalProfitAndLossChart data={historicalData} />
         </Grid>
         <Grid item xs={12}>

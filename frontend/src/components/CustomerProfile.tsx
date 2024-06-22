@@ -1,4 +1,4 @@
-// CustomerProfile.tsx
+// src/components/CustomerProfile.tsx
 import React from "react";
 import {
   Card,
@@ -10,8 +10,13 @@ import {
   IconButton,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Users } from "../types";
 
-const CustomerProfile: React.FC = () => {
+interface CustomerProfileProps {
+  user: Users;
+}
+
+const CustomerProfile: React.FC<CustomerProfileProps> = ({ user }) => {
   return (
     <Card sx={{ padding: 2, backgroundColor: "#f5f5f5", borderRadius: 2 }}>
       <CardContent>
@@ -23,7 +28,7 @@ const CustomerProfile: React.FC = () => {
             />
             <Box ml={2}>
               <Typography variant="h5" component="div">
-                Thiago Baptistella
+                {user.name}
               </Typography>
               <Typography variant="body2" color="textSecondary">
                 Fitness Enthusiast

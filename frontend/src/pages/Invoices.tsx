@@ -157,7 +157,7 @@ const Invoices: React.FC = () => {
             )}`}
             chartData={[100, 200, 300]}
             status=""
-            color="#8e44ad" // Your desired color
+            color="#5e35b121" // Your desired color
           />
         </Grid>
         <Grid item xs={12} sm={3}>
@@ -173,7 +173,7 @@ const Invoices: React.FC = () => {
               )}`}
             chartData={[50, 100, 150]}
             status="Paid"
-            color="#27ae60" // Your desired color
+            color="#2dc76e30"
           />
         </Grid>
         <Grid item xs={12} sm={3}>
@@ -189,7 +189,7 @@ const Invoices: React.FC = () => {
               )}`}
             chartData={[30, 60, 90]}
             status="Pending"
-            color="#f1c40f" // Your desired color
+            color="#f1c40f29"
           />
         </Grid>
         <Grid item xs={12} sm={3}>
@@ -205,7 +205,7 @@ const Invoices: React.FC = () => {
               )}`}
             chartData={[20, 40, 60]}
             status="Overdue"
-            color="#e74c3c" // Your desired color
+            color="#e74c3c26" // Your desired color
           />
         </Grid>
       </Grid>

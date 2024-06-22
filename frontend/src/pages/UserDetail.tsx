@@ -1,18 +1,21 @@
 // src/pages/UserDetail.tsx
 import React from "react";
 import { useParams } from "react-router-dom";
-import { Container, Typography, Avatar, Box } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import Breadcrumb from "../components/Breadcrumb";
+import CustomerProfile from "../components/CustomerProfile";
+import { Users } from "../types";
 
-const users = [
+const users: Users[] = [
   {
     id: 1,
-    name: "Curtis",
+    name: "Thiago",
     email: "wiegand@hotmail.com",
     country: "Saucerize",
     friends: 834,
     followers: 3645,
     status: "Active",
+    phone: "123123123",
   },
   {
     id: 2,
@@ -22,12 +25,13 @@ const users = [
     friends: 634,
     followers: 2345,
     status: "Pending",
+    phone: "12312223123",
   },
   // Add more users here for demonstration
 ];
 
 const UserDetail: React.FC = () => {
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
   const user = users.find((user) => user.id === parseInt(id || "0", 10));
 
   if (!user) {
@@ -35,7 +39,7 @@ const UserDetail: React.FC = () => {
   }
 
   return (
-    <Container>
+    <Container maxWidth={false} disableGutters>
       <Breadcrumb
         title="User Detail"
         paths={[
@@ -44,21 +48,7 @@ const UserDetail: React.FC = () => {
           { name: "User Detail" },
         ]}
       />
-      <Box display="flex" alignItems="center" my={2}>
-        <Avatar
-          alt={user.name}
-          src={`https://i.pravatar.cc/150?u=${user.id}`}
-          sx={{ width: 100, height: 100, mr: 2 }}
-        />
-        <Box>
-          <Typography variant="h4">{user.name}</Typography>
-          <Typography variant="body1">{user.email}</Typography>
-          <Typography variant="body1">Country: {user.country}</Typography>
-          <Typography variant="body1">Friends: {user.friends}</Typography>
-          <Typography variant="body1">Followers: {user.followers}</Typography>
-          <Typography variant="body1">Status: {user.status}</Typography>
-        </Box>
-      </Box>
+      <CustomerProfile user={user} />
     </Container>
   );
 };

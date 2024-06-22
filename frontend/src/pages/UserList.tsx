@@ -15,50 +15,36 @@ import {
   TextField,
   Box,
   Grid,
-  Chip,
   Card,
   useTheme,
   CardContent,
   CssBaseline,
-  Button,
 } from "@mui/material";
 import ChatIcon from "@mui/icons-material/Chat";
 import BlockIcon from "@mui/icons-material/Block";
-import PeopleIcon from "@mui/icons-material/People";
-import DownloadIcon from "@mui/icons-material/Download";
-import EventAvailableIcon from "@mui/icons-material/EventAvailable";
 import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumb";
 import StatisticCard from "../components/charts/StatisticCard";
+import { Users as UsersType } from "../types";
 
-type Status = "Active" | "Pending" | "Rejected";
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  phone: string;
-  country: string;
-  friends: number;
-  followers: number;
-  status: Status;
-}
-
-const users: User[] = [
-  // Add user data
+const users: UsersType[] = [
+  {
+    id: 1,
+    name: "Thiago",
+    email: "thiago_ba@hotmail.com",
+    country: "123123123",
+    friends: 123123,
+    followers: 123,
+    status: "active",
+    phone: "123123123123",
+  },
+  // Add more users here for demonstration
 ];
-
-const statuses: Record<Status, string> = {
-  Active: "green",
-  Pending: "orange",
-  Rejected: "red",
-};
 
 const Users: React.FC = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-  const [file, setFile] = useState<File | null>(null);
   const theme = useTheme();
   const rowsPerPage = 20;
 
@@ -71,31 +57,7 @@ const Users: React.FC = () => {
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
-    setPage(1); // Reset to the first page on search
-  };
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      setFile(event.target.files[0]);
-    }
-  };
-
-  const handleAddInvoice = async () => {
-    if (!file) return;
-
-    const formData = new FormData();
-    formData.append("file", file);
-
-    try {
-      const response = await fetch("http://localhost:5002/api/invoices", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await response.json();
-      console.log(data); // Handle success
-    } catch (error) {
-      console.error("Error uploading file:", error); // Handle error
-    }
+    setPage(1);
   };
 
   const filteredUsers = useMemo(
@@ -110,7 +72,7 @@ const Users: React.FC = () => {
   );
 
   const statistics: any[] = [
-    // Add statistics data
+    // Add statistics data if needed
   ];
 
   return (
@@ -171,10 +133,8 @@ const Users: React.FC = () => {
               <TableRow>
                 <TableCell>ID</TableCell>
                 <TableCell>User Profile</TableCell>
-                <TableCell>Country</TableCell>
-                <TableCell>Friends</TableCell>
-                <TableCell>Followers</TableCell>
-                <TableCell>Status</TableCell>
+                <TableCell>Address</TableCell>
+                <TableCell>Membership</TableCell>
                 <TableCell>Actions</TableCell>
               </TableRow>
             </TableHead>
@@ -196,22 +156,14 @@ const Users: React.FC = () => {
                         <Box>
                           <Typography variant="body1">{user.name}</Typography>
                           <Typography variant="body2">{user.email}</Typography>
-                          <Typography variant="body2">{user.phone}</Typography>
+                          <Typography variant="body2">
+                            {user.country}
+                          </Typography>
                         </Box>
                       </Box>
                     </TableCell>
-                    <TableCell>{user.country}</TableCell>
                     <TableCell>{user.friends}</TableCell>
                     <TableCell>{user.followers}</TableCell>
-                    <TableCell>
-                      <Chip
-                        label={user.status}
-                        style={{
-                          backgroundColor: `${statuses[user.status]}22`,
-                          color: statuses[user.status],
-                        }}
-                      />
-                    </TableCell>
                     <TableCell>
                       <IconButton
                         color="primary"
