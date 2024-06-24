@@ -1,9 +1,10 @@
 import React from "react";
-import Container from "@mui/material/Container";
+import { Container, CssBaseline } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import XeroLogo from "../assets/Xero_software_logo.png";
 import MyobLogo from "../assets/myob-logo.png";
 import SageLogo from "../assets/sage.png";
+import Breadcrumb from "../components/Breadcrumb";
 
 export default function Integrations() {
   const handleXeroConnect = async () => {
@@ -37,6 +38,14 @@ export default function Integrations() {
 
   return (
     <Container maxWidth={false} disableGutters>
+      <CssBaseline />
+      <Breadcrumb
+        title="Integrations"
+        paths={[
+          { name: "Dashboard", link: "/dashboard" },
+          { name: "Integrations" },
+        ]}
+      />
       <Grid container spacing={3}>
         <Grid item xs={12} md={4}>
           <img

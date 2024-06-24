@@ -23,7 +23,8 @@
     "pdf-poppler": "^0.2.1",
     "redis": "^4.6.14",
     "tesseract.js": "^5.1.0",
-    "xero-node": "^6.0.0"
+    "xero-node": "^6.0.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",

@@ -8,7 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import CustomerProfile from "./components/CustomerProfile";
 import Layout from "./components/Layout";
 import PrivateRoute from "./components/PrivateRoute";
-import UserList from "./pages/UserList";
+import Users from "./pages/Users";
 import UserDetail from "./pages/UserDetail";
 import Integrations from "./pages/Integrations";
 import Invoices from "./pages/Invoices";
@@ -33,7 +33,7 @@ const App: React.FC = () => {
             }
           >
             <Route path="" element={<Dashboard />} />
-            <Route path="users" element={<UserList />} />
+            <Route path="users" element={<Users />} />
             <Route path="users/:id" element={<UserDetail />} />
             <Route path="integrations" element={<Integrations />} />
             <Route path="invoices" element={<Invoices />} />

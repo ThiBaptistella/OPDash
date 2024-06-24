@@ -15,13 +15,12 @@ import {
   TableHead,
   TableRow,
   Paper,
-  Avatar,
+  useTheme,
   Pagination,
   CssBaseline,
 } from "@mui/material";
 import Breadcrumb from "../components/Breadcrumb";
 import { InventoryItem } from "../types";
-import { DetectedBarcode } from "react-barcode-scanner";
 
 const inventoryItems: InventoryItem[] = [
   {
@@ -41,6 +40,7 @@ const inventoryItems: InventoryItem[] = [
 ];
 
 const Inventory: React.FC = () => {
+  const theme = useTheme();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const [items, setItems] = useState(inventoryItems);
@@ -56,18 +56,6 @@ const Inventory: React.FC = () => {
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
     setPage(1);
-  };
-
-  const handleCapture = (barcode: DetectedBarcode) => {
-    console.log("Captured barcode:", barcode.rawValue);
-    alert(`Captured barcode: ${barcode.rawValue}`);
-    // Here you can implement logic to handle the captured barcode
-    // For example, you can find the item by barcode and update its stock
-  };
-
-  const handleError = (error: any) => {
-    console.error("Error capturing barcode:", error);
-    alert(`Error capturing barcode: ${error}`);
   };
 
   const filteredItems = useMemo(
@@ -111,31 +99,29 @@ const Inventory: React.FC = () => {
         </Grid>
       </Grid>
 
-      <Card elevation={0} sx={{ boxShadow: "none" }}>
-        <CardContent>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={12} sm={9}>
-              <Typography
-                variant="h6"
-                component="div"
-                sx={{ fontWeight: "bold" }}
-              >
-                Inventory List
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <TextField
-                label="Search"
-                variant="outlined"
-                fullWidth
-                value={search}
-                onChange={handleSearchChange}
-                size="small"
-              />
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: 2,
+          backgroundColor: theme.palette.background.paper,
+          borderRadius: 2,
+          mb: 3,
+        }}
+      >
+        <Typography variant="h6" component="div" sx={{ fontWeight: "bold" }}>
+          Inventory List
+        </Typography>
+
+        <TextField
+          label="Search"
+          variant="outlined"
+          value={search}
+          onChange={handleSearchChange}
+          size="small"
+        />
+      </Box>
 
       <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
         <TableContainer sx={{ maxHeight: 440 }}>

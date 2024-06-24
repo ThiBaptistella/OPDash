@@ -15,9 +15,7 @@ import {
   TextField,
   Box,
   Grid,
-  Card,
   useTheme,
-  CardContent,
   CssBaseline,
 } from "@mui/material";
 import ChatIcon from "@mui/icons-material/Chat";
@@ -79,11 +77,8 @@ const Users: React.FC = () => {
     <Container maxWidth={false} disableGutters>
       <CssBaseline />
       <Breadcrumb
-        title="User List"
-        paths={[
-          { name: "Dashboard", link: "/dashboard" },
-          { name: "User List" },
-        ]}
+        title="Users"
+        paths={[{ name: "Dashboard", link: "/dashboard" }, { name: "Users" }]}
       />
 
       <Grid container spacing={3} mb={2}>
@@ -99,32 +94,29 @@ const Users: React.FC = () => {
         ))}
       </Grid>
 
-      <Card elevation={0} sx={{ boxShadow: "none" }}>
-        <CardContent>
-          <Grid container spacing={2} alignItems="center">
-            <Grid item xs={12} sm={9}>
-              <Typography
-                variant="h6"
-                component="div"
-                color={theme.palette.grey[900]}
-                sx={{ fontWeight: "bold" }}
-              >
-                List
-              </Typography>
-            </Grid>
-            <Grid item xs={12} sm={3}>
-              <TextField
-                label="Search"
-                variant="outlined"
-                fullWidth
-                value={search}
-                onChange={handleSearchChange}
-                size="small"
-              />
-            </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: 2,
+          backgroundColor: theme.palette.background.paper,
+          borderRadius: 2,
+          mb: 3,
+        }}
+      >
+        <Typography variant="h6" component="div" sx={{ fontWeight: "bold" }}>
+          Users List
+        </Typography>
+
+        <TextField
+          label="Search"
+          variant="outlined"
+          value={search}
+          onChange={handleSearchChange}
+          size="small"
+        />
+      </Box>
 
       <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
         <TableContainer sx={{ maxHeight: 440 }}>

@@ -12,10 +12,10 @@ import { cache } from "../utils/cache";
 
 const router = express.Router();
 
-router.get("/balanceSheet", authMiddleware, cache, getBalanceSheet);
-router.get("/bankSummary", authMiddleware, cache, getBankSummary);
-router.get("/budgetSummary", authMiddleware, cache, getBudgetSummary);
-router.get("/executiveSummary", authMiddleware, cache, getExecutiveSummary);
+router.get("/balanceSheet", authMiddleware, getBalanceSheet);
+router.get("/bankSummary", authMiddleware, getBankSummary);
+router.get("/budgetSummary", authMiddleware, getBudgetSummary);
+router.get("/executiveSummary", authMiddleware, getExecutiveSummary);
 router.get("/ProfitAndLoss", authMiddleware, getProfitAndLoss);
 router.get("/TrialBalance", authMiddleware, getTrialBalance);
 
