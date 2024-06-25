@@ -1,6 +1,6 @@
 // src/services/invoiceService.ts
 import axios from "axios";
-import { Invoice } from "../hooks/useInvoices";
+import { Invoice } from "../types";
 
 const API_URL = "http://localhost:5002/api/invoices";
 

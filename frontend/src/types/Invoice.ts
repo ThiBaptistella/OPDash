@@ -1,14 +1,7 @@
-// src/types/Invoice.ts
-
-export interface IInvoiceResponse {
-  extracted_text: string;
-  prediction: number;
-  extracted_data: IInvoice;
-}
-
 export type Status = "Paid" | "Pending" | "Overdue";
 
-export interface IInvoice {
+export interface Invoice {
+  _id: any;
   receiptId: string;
   issueDate: string;
   accountName: string;
@@ -17,5 +10,5 @@ export interface IInvoice {
   dueDate: string;
   tax: string;
   balance: number;
-  status: string;
+  status: Status;
 }

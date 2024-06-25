@@ -14,7 +14,7 @@ type ExtractedData = {
   paymentDate: string;
   dueDate: string;
   tax: string;
-  balance: string;
+  balance: number;
   status: string;
 };
 
@@ -56,7 +56,7 @@ export const postInvoice = async (req: Request, res: Response) => {
       paymentDate: extractedData.paymentDate || "N/A",
       dueDate: extractedData.dueDate || "N/A",
       tax: extractedData.tax || "N/A",
-      balance: extractedData.balance || "N/A",
+      balance: extractedData.balance,
       status: extractedData.status || "Pending",
     };
 
@@ -67,10 +67,10 @@ export const postInvoice = async (req: Request, res: Response) => {
     // Format the entities correctly
     const entities = Object.keys(extractedData).map((key) => {
       const value = extractedData[key as keyof ExtractedData];
-      const start = response.extracted_text.indexOf(value);
+      const start = response.extracted_text.indexOf(value.toString());
       return {
         start,
-        end: start + value.length,
+        end: start + value.toString().length,
         label: key.toUpperCase(),
       };
     });

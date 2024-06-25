@@ -123,16 +123,16 @@ const Inventory: React.FC = () => {
         />
       </Box>
 
-      <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
+      <Paper>
         <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader>
+          <Table>
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>Product</TableCell>
-                <TableCell>Category</TableCell>
-                <TableCell>Stock</TableCell>
-                <TableCell>Price</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>ID</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Product</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Category</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Stock</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Price</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -150,7 +150,7 @@ const Inventory: React.FC = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <Box display="flex" justifyContent="center" my={2}>
+        <Box display="flex" justifyContent="center" mb={2} p={2}>
           <Pagination
             count={Math.ceil(filteredItems.length / rowsPerPage)}
             page={page}

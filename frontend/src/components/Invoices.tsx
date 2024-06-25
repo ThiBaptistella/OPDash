@@ -18,12 +18,14 @@ import {
   Checkbox,
   Button,
 } from "@mui/material";
-import useInvoices, { Invoice, Status } from "../hooks/useInvoices";
+import useInvoices from "../hooks/useInvoices";
+import ChartCard from "../components/charts/ChartCard";
+import { Invoice, Status } from "../types";
 
 const Invoices: React.FC = () => {
   const { invoices, setInvoices, loading, error } = useInvoices();
   const [page, setPage] = useState<number>(1);
-  const rowsPerPage = 10;
+  const rowsPerPage = 7;
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editingField, setEditingField] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
@@ -102,6 +104,17 @@ const Invoices: React.FC = () => {
     }
   };
 
+  const handleStatusChange = async (invoice: Invoice) => {
+    const newStatus =
+      invoice.status === "Paid"
+        ? "Pending"
+        : invoice.status === "Pending" && new Date(invoice.dueDate) < new Date()
+        ? "Overdue"
+        : "Paid";
+
+    await handleUpdateInvoice(invoice._id, { status: newStatus });
+  };
+
   const filteredInvoices = useMemo(
     () =>
       invoices.filter(
@@ -125,11 +138,82 @@ const Invoices: React.FC = () => {
     }
   };
 
+  const parseBalance = (balance: number | string): number => {
+    return typeof balance === "number" ? balance : parseFloat(balance);
+  };
+
+  const totalInvoicesAmount = invoices.reduce(
+    (sum, invoice) => sum + parseBalance(invoice.balance),
+    0
+  );
+
+  const totalPaidAmount = invoices
+    .filter((invoice) => invoice.status === "Paid")
+    .reduce((sum, invoice) => sum + parseBalance(invoice.balance), 0);
+
+  const totalPendingAmount = invoices
+    .filter(
+      (invoice) =>
+        invoice.status === "Pending" && new Date(invoice.dueDate) > new Date()
+    )
+    .reduce((sum, invoice) => sum + parseBalance(invoice.balance), 0);
+
+  const totalOverdueAmount = invoices
+    .filter(
+      (invoice) =>
+        invoice.status === "Overdue" ||
+        (invoice.status !== "Paid" && new Date(invoice.dueDate) < new Date())
+    )
+    .reduce((sum, invoice) => sum + parseBalance(invoice.balance), 0);
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading invoices</div>;
 
   return (
     <Container maxWidth={false} disableGutters>
+      <Grid container spacing={3} mb={2} mt={2}>
+        <Grid item xs={12} sm={3} md={6}>
+          <ChartCard
+            title="Total Invoices"
+            subtitle={`Count: ${invoices.length}`}
+            amount={`$${totalInvoicesAmount.toFixed(2)}`}
+            chartData={[100, 200, 300]}
+            status=""
+            color="#5e35b121"
+          />
+        </Grid>
+        <Grid item xs={12} sm={3} md={6}>
+          <ChartCard
+            title="Paid"
+            subtitle="Total Paid"
+            amount={`$${totalPaidAmount.toFixed(2)}`}
+            chartData={[50, 100, 50, 150]}
+            status="Paid"
+            color="#2dc76e30"
+          />
+        </Grid>
+        <Grid item xs={12} sm={3} md={6}>
+          <ChartCard
+            title="Pending"
+            subtitle="Total Pending"
+            amount={`$${totalPendingAmount.toFixed(2)}`}
+            chartData={[30, 60, 100, 200, 150]}
+            status="Pending"
+            color="#f1c40f29"
+          />
+        </Grid>
+        <Grid item xs={12} sm={3} md={6}>
+          <ChartCard
+            title="Overdue"
+            subtitle="Total Overdue"
+            amount={`$${totalOverdueAmount.toFixed(2)}`}
+            chartData={[20, 40, 60, 10, 5, 2]}
+            status="Overdue"
+            color="#e74c3c26"
+          />
+        </Grid>
+      </Grid>
+
       <Box
         sx={{
           display: "flex",
@@ -185,7 +269,7 @@ const Invoices: React.FC = () => {
           </Button>
         </Grid>
       </Box>
-      <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
+      <Paper>
         <TableContainer sx={{ maxHeight: 640 }}>
           <Table>
             <TableHead>
@@ -322,6 +406,7 @@ const Invoices: React.FC = () => {
                       {editingId === invoice._id &&
                       editingField === "dueDate" ? (
                         <TextField
+                          type="date"
                           size="small"
                           value={invoice.dueDate}
                           onChange={(e) =>
@@ -378,10 +463,11 @@ const Invoices: React.FC = () => {
                       editingField === "balance" ? (
                         <TextField
                           size="small"
+                          type="number"
                           value={invoice.balance}
                           onChange={(e) =>
                             handleUpdateInvoice(invoice._id, {
-                              balance: e.target.value,
+                              balance: parseFloat(e.target.value),
                             })
                           }
                           onBlur={() => {
@@ -418,21 +504,7 @@ const Invoices: React.FC = () => {
                     <TableCell>
                       <Checkbox
                         checked={invoice.status === "Paid"}
-                        onChange={() => {
-                          setInvoices((prevInvoices) =>
-                            prevInvoices.map((inv) =>
-                              inv._id === invoice._id
-                                ? {
-                                    ...inv,
-                                    status:
-                                      inv.status === "Paid"
-                                        ? "Pending"
-                                        : "Paid",
-                                  }
-                                : inv
-                            )
-                          );
-                        }}
+                        onChange={() => handleStatusChange(invoice)}
                         sx={{
                           color: theme.palette.primary.dark,
                           "&.Mui-checked": {

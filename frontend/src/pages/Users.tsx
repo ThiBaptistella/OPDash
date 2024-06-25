@@ -18,8 +18,7 @@ import {
   useTheme,
   CssBaseline,
 } from "@mui/material";
-import ChatIcon from "@mui/icons-material/Chat";
-import BlockIcon from "@mui/icons-material/Block";
+import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
 import Breadcrumb from "../components/Breadcrumb";
 import StatisticCard from "../components/charts/StatisticCard";
@@ -118,16 +117,16 @@ const Users: React.FC = () => {
         />
       </Box>
 
-      <Paper sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}>
-        <TableContainer sx={{ maxHeight: 440 }}>
-          <Table stickyHeader>
+      <Paper>
+        <TableContainer sx={{ maxHeight: 640 }}>
+          <Table>
             <TableHead>
               <TableRow>
-                <TableCell>ID</TableCell>
-                <TableCell>User Profile</TableCell>
-                <TableCell>Address</TableCell>
-                <TableCell>Membership</TableCell>
-                <TableCell>Actions</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>ID</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>User Profile</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Address</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Membership</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Actions</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -161,10 +160,7 @@ const Users: React.FC = () => {
                         color="primary"
                         onClick={() => navigate(`/dashboard/users/${user.id}`)}
                       >
-                        <ChatIcon />
-                      </IconButton>
-                      <IconButton color="secondary">
-                        <BlockIcon />
+                        <EditIcon />
                       </IconButton>
                     </TableCell>
                   </TableRow>
@@ -172,7 +168,7 @@ const Users: React.FC = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <Box display="flex" justifyContent="center" my={2}>
+        <Box display="flex" justifyContent="center" mb={2} p={2}>
           <Pagination
             count={Math.ceil(filteredUsers.length / rowsPerPage)}
             page={page}

@@ -11,7 +11,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Users from "./pages/Users";
 import UserDetail from "./pages/UserDetail";
 import Integrations from "./pages/Integrations";
-import Invoices from "./pages/Invoices";
+import Invoices from "./pages/InvoicesPage";
 import responsiveTheme from "./utils/theme";
 import Inventory from "./pages/Inventory";
 

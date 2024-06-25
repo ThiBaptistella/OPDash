@@ -19,7 +19,9 @@
   "labels":{
     "ner":[
       "ACCOUNTNAME",
+      "DATE",
       "INVOICE_NUMBER",
+      "OPENINGTILLAMOUNT",
       "RECEIPTID",
       "STATUS",
       "SUPPLIER"

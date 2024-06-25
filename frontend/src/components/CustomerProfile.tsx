@@ -18,7 +18,7 @@ interface CustomerProfileProps {
 
 const CustomerProfile: React.FC<CustomerProfileProps> = ({ user }) => {
   return (
-    <Card sx={{ padding: 2, backgroundColor: "#f5f5f5", borderRadius: 2 }}>
+    <Card sx={{ padding: 2, borderRadius: 2 }}>
       <CardContent>
         <Box display="flex" justifyContent="space-between" alignItems="center">
           <Box display="flex" alignItems="center">
