@@ -1,5 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 
+export type Status = "Paid" | "Pending" | "Overdue";
 export interface IInvoice extends Document {
   receiptId: string;
   issueDate: string;
@@ -9,7 +10,7 @@ export interface IInvoice extends Document {
   dueDate: string;
   tax: string;
   balance: number;
-  status: string;
+  status: Status;
 }
 
 const InvoiceSchema: Schema = new Schema({

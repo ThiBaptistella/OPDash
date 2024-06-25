@@ -172,7 +172,7 @@ const Invoices: React.FC = () => {
   return (
     <Container maxWidth={false} disableGutters>
       <Grid container spacing={3} mb={2} mt={2}>
-        <Grid item xs={12} sm={3} md={6}>
+        <Grid item xs={12} sm={3} md={6} lg={3}>
           <ChartCard
             title="Total Invoices"
             subtitle={`Count: ${invoices.length}`}
@@ -182,7 +182,7 @@ const Invoices: React.FC = () => {
             color="#5e35b121"
           />
         </Grid>
-        <Grid item xs={12} sm={3} md={6}>
+        <Grid item xs={12} sm={3} md={6} lg={3}>
           <ChartCard
             title="Paid"
             subtitle="Total Paid"
@@ -192,7 +192,7 @@ const Invoices: React.FC = () => {
             color="#2dc76e30"
           />
         </Grid>
-        <Grid item xs={12} sm={3} md={6}>
+        <Grid item xs={12} sm={3} md={6} lg={3}>
           <ChartCard
             title="Pending"
             subtitle="Total Pending"
@@ -202,7 +202,7 @@ const Invoices: React.FC = () => {
             color="#f1c40f29"
           />
         </Grid>
-        <Grid item xs={12} sm={3} md={6}>
+        <Grid item xs={12} sm={3} md={6} lg={3}>
           <ChartCard
             title="Overdue"
             subtitle="Total Overdue"
@@ -489,13 +489,30 @@ const Invoices: React.FC = () => {
                     </TableCell>
                     <TableCell>
                       <Chip
-                        label={invoice.status}
+                        label={
+                          invoice.status === "Paid"
+                            ? "Paid"
+                            : invoice.status === "Pending" &&
+                              new Date(invoice.dueDate) < new Date()
+                            ? "Overdue"
+                            : "Pending"
+                        }
                         style={{
                           backgroundColor: `${getStatusColor(
-                            invoice.status
+                            invoice.status === "Paid"
+                              ? "Paid"
+                              : invoice.status === "Pending" &&
+                                new Date(invoice.dueDate) < new Date()
+                              ? "Overdue"
+                              : "Pending"
                           )}22`,
                           border: `1px solid ${getStatusColor(
-                            invoice.status
+                            invoice.status === "Paid"
+                              ? "Paid"
+                              : invoice.status === "Pending" &&
+                                new Date(invoice.dueDate) < new Date()
+                              ? "Overdue"
+                              : "Pending"
                           )}40`,
                           color: theme.palette.grey[900],
                         }}

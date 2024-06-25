@@ -17,5 +17,5 @@ export interface IInvoice {
   dueDate: string;
   tax: string;
   balance: number;
-  status: string;
+  status: Status;
 }
