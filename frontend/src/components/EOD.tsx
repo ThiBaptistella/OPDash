@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Container,
   Typography,
@@ -95,7 +95,9 @@ const EODComponent: React.FC = () => {
         }}
       >
         <Grid item xs={12} sm={12}>
-          <Typography variant="h4">EOD Management</Typography>
+          <Typography variant="h6" component="div" sx={{ fontWeight: "bold" }}>
+            EOD Management
+          </Typography>
         </Grid>
         <Grid item xs={12} sm={12}>
           <input
@@ -121,17 +123,23 @@ const EODComponent: React.FC = () => {
         </Grid>
       </Box>
       <Paper>
-        <TableContainer>
+        <TableContainer sx={{ maxHeight: 640 }}>
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell>Date</TableCell>
-                <TableCell>Opening Till Amount</TableCell>
-                <TableCell>Closing Till Amount</TableCell>
-                <TableCell>Cash Takings Amount</TableCell>
-                <TableCell>EFTPOS/Afterpay</TableCell>
-                <TableCell>Staff</TableCell>
-                <TableCell>Date Banked</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Date</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>
+                  Opening Till Amount
+                </TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>
+                  Closing Till Amount
+                </TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>
+                  Cash Takings Amount
+                </TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>EFTPOS/Afterpay</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Staff</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Date Banked</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -334,7 +342,7 @@ const EODComponent: React.FC = () => {
             </TableBody>
           </Table>
         </TableContainer>
-        <Box display="flex" justifyContent="center" my={2}>
+        <Box display="flex" justifyContent="center" mb={2} p={2}>
           <Pagination
             count={Math.ceil(eods.length / rowsPerPage)}
             page={page}

@@ -293,7 +293,7 @@ const Invoices: React.FC = () => {
               sx={{ width: "100%", overflow: "hidden", boxShadow: "none" }}
             >
               <TableContainer sx={{ maxHeight: 640 }}>
-                <Table stickyHeader>
+                <Table>
                   <TableHead>
                     <TableRow>
                       <TableCell sx={{ fontWeight: 900 }}>Receipt ID</TableCell>
@@ -557,7 +557,7 @@ const Invoices: React.FC = () => {
                   </TableBody>
                 </Table>
               </TableContainer>
-              <Box display="flex" justifyContent="center" my={2}>
+              <Box display="flex" justifyContent="center" mb={2} p={2}>
                 <Pagination
                   count={Math.ceil(filteredInvoices.length / rowsPerPage)}
                   page={page}
