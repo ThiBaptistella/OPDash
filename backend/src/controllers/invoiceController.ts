@@ -1,22 +1,10 @@
 import { Request, Response } from "express";
 import { extractInvoiceData } from "../utils/invoiceProcessor";
 import Invoice from "../models/Invoice";
-import { IInvoice } from "../types/Invoice";
+import { ExtractedData, IInvoice } from "../types/Invoice";
 import { saveAnnotatedData } from "../utils/saveAnnotatedData";
 import { exec } from "child_process";
 import path from "path";
-
-type ExtractedData = {
-  receiptId: string;
-  issueDate: string;
-  accountName: string;
-  accountCity: string;
-  paymentDate: string;
-  dueDate: string;
-  tax: string;
-  balance: number;
-  status: string;
-};
 
 const trainNerModel = () => {
   const scriptPath = path.join(
