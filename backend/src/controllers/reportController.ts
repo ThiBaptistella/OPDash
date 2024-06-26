@@ -67,6 +67,7 @@ export const getBalanceSheet = async (req: Request, res: Response) => {
   try {
     const tenantId = await getTenantId((req as any).user!.id);
     const response = await xero.accountingApi.getReportBalanceSheet(tenantId);
+    console.log("getBalanceSheet", response.body);
     res.json(response.body);
   } catch (error: unknown) {
     if (error instanceof Error) {

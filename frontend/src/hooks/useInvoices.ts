@@ -10,6 +10,7 @@ const useInvoices = () => {
 
   useEffect(() => {
     const fetchInvoices = async () => {
+      setLoading(true);
       try {
         const response = await invoiceService.getInvoices();
         setInvoices(response.data);

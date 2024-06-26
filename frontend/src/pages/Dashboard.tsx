@@ -4,15 +4,19 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import FinancialForecastChart from "../components/charts/FinancialForecastChart";
 import HistoricalProfitAndLossChart from "../components/charts/HistoricalProfitAndLossChart";
+import useXeroReports from "../hooks/useXeroReports";
 import useTrialBalance from "../hooks/useTrialBalance";
 import useProfitAndLoss from "../hooks/useProfitAndLoss";
 import { parseTrialBalanceData } from "../utils/parseTrialBalance";
 import { parseProfitAndLossData } from "../utils/parseProfitAndLoss";
+import { parseBalanceSheetData } from "../utils/parseBalanceSheetData";
 import {
   ParsedProfitAndLoss,
   ParsedTrialBalance,
   HistoricalProfitAndLoss,
 } from "../types";
+import ChartCard from "../components/charts/ChartCard";
+import BalanceSheetChart from "../components/charts/BalanceSheetChart";
 
 export default function Dashboard() {
   const {
@@ -25,6 +29,14 @@ export default function Dashboard() {
     loading: loadingProfitAndLoss,
     error: errorProfitAndLoss,
   } = useProfitAndLoss();
+  const {
+    balanceSheet,
+    bankSummary,
+    budgetSummary,
+    executiveSummary,
+    loading,
+    error,
+  } = useXeroReports();
 
   if (loadingTrialBalance || loadingProfitAndLoss) {
     return <div>Loading...</div>;
@@ -66,9 +78,18 @@ export default function Dashboard() {
       expenses: parsedProfitAndLossData!.expenses[index],
     }));
 
+  const parsedBalanceSheet = balanceSheet
+    ? parseBalanceSheetData(balanceSheet)
+    : null;
+
   return (
     <Container maxWidth={false} disableGutters>
       <Grid container spacing={3}>
+        {parsedBalanceSheet ? (
+          <Grid item xs={12} md={6}>
+            <BalanceSheetChart data={parsedBalanceSheet} />
+          </Grid>
+        ) : null}
         <Grid item xs={12}>
           <HistoricalProfitAndLossChart data={historicalData} />
         </Grid>

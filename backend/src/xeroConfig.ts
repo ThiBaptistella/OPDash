@@ -34,7 +34,7 @@ export const authenticateXero = async (req: CustomRequest, res: Response) => {
   }
 
   const state = jwt.sign({ user: { id: userId } }, config.jwtSecret, {
-    expiresIn: "1000m",
+    expiresIn: "10000000m",
   }); // Token valid for 10 minutes
 
   const consentUrl = `https://login.xero.com/identity/connect/authorize?response_type=code&client_id=${config.clientId}&redirect_uri=${config.redirectUri}&scope=openid profile email accounting.transactions accounting.settings offline_access accounting.reports.read&state=${state}`;
