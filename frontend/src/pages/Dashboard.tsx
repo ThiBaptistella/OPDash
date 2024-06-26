@@ -10,6 +10,7 @@ import useProfitAndLoss from "../hooks/useProfitAndLoss";
 import { parseTrialBalanceData } from "../utils/parseTrialBalance";
 import { parseProfitAndLossData } from "../utils/parseProfitAndLoss";
 import { parseBalanceSheetData } from "../utils/parseBalanceSheetData";
+import { parseBankSummaryData } from "../utils/parseBankSummaryData";
 import {
   ParsedProfitAndLoss,
   ParsedTrialBalance,
@@ -17,6 +18,7 @@ import {
 } from "../types";
 import ChartCard from "../components/charts/ChartCard";
 import BalanceSheetChart from "../components/charts/BalanceSheetChart";
+import BankSummaryChart from "../components/charts/BankSummaryChart";
 
 export default function Dashboard() {
   const {
@@ -78,6 +80,10 @@ export default function Dashboard() {
       expenses: parsedProfitAndLossData!.expenses[index],
     }));
 
+  const parsedBankSummary = bankSummary
+    ? parseBankSummaryData(bankSummary)
+    : undefined;
+
   const parsedBalanceSheet = balanceSheet
     ? parseBalanceSheetData(balanceSheet)
     : null;
@@ -88,6 +94,11 @@ export default function Dashboard() {
         {parsedBalanceSheet ? (
           <Grid item xs={12} md={6}>
             <BalanceSheetChart data={parsedBalanceSheet} />
+          </Grid>
+        ) : null}
+        {parsedBankSummary ? (
+          <Grid item xs={12} md={6}>
+            <BankSummaryChart data={parsedBankSummary} />
           </Grid>
         ) : null}
         <Grid item xs={12}>

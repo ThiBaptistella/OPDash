@@ -5,3 +5,4 @@ export * from "./Inventory";
 export * from "./EOD";
 export * from "./Invoice";
 export * from "./BalanceSheet";
+export * from "./BankSummary";

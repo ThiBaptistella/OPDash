@@ -2,7 +2,6 @@ import express from "express";
 import {
   getBalanceSheet,
   getBankSummary,
-  getBudgetSummary,
   getExecutiveSummary,
   getProfitAndLoss,
   getTrialBalance,
@@ -14,7 +13,6 @@ const router = express.Router();
 
 router.get("/balanceSheet", authMiddleware, getBalanceSheet);
 router.get("/bankSummary", authMiddleware, getBankSummary);
-router.get("/budgetSummary", authMiddleware, getBudgetSummary);
 router.get("/executiveSummary", authMiddleware, getExecutiveSummary);
 router.get("/ProfitAndLoss", authMiddleware, getProfitAndLoss);
 router.get("/TrialBalance", authMiddleware, getTrialBalance);

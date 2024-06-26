@@ -32,37 +32,6 @@ const getTenantId = async (userId: string) => {
   return xero.tenants[0].tenantId;
 };
 
-// export const getAgedPayablesByContact = async (req: Request, res: Response) => {
-//   try {
-//     const tenantId = await getTenantId(req.user!.id);
-//     const response = await xero.accountingApi.getReportAgedPayablesByContact(
-//       tenantId
-//     );
-//     res.json(response.body);
-//   } catch (error: unknown) {
-//     if (error instanceof Error) {
-//       res.status(500).json({ error: error.message });
-//     }
-//   }
-// };
-
-// export const getAgedReceivablesByContact = async (
-//   req: Request,
-//   res: Response
-// ) => {
-//   try {
-//     const tenantId = await getTenantId(req.user!.id);
-//     const response = await xero.accountingApi.getReportAgedReceivablesByContact(
-//       tenantId
-//     );
-//     res.json(response.body);
-//   } catch (error: unknown) {
-//     if (error instanceof Error) {
-//       res.status(500).json({ error: error.message });
-//     }
-//   }
-// };
-
 export const getBalanceSheet = async (req: Request, res: Response) => {
   try {
     const tenantId = await getTenantId((req as any).user!.id);
@@ -80,30 +49,6 @@ export const getBankSummary = async (req: Request, res: Response) => {
   try {
     const tenantId = await getTenantId((req as any).user!.id);
     const response = await xero.accountingApi.getReportBankSummary(tenantId);
-    res.json(response.body);
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      res.status(500).json({ error: error.message });
-    }
-  }
-};
-
-// export const getBasReport = async (req: Request, res: Response) => {
-//   try {
-//     const tenantId = await getTenantId(req.user!.id);
-//     const response = await xero.accountingApi.getReportBasReport(tenantId);
-//     res.json(response.body);
-//   } catch (error: unknown) {
-//     if (error instanceof Error) {
-//       res.status(500).json({ error: error.message });
-//     }
-//   }
-// };
-
-export const getBudgetSummary = async (req: Request, res: Response) => {
-  try {
-    const tenantId = await getTenantId((req as any).user!.id);
-    const response = await xero.accountingApi.getReportBudgetSummary(tenantId);
     res.json(response.body);
   } catch (error: unknown) {
     if (error instanceof Error) {
