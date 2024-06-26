@@ -23,7 +23,8 @@ import ChartCard from "../components/charts/ChartCard";
 import { Invoice, Status } from "../types";
 
 const Invoices: React.FC = () => {
-  const { invoices, setInvoices, loading, error } = useInvoices();
+  const { invoices, setInvoices, addInvoice, updateInvoice, loading, error } =
+    useInvoices();
   const [page, setPage] = useState<number>(1);
   const rowsPerPage = 7;
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -52,56 +53,14 @@ const Invoices: React.FC = () => {
 
   const handleAddInvoice = async () => {
     if (!file) return;
-
-    const formData = new FormData();
-    formData.append("file", file);
-
-    try {
-      const response = await fetch(
-        "http://localhost:5002/api/invoices/uploadInvoices",
-        {
-          method: "POST",
-          body: formData,
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to upload invoice");
-      }
-      const data = await response.json();
-      setInvoices((prev) => [...prev, data]);
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      alert("Failed to upload and process invoice. Please try again.");
-    }
+    await addInvoice(file);
   };
 
   const handleUpdateInvoice = async (
     id: string,
     updatedFields: Partial<Invoice>
   ) => {
-    try {
-      const response = await fetch(
-        `http://localhost:5002/api/invoices/invoices/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(updatedFields),
-        }
-      );
-      if (!response.ok) {
-        throw new Error("Failed to update invoice");
-      }
-      const updatedInvoice = await response.json();
-      setInvoices((prevInvoices) =>
-        prevInvoices.map((invoice) =>
-          invoice._id === id ? updatedInvoice : invoice
-        )
-      );
-    } catch (error) {
-      console.error("Error updating invoice:", error);
-    }
+    await updateInvoice(id, updatedFields);
   };
 
   const handleStatusChange = async (invoice: Invoice) => {

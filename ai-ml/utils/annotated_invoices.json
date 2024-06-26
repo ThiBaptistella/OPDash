@@ -48982,5 +48982,3565 @@
         "label": "DATEBANKED"
       }
     ]
+  },
+  {
+    "text": "{\"receiptId\": \"N/A\", \"issueDate\": \"N/A\", \"accountName\": \"N/A\", \"accountCity\": \"N/A\", \"paymentDate\": \"N/A\", \"dueDate\": \"N/A\", \"tax\": \"N/A\", \"balance\": \"N/A\", \"status\": \"Pending\"}\n",
+    "entities": [
+      {
+        "start": 15,
+        "end": 18,
+        "label": "RECEIPTID"
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "label": "ISSUEDATE"
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "label": "ACCOUNTNAME"
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "label": "ACCOUNTCITY"
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "label": "PAYMENTDATE"
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "label": "DUEDATE"
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "label": "TAX"
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "label": "BALANCE"
+      },
+      {
+        "start": 168,
+        "end": 175,
+        "label": "STATUS"
+      }
+    ]
+  },
+  {
+    "text": "[{\"date\":\"Belmont Register\",\"openingTillAmount\":199,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":198,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":197,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":196,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":195,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":194,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":193,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":192,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":191,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":190,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":189,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":188,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":187,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":186,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":185,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":184,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":183,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":182,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":181,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":180,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":179,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":178,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":177,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":176,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":175,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":174,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":173,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":172,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":171,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":170,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":169,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":168,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":167,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":166,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":165,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":164,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":163,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":162,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":161,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":160,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":159,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":158,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":157,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":156,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":155,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":154,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":153,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":152,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":151,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":150,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"}]",
+    "entities": [
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      }
+    ]
+  },
+  {
+    "text": "[{\"date\":\"Belmont Register\",\"openingTillAmount\":199,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":198,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":197,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":196,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":195,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":194,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":193,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":192,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":191,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":190,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":189,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":188,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":187,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":186,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":185,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":184,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":183,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":182,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":181,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":180,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":179,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":178,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":177,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":176,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":175,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":174,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":173,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":172,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":171,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":170,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":169,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":168,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":167,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":166,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":165,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":164,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":163,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":162,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":161,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":160,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":159,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":158,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":157,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":156,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":155,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":154,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":153,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":152,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":151,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"},{\"date\":\"Belmont Register\",\"openingTillAmount\":150,\"closingTillAmount\":2024,\"cashTakingsAmount\":2024,\"eftposAfterpay\":0,\"staff\":\"\",\"dateBanked\":\"\"}]",
+    "entities": [
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      },
+      {
+        "start": 0,
+        "end": 16,
+        "label": "DATE"
+      },
+      {
+        "start": 0,
+        "end": 3,
+        "label": "OPENINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CLOSINGTILLAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 4,
+        "label": "CASHTAKINGSAMOUNT"
+      },
+      {
+        "start": 0,
+        "end": 1,
+        "label": "EFTPOSAFTERPAY"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "STAFF"
+      },
+      {
+        "start": 0,
+        "end": 0,
+        "label": "DATEBANKED"
+      }
+    ]
   }
 ]

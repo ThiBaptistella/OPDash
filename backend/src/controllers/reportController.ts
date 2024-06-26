@@ -78,7 +78,6 @@ export const getBalanceSheet = async (req: Request, res: Response) => {
 export const getBankSummary = async (req: Request, res: Response) => {
   try {
     const tenantId = await getTenantId((req as any).user!.id);
-    console.log("tenantId", tenantId);
     const response = await xero.accountingApi.getReportBankSummary(tenantId);
     res.json(response.body);
   } catch (error: unknown) {
@@ -130,7 +129,6 @@ export const getProfitAndLoss = async (req: Request, res: Response) => {
   try {
     const tenantId = await getTenantId((req as any).user!.id);
     const response = await xero.accountingApi.getReportProfitAndLoss(tenantId);
-    console.log("getProfitAndLoss", response.body);
     res.json(response.body);
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -142,9 +140,7 @@ export const getProfitAndLoss = async (req: Request, res: Response) => {
 export const getTrialBalance = async (req: Request, res: Response) => {
   try {
     const tenantId = await getTenantId((req as any).user!.id);
-    console.log("Fetching trial balance for tenant ID:", tenantId);
     const response = await xero.accountingApi.getReportTrialBalance(tenantId);
-    console.log("Trial Balance from Xero:", response.body);
     res.json(response.body);
   } catch (error: unknown) {
     if (error instanceof Error) {

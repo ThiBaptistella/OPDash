@@ -20,7 +20,7 @@ import useEODs from "../hooks/useEODs";
 import { EOD } from "../types/EOD";
 
 const EODComponent: React.FC = () => {
-  const { eods, setEods, loading, error } = useEODs();
+  const { eods, setEods, addEOD, updateEOD, loading, error } = useEODs();
   const [page, setPage] = useState<number>(1);
   const rowsPerPage = 7;
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -42,39 +42,12 @@ const EODComponent: React.FC = () => {
   };
 
   const handleUpdateEOD = async (id: string, updatedFields: Partial<EOD>) => {
-    try {
-      const response = await fetch(`http://localhost:5002/api/eod/eod/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedFields),
-      });
-      const updatedEOD = await response.json();
-      setEods((prev) => prev.map((eod) => (eod._id === id ? updatedEOD : eod)));
-    } catch (error) {
-      console.error("Error updating EOD:", error);
-    }
+    await updateEOD(id, updatedFields);
   };
 
   const handleUploadEODs = async () => {
     if (!file) return;
-
-    const formData = new FormData();
-    formData.append("file", file);
-
-    try {
-      const response = await fetch("http://localhost:5002/api/eod/uploadEod", {
-        method: "POST",
-        body: formData,
-      });
-      if (!response.ok) {
-        throw new Error("Failed to upload EOD file");
-      }
-      const data = await response.json();
-      setEods((prev) => [...prev, ...data]);
-    } catch (error) {
-      console.error("Error uploading file:", error);
-      alert("Failed to upload and process EOD file. Please try again.");
-    }
+    await addEOD(file);
   };
 
   if (loading) return <div>Loading...</div>;
