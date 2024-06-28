@@ -36,6 +36,9 @@ export const postInvoice = async (req: Request, res: Response) => {
     const extractedData: ExtractedData = response.extracted_data;
     console.log("extractedData", extractedData.balance);
 
+    // Ensure balance is a number
+    const balance = Number(extractedData.balance);
+
     const invoiceData: IInvoice = {
       receiptId: extractedData.receiptId || "N/A",
       issueDate: extractedData.issueDate || "N/A",
@@ -44,7 +47,7 @@ export const postInvoice = async (req: Request, res: Response) => {
       paymentDate: extractedData.paymentDate || "N/A",
       dueDate: extractedData.dueDate || "N/A",
       tax: extractedData.tax || "N/A",
-      balance: extractedData.balance,
+      balance: isNaN(balance) ? 0 : balance,
       status: extractedData.status || "Pending",
     };
 

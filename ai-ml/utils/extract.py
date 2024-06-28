@@ -15,7 +15,11 @@ def clean_text(text):
 def extract_data(text):
     doc = nlp(text)
     entities = {ent.label_: ent.text for ent in doc.ents}
-    
+
+        # Ensure balance is returned as a number or None
+    balance_str = entities.get("AMOUNT", None)
+    balance = float(balance_str.replace(",", "")) if balance_str else 0.0
+
     extracted_data = {
         "receiptId": entities.get("INVOICE_NUMBER", "N/A"),
         "issueDate": entities.get("DATE_ORDERED", "N/A"),
@@ -24,9 +28,10 @@ def extract_data(text):
         "paymentDate": "N/A",  # Assuming paymentDate is not in the training data
         "dueDate": entities.get("DUE_DATE", "N/A"),
         "tax": entities.get("GST", "N/A"),
-        "balance": entities.get("AMOUNT", "N/A"),
+        "balance": balance,
         "status": "Pending"
     }
+    
 
     return extracted_data
 
