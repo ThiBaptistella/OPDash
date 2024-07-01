@@ -15,6 +15,7 @@ import Invoices from "./pages/InvoicesPage";
 import responsiveTheme from "./utils/theme";
 import Inventory from "./pages/Inventory";
 import Suppliers from "./pages/Suppliers";
+import Products from "./pages/Products";
 
 const App: React.FC = () => {
   return (
@@ -40,6 +41,7 @@ const App: React.FC = () => {
             <Route path="invoices" element={<Invoices />} />
             <Route path="inventory" element={<Inventory />} />
             <Route path="suppliers" element={<Suppliers />} />
+            <Route path="products" element={<Products />} />
             {/* Add more routes here as needed */}
           </Route>
         </Routes>

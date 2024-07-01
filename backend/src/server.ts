@@ -8,6 +8,7 @@ import reportRoutes from "./routes/reportRoutes";
 import invoiceRoutes from "./routes/invoicesRoutes";
 import eodRoutes from "./routes/eodRoutes";
 import supplierRoutes from "./routes/supplierRoutes";
+import productRoutes from "./routes/productRoutes";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ app.use("/api/reports", reportRoutes);
 app.use("/api/invoices", invoiceRoutes);
 app.use("/api/eod", eodRoutes);
 app.use("/api/suppliers", supplierRoutes);
+app.use("/api/products", productRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

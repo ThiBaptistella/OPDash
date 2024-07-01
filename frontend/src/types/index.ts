@@ -7,3 +7,4 @@ export * from "./Invoice";
 export * from "./BalanceSheet";
 export * from "./BankSummary";
 export * from "./Supplier";
+export * from "./Product";

@@ -104,6 +104,12 @@ const SideMenu: React.FC<SideMenuProps> = ({ drawerWidth, toggleDrawer }) => {
           </ListItemIcon>
           <ListItemText primary="Suppliers" />
         </ListItem>
+        <ListItem button component={Link} to="/dashboard/products">
+          <ListItemIcon>
+            <PeopleIcon />
+          </ListItemIcon>
+          <ListItemText primary="Products" />
+        </ListItem>
         <ListItem button onClick={handleLogout}>
           <ListItemIcon>
             <ExitToAppIcon />
