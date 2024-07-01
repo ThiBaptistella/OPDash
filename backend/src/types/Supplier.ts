@@ -1,5 +1,4 @@
-export interface Supplier {
-  _id?: any;
+export interface ISupplier {
   supplierName: string;
   defaultMarkup: number;
   description: string;

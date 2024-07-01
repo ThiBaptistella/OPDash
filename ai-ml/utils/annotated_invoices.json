@@ -52592,5 +52592,55 @@
         "label": "STATUS"
       }
     ]
+  },
+  {
+    "text": "{\"receiptId\": \"N/A\", \"issueDate\": \"N/A\", \"accountName\": \"N/A\", \"accountCity\": \"N/A\", \"paymentDate\": \"N/A\", \"dueDate\": \"N/A\", \"tax\": \"N/A\", \"balance\": 0.0, \"status\": \"Pending\"}\n",
+    "entities": [
+      {
+        "start": 15,
+        "end": 18,
+        "label": "RECEIPTID"
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "label": "ISSUEDATE"
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "label": "ACCOUNTNAME"
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "label": "ACCOUNTCITY"
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "label": "PAYMENTDATE"
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "label": "DUEDATE"
+      },
+      {
+        "start": 15,
+        "end": 18,
+        "label": "TAX"
+      },
+      {
+        "start": 150,
+        "end": 151,
+        "label": "BALANCE"
+      },
+      {
+        "start": 166,
+        "end": 173,
+        "label": "STATUS"
+      }
+    ]
   }
 ]

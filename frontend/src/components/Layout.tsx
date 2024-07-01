@@ -19,7 +19,7 @@ const Layout: React.FC = () => {
   };
 
   return (
-    <Box sx={{ display: "flex", height: "100vh" }}>
+    <Box sx={{ display: "flex", height: "100vh", overflow: "auto" }}>
       <CssBaseline />
       <Header drawerWidth={drawerWidth} toggleDrawer={toggleDrawer} />
       <SideMenu drawerWidth={drawerWidth} toggleDrawer={toggleDrawer} />
@@ -28,7 +28,7 @@ const Layout: React.FC = () => {
         sx={{
           flexGrow: 1,
           bgcolor: "background.default",
-          p: 3,
+          p: 2,
           transition: "margin-left 0.3s ease",
           width: `calc(100% - ${drawerWidth}px)`,
         }}

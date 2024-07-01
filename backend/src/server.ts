@@ -7,6 +7,7 @@ import xeroRoutes from "./routes/xeroRoutes";
 import reportRoutes from "./routes/reportRoutes";
 import invoiceRoutes from "./routes/invoicesRoutes";
 import eodRoutes from "./routes/eodRoutes";
+import supplierRoutes from "./routes/supplierRoutes";
 
 dotenv.config();
 
@@ -26,6 +27,7 @@ app.use("/xero", xeroRoutes);
 app.use("/api/reports", reportRoutes);
 app.use("/api/invoices", invoiceRoutes);
 app.use("/api/eod", eodRoutes);
+app.use("/api/suppliers", supplierRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

@@ -7,7 +7,6 @@ import {
   DialogContent,
   DialogActions,
   styled,
-  DialogProps,
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import { Supplier } from "../types/Supplier";
@@ -16,7 +15,7 @@ interface SupplierFormProps {
   open: boolean;
   onClose: () => void;
   onSave: (supplier: Supplier) => void;
-  initialData: Supplier | null;
+  initialData: Partial<Supplier> | null;
 }
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -34,8 +33,7 @@ const SupplierForm: React.FC<SupplierFormProps> = ({
   onSave,
   initialData,
 }) => {
-  const [supplier, setSupplier] = useState<Supplier>({
-    id: "",
+  const [supplier, setSupplier] = useState<Partial<Supplier>>({
     supplierName: "",
     defaultMarkup: 0,
     description: "",
@@ -58,6 +56,26 @@ const SupplierForm: React.FC<SupplierFormProps> = ({
   useEffect(() => {
     if (initialData) {
       setSupplier(initialData);
+    } else {
+      setSupplier({
+        supplierName: "",
+        defaultMarkup: 0,
+        description: "",
+        firstName: "",
+        lastName: "",
+        company: "",
+        email: "",
+        phone: "",
+        mobile: "",
+        fax: "",
+        website: "",
+        twitter: "",
+        street: "",
+        suburb: "",
+        zipCode: "",
+        state: "",
+        country: "",
+      });
     }
   }, [initialData]);
 
@@ -67,7 +85,7 @@ const SupplierForm: React.FC<SupplierFormProps> = ({
   };
 
   const handleSave = () => {
-    onSave(supplier);
+    onSave(supplier as Supplier);
   };
 
   return (

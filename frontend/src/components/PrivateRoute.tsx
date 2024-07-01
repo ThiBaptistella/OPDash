@@ -7,7 +7,7 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
-  const isAuthenticated = Boolean(localStorage.getItem("token")); // Example check
+  const isAuthenticated = Boolean(localStorage.getItem("token"));
   const location = useLocation();
 
   return isAuthenticated ? (

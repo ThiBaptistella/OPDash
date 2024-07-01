@@ -23,8 +23,7 @@ import ChartCard from "../components/charts/ChartCard";
 import { Invoice, Status } from "../types";
 
 const Invoices: React.FC = () => {
-  const { invoices, setInvoices, addInvoice, updateInvoice, loading, error } =
-    useInvoices();
+  const { invoices, addInvoice, updateInvoice, loading, error } = useInvoices();
   const [page, setPage] = useState<number>(1);
   const rowsPerPage = 7;
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -229,7 +228,7 @@ const Invoices: React.FC = () => {
         </Grid>
       </Box>
       <Paper>
-        <TableContainer sx={{ maxHeight: 640 }}>
+        <TableContainer>
           <Table>
             <TableHead>
               <TableRow>

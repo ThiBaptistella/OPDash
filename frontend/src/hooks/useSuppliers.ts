@@ -32,11 +32,13 @@ const useSuppliers = () => {
     }
   };
 
-  const updateSupplier = async (supplier: Supplier) => {
+  const updateSupplier = async (id: string, supplier: Partial<Supplier>) => {
     try {
-      const response = await supplierService.updateSupplier(supplier);
-      setSuppliers((prev) =>
-        prev.map((s) => (s.id === supplier.id ? response.data : s))
+      const response = await supplierService.updateSupplier(id, supplier);
+      setSuppliers((prevSuppliers) =>
+        prevSuppliers.map((supplier) =>
+          supplier._id === id ? response.data : supplier
+        )
       );
     } catch (error) {
       setError((error as any).message);
@@ -46,7 +48,9 @@ const useSuppliers = () => {
   const deleteSupplier = async (id: string) => {
     try {
       await supplierService.deleteSupplier(id);
-      setSuppliers((prev) => prev.filter((s) => s.id !== id));
+      setSuppliers((prevSuppliers) =>
+        prevSuppliers.filter((supplier) => supplier._id !== id)
+      );
     } catch (error) {
       setError((error as any).message);
     }

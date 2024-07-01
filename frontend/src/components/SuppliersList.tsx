@@ -35,7 +35,7 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const theme = useTheme();
-  const [items, setItems] = useState(suppliers);
+  const [items] = useState(suppliers);
   const rowsPerPage = 10;
 
   const handleChangePage = (
@@ -91,7 +91,6 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell sx={{ fontWeight: 900 }}>ID</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Supplier Name</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Default Markup</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Description</TableCell>
@@ -101,8 +100,7 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
             </TableHead>
             <TableBody>
               {suppliers.map((supplier) => (
-                <TableRow key={supplier.id}>
-                  <TableCell>{supplier.id}</TableCell>
+                <TableRow key={supplier._id}>
                   <TableCell>{supplier.supplierName}</TableCell>
                   <TableCell>{supplier.defaultMarkup}%</TableCell>
                   <TableCell>{supplier.description}</TableCell>
@@ -111,7 +109,7 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
                     <IconButton onClick={() => onEdit(supplier)}>
                       <EditIcon />
                     </IconButton>
-                    <IconButton onClick={() => onDelete(supplier.id)}>
+                    <IconButton onClick={() => onDelete(supplier._id)}>
                       <DeleteIcon />
                     </IconButton>
                   </TableCell>

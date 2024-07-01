@@ -19,6 +19,7 @@ import {
 import ChartCard from "../components/charts/ChartCard";
 import BalanceSheetChart from "../components/charts/BalanceSheetChart";
 import BankSummaryChart from "../components/charts/BankSummaryChart";
+import NFCReader from "../components/NFCReader";
 
 export default function Dashboard() {
   const {
@@ -91,6 +92,7 @@ export default function Dashboard() {
   return (
     <Container maxWidth={false} disableGutters>
       <Grid container spacing={3}>
+        <NFCReader />
         {parsedBalanceSheet ? (
           <Grid item xs={12} md={6}>
             <BalanceSheetChart data={parsedBalanceSheet} />

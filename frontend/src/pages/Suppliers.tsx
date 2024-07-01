@@ -17,9 +17,8 @@ const Suppliers: React.FC = () => {
   } = useSuppliers();
 
   const [open, setOpen] = useState<boolean>(false);
-  const [selectedSupplier, setSelectedSupplier] = useState<Supplier | null>(
-    null
-  );
+  const [selectedSupplier, setSelectedSupplier] =
+    useState<Partial<Supplier> | null>(null);
 
   const handleAddClick = () => {
     setSelectedSupplier(null);
@@ -36,16 +35,17 @@ const Suppliers: React.FC = () => {
   };
 
   const handleSave = (supplier: Supplier) => {
-    if (selectedSupplier) {
-      updateSupplier(supplier);
+    if (selectedSupplier && selectedSupplier._id) {
+      updateSupplier(selectedSupplier._id, supplier);
     } else {
       addSupplier(supplier);
     }
     setOpen(false);
+    setSelectedSupplier(null);
   };
 
   if (loading) return <div>Loading...</div>;
-  if (!error) return <div>Error: {error}</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <Container maxWidth={false} disableGutters>

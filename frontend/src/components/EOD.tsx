@@ -96,7 +96,7 @@ const EODComponent: React.FC = () => {
         </Grid>
       </Box>
       <Paper>
-        <TableContainer sx={{ maxHeight: 640 }}>
+        <TableContainer>
           <Table>
             <TableHead>
               <TableRow>
