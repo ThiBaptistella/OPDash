@@ -1,16 +1,23 @@
 export interface Product {
-  description: unknown;
   _id?: any;
   productName: string;
-  type: string;
+  productCategory: string;
+  productVariantOne: string;
+  productVariantOneValue: string;
+  productVariantTwo: string;
+  productVariantTwoValue: string;
+  productVariantThree: string;
+  productVariantThreeValue: string;
+  supplyPrice: number;
+  retailPrice: number;
   brand: string;
   supplier: string;
-  handle: string;
   supplierCode: string;
+  active: boolean;
+  handle: string;
   averageCost: number;
-  supplyPrice: number;
+  description: string;
   sku: string;
-  retailPrice: number;
   inventory: number;
   createdAt: Date;
 }

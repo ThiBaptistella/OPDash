@@ -13,19 +13,35 @@ const getAuthHeaders = () => {
 };
 
 const getProducts = () => {
-  return axios.get<Product[]>(API_URL, getAuthHeaders());
+  return axios.get<Product[]>(`${API_URL}/products`, getAuthHeaders());
 };
 
 const addProduct = (product: Product) => {
-  return axios.post(API_URL, product, getAuthHeaders());
+  return axios.post(`${API_URL}/products`, product, getAuthHeaders());
+};
+
+const uploadProductFile = (file: File) => {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  return axios.post(`${API_URL}/uploadProductFile`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      ...getAuthHeaders().headers,
+    },
+  });
 };
 
 const updateProduct = (id: string, product: Partial<Product>) => {
-  return axios.put<Product>(`${API_URL}/${id}`, product, getAuthHeaders());
+  return axios.put<Product>(
+    `${API_URL}/products/${id}`,
+    product,
+    getAuthHeaders()
+  );
 };
 
 const deleteProduct = (id: string) => {
-  return axios.delete(`${API_URL}/${id}`, getAuthHeaders());
+  return axios.delete(`${API_URL}/products/${id}`, getAuthHeaders());
 };
 
 export default {
@@ -33,4 +49,5 @@ export default {
   addProduct,
   updateProduct,
   deleteProduct,
+  uploadProductFile,
 };

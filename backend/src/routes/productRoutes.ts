@@ -1,17 +1,27 @@
-// src/routes/productRoutes.ts
-import express from "express";
+import { Router } from "express";
+import multer from "multer";
 import {
+  uploadProductFile,
   getProducts,
   createProduct,
   updateProduct,
   deleteProduct,
 } from "../controllers/productController";
+import authMiddleware from "../middlewares/authMiddleware";
 
-const router = express.Router();
+const upload = multer({ dest: "uploads/" });
 
-router.get("/", getProducts);
-router.post("/", createProduct);
-router.put("/:id", updateProduct);
-router.delete("/:id", deleteProduct);
+const router = Router();
+
+router.post(
+  "/uploadProductFile",
+  upload.single("file"),
+  authMiddleware,
+  uploadProductFile
+);
+router.get("/products", authMiddleware, getProducts);
+router.post("/products", authMiddleware, createProduct);
+router.put("/products/:id", authMiddleware, updateProduct);
+router.delete("/products/:id", authMiddleware, deleteProduct);
 
 export default router;

@@ -7,8 +7,15 @@ import { Product } from "../types";
 import Breadcrumb from "../components/Breadcrumb";
 
 const Products: React.FC = () => {
-  const { products, loading, error, addProduct, updateProduct, deleteProduct } =
-    useProducts();
+  const {
+    products,
+    loading,
+    error,
+    addProduct,
+    updateProduct,
+    deleteProduct,
+    uploadProductFile,
+  } = useProducts();
 
   const [open, setOpen] = useState<boolean>(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
@@ -16,6 +23,10 @@ const Products: React.FC = () => {
   const handleAddClick = () => {
     setSelectedProduct(null);
     setOpen(true);
+  };
+
+  const handleUpload = async (file: File) => {
+    await uploadProductFile(file);
   };
 
   const handleEditClick = (product: Product) => {
@@ -54,6 +65,7 @@ const Products: React.FC = () => {
         products={products}
         onEdit={handleEditClick}
         onDelete={deleteProduct}
+        onUpload={handleUpload}
         onAdd={handleAddClick}
       />
       <ProductForm

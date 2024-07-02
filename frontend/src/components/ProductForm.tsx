@@ -36,17 +36,24 @@ const ProductForm: React.FC<ProductFormProps> = ({
 }) => {
   const [product, setProduct] = useState<Product>({
     productName: "",
-    type: "",
+    productCategory: "",
+    productVariantOne: "",
+    productVariantOneValue: "",
+    productVariantTwo: "",
+    productVariantTwoValue: "",
+    productVariantThree: "",
+    productVariantThreeValue: "",
+    supplyPrice: 0,
+    retailPrice: 0,
     brand: "",
     supplier: "",
-    handle: "",
     supplierCode: "",
+    active: true,
+    handle: "",
     averageCost: 0,
-    supplyPrice: 0,
-    sku: "",
-    retailPrice: 0,
-    inventory: 0,
     description: "",
+    sku: "",
+    inventory: 0,
     createdAt: new Date(),
   });
 
@@ -56,17 +63,24 @@ const ProductForm: React.FC<ProductFormProps> = ({
     } else {
       setProduct({
         productName: "",
-        type: "",
+        productCategory: "",
+        productVariantOne: "",
+        productVariantOneValue: "",
+        productVariantTwo: "",
+        productVariantTwoValue: "",
+        productVariantThree: "",
+        productVariantThreeValue: "",
+        supplyPrice: 0,
+        retailPrice: 0,
         brand: "",
         supplier: "",
-        handle: "",
         supplierCode: "",
+        active: true,
+        handle: "",
         averageCost: 0,
-        supplyPrice: 0,
-        sku: "",
-        retailPrice: 0,
-        inventory: 0,
         description: "",
+        sku: "",
+        inventory: 0,
         createdAt: new Date(),
       });
     }
@@ -107,9 +121,63 @@ const ProductForm: React.FC<ProductFormProps> = ({
           </Grid>
           <Grid item xs={12}>
             <TextField
-              label="Type"
-              name="type"
-              value={product.type}
+              label="Category"
+              name="productCategory"
+              value={product.productCategory}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Product Variant One"
+              name="productVariantOne"
+              value={product.productVariantOne}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Product Variant One Value"
+              name="productVariantOneValue"
+              value={product.productVariantOneValue}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Product Variant Two"
+              name="productVariantTwo"
+              value={product.productVariantTwo}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Product Variant Two Value"
+              name="productVariantTwoValue"
+              value={product.productVariantTwoValue}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Product Variant Three"
+              name="productVariantThree"
+              value={product.productVariantThree}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Product Variant Three Value"
+              name="productVariantThreeValue"
+              value={product.productVariantThreeValue}
               onChange={handleChange}
               fullWidth
             />
@@ -204,6 +272,15 @@ const ProductForm: React.FC<ProductFormProps> = ({
               label="Description"
               name="description"
               value={product.description}
+              onChange={handleChange}
+              fullWidth
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              label="Active"
+              name="active"
+              value={product.active}
               onChange={handleChange}
               fullWidth
             />

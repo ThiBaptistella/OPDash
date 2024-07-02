@@ -54,13 +54,24 @@ const useProducts = () => {
     }
   };
 
+  const uploadProductFile = async (file: File) => {
+    try {
+      const response = await productService.uploadProductFile(file);
+      setProducts((prev) => [...prev, ...response.data]);
+    } catch (error) {
+      setError((error as any).message);
+    }
+  };
+
   return {
     products,
-    loading,
-    error,
+    setProducts,
     addProduct,
     updateProduct,
     deleteProduct,
+    uploadProductFile,
+    loading,
+    error,
   };
 };
 

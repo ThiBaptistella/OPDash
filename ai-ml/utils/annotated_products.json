@@ -1,0 +1,19 @@
+[
+  {
+    "text": "Product: Protein Powder, Brand: MuscleTech, Supplier: HealthStore, Inventory: 50, Retail Price: 29.99, Created At: 2024-06-01, Type: Supplement, Supplier Code: PR123, Average Cost: 15.00, Supply Price: 20.00, Handle: protein-powder, Description: High-quality protein powder, SKU: MT12345",
+    "entities": [
+      { "start": 9, "end": 23, "label": "PRODUCT_NAME" },
+      { "start": 31, "end": 40, "label": "BRAND" },
+      { "start": 50, "end": 61, "label": "SUPPLIER" },
+      { "start": 73, "end": 75, "label": "INVENTORY" },
+      { "start": 89, "end": 94, "label": "RETAIL_PRICE" },
+      { "start": 125, "end": 135, "label": "TYPE" },
+      { "start": 150, "end": 155, "label": "SUPPLIER_CODE" },
+      { "start": 170, "end": 174, "label": "AVERAGE_COST" },
+      { "start": 188, "end": 193, "label": "SUPPLY_PRICE" },
+      { "start": 203, "end": 217, "label": "HANDLE" },
+      { "start": 230, "end": 257, "label": "DESCRIPTION" },
+      { "start": 263, "end": 270, "label": "SKU" }
+    ]
+  }
+]

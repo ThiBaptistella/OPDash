@@ -25,6 +25,7 @@ interface ProductsListProps {
   onEdit: (product: Product) => void;
   onDelete: (productId: string) => void;
   onAdd: () => void;
+  onUpload: (file: File) => void;
 }
 
 const ProductsList: React.FC<ProductsListProps> = ({
@@ -32,12 +33,13 @@ const ProductsList: React.FC<ProductsListProps> = ({
   onEdit,
   onDelete,
   onAdd,
+  onUpload,
 }) => {
+  const [items] = useState(products);
   const [page, setPage] = useState(1);
+  const rowsPerPage = 10;
   const [search, setSearch] = useState("");
   const theme = useTheme();
-  const [items] = useState(products);
-  const rowsPerPage = 10;
 
   const handleChangePage = (
     event: React.ChangeEvent<unknown>,
@@ -58,6 +60,12 @@ const ProductsList: React.FC<ProductsListProps> = ({
       ),
     [search, items]
   );
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files[0]) {
+      onUpload(event.target.files[0]);
+    }
+  };
 
   return (
     <>
@@ -83,9 +91,28 @@ const ProductsList: React.FC<ProductsListProps> = ({
           onChange={handleSearchChange}
           size="small"
         />
-        <Button variant="contained" color="primary" onClick={onAdd}>
-          Add Product
-        </Button>
+        <div>
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={onAdd}
+            sx={{ mr: 2 }}
+          >
+            Add Product
+          </Button>
+          <input
+            accept=".xlsx, .xls"
+            style={{ display: "none" }}
+            id="contained-button-file"
+            type="file"
+            onChange={handleFileChange}
+          />
+          <label htmlFor="contained-button-file">
+            <Button variant="contained" component="span">
+              Upload Products
+            </Button>
+          </label>
+        </div>
       </Box>
       <Paper>
         <TableContainer sx={{ maxHeight: 640 }}>
@@ -101,25 +128,27 @@ const ProductsList: React.FC<ProductsListProps> = ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {filteredItems.map((product) => (
-                <TableRow key={product._id}>
-                  <TableCell>{product.productName}</TableCell>
-                  <TableCell>{product.brand}</TableCell>
-                  <TableCell>{product.supplier}</TableCell>
-                  <TableCell>{product.retailPrice}</TableCell>
-                  <TableCell>
-                    {new Date(product.createdAt).toLocaleDateString()}
-                  </TableCell>
-                  <TableCell>
-                    <IconButton onClick={() => onEdit(product)}>
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton onClick={() => onDelete(product._id)}>
-                      <DeleteIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {filteredItems
+                .slice((page - 1) * rowsPerPage, page * rowsPerPage)
+                .map((product) => (
+                  <TableRow key={product._id}>
+                    <TableCell>{product.productName}</TableCell>
+                    <TableCell>{product.brand}</TableCell>
+                    <TableCell>{product.supplier}</TableCell>
+                    <TableCell>{product.retailPrice}</TableCell>
+                    <TableCell>
+                      {new Date(product.createdAt).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell>
+                      <IconButton onClick={() => onEdit(product)}>
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton onClick={() => onDelete(product._id)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
