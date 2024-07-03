@@ -73,33 +73,56 @@ const OrderList: React.FC = () => {
 
   return (
     <Container maxWidth={false} disableGutters>
-      <Grid container spacing={3} mb={2} mt={2}>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: 2,
+          backgroundColor: theme.palette.background.paper,
+          borderRadius: 2,
+          mb: 2,
+          mt: 3,
+        }}
+      >
         <Grid item xs={12} sm={12}>
           <Typography variant="h6" component="div" sx={{ fontWeight: "bold" }}>
             Orders Management
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={12}>
-          <TextField
-            label="Search"
-            variant="outlined"
-            fullWidth
-            value={search}
-            onChange={handleSearchChange}
-            size="small"
-          />
+
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <Grid item xs={6} sm={6} sx={{ mr: 3 }}>
+            <TextField
+              label="Search"
+              variant="outlined"
+              fullWidth
+              value={search}
+              onChange={handleSearchChange}
+              size="small"
+              sx={{ mr: 3 }}
+            />
+          </Grid>
+          <Grid item xs={6} sm={6}>
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleAddClick}
+              sx={{ mr: 2 }}
+            >
+              Add Order
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={12}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleAddClick}
-            sx={{ mr: 2 }}
-          >
-            Add Order
-          </Button>
-        </Grid>
-      </Grid>
+      </Box>
       <Paper>
         <TableContainer>
           <Table>

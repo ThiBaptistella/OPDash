@@ -6,7 +6,6 @@ import {
   Box,
   Button,
   TextField,
-  MenuItem,
   Paper,
   Grid,
   Card,
@@ -51,6 +50,7 @@ const OrderForm: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [page, setPage] = useState(1);
   const [notificationOpen, setNotificationOpen] = useState(false);
+  const [showMoreCategories, setShowMoreCategories] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
@@ -106,22 +106,6 @@ const OrderForm: React.FC = () => {
     }
     navigate("/dashboard/orders");
   };
-
-  const handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop + 1 >=
-      document.documentElement.scrollHeight
-    ) {
-      setPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
 
   const filteredProducts = useMemo(() => {
     let filtered = products;
@@ -190,6 +174,10 @@ const OrderForm: React.FC = () => {
     setNotificationOpen(false);
   };
 
+  const loadMoreProducts = () => {
+    setPage((prevPage) => prevPage + 1);
+  };
+
   return (
     <Container maxWidth={false} disableGutters>
       <CssBaseline />
@@ -217,24 +205,32 @@ const OrderForm: React.FC = () => {
             {isEditing ? "Edit Order" : "New Order"}
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={12}>
-          <Badge badgeContent={order.products.length} color="primary">
-            <ShoppingCartIcon />
-          </Badge>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleSubmit}
-            sx={{ ml: 2 }}
-          >
-            {isEditing ? "Update Order" : "Create Order"}
-          </Button>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Grid item xs={6} sm={6} sx={{ mr: 3 }}>
+            <Badge badgeContent={order.products.length} color="primary">
+              <ShoppingCartIcon />
+            </Badge>
+          </Grid>
+          <Grid item xs={6} sm={6} sx={{ mr: 3 }}>
+            <Button variant="contained" color="primary" onClick={handleSubmit}>
+              {isEditing ? "Update Order" : "Create Order"}
+            </Button>
+          </Grid>
         </Grid>
       </Box>
       <Paper sx={{ p: 3, mt: 3 }}>
         <Box component="form" noValidate autoComplete="off">
           <Grid container spacing={2}>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} md={2}>
               <Typography variant="h6">Filters</Typography>
               <Divider sx={{ my: 1 }} />
               <TextField
@@ -244,7 +240,7 @@ const OrderForm: React.FC = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 margin="normal"
               />
-              <Typography variant="subtitle1">Suppliers</Typography>
+              <Typography variant="h6">Suppliers</Typography>
               <FormGroup>
                 {suppliers.map((supplier) => (
                   <FormControlLabel
@@ -273,7 +269,7 @@ const OrderForm: React.FC = () => {
                 ))}
               </FormGroup>
               <Divider sx={{ my: 1 }} />
-              <Typography variant="subtitle1">Categories</Typography>
+              <Typography variant="h6">Categories</Typography>
               <FormGroup>
                 {Array.from(
                   new Set(
@@ -281,6 +277,7 @@ const OrderForm: React.FC = () => {
                   )
                 )
                   .filter(Boolean)
+                  .slice(0, showMoreCategories ? undefined : 10)
                   .map((category) => (
                     <FormControlLabel
                       key={category}
@@ -305,8 +302,18 @@ const OrderForm: React.FC = () => {
                     />
                   ))}
               </FormGroup>
+              {products.filter((product) => product.productCategory).length >
+                10 && (
+                <Button
+                  variant="text"
+                  onClick={() => setShowMoreCategories((prev) => !prev)}
+                >
+                  {showMoreCategories ? "Show Less" : "Show More"}
+                </Button>
+              )}
               <Divider sx={{ my: 1 }} />
-              <Typography variant="subtitle1">Price Ranges</Typography>
+              <Typography variant="h6">Price Ranges</Typography>
+
               <FormGroup>
                 {PRICE_RANGES.map((range) => (
                   <FormControlLabel
@@ -335,11 +342,18 @@ const OrderForm: React.FC = () => {
                 ))}
               </FormGroup>
             </Grid>
-            <Grid item xs={12} md={9}>
+            <Grid item xs={12} md={10}>
               <Grid container spacing={2}>
                 {filteredProducts.map((product) => (
                   <Grid item xs={12} sm={6} md={4} lg={3} key={product._id}>
-                    <Card>
+                    <Card
+                      sx={{
+                        minHeight: 325,
+                        display: "flex",
+                        justifyContent: "space-between",
+                        flexDirection: "column",
+                      }}
+                    >
                       <CardMedia>
                         <LazyLoadImage
                           alt={product.productName}
@@ -375,6 +389,11 @@ const OrderForm: React.FC = () => {
                   </Grid>
                 ))}
               </Grid>
+              <Box display="flex" justifyContent="center" mt={2}>
+                <Button variant="text" onClick={loadMoreProducts}>
+                  Load More
+                </Button>
+              </Box>
             </Grid>
           </Grid>
         </Box>
