@@ -20,4 +20,5 @@ export interface Product {
   sku?: string;
   inventory?: number;
   createdAt?: Date;
+  imageUrl?: string | undefined;
 }

@@ -1,5 +1,5 @@
 // src/pages/OrderForm.tsx
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   Container,
   Typography,
@@ -9,12 +9,25 @@ import {
   MenuItem,
   Paper,
   Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  FormControlLabel,
+  Checkbox,
+  FormGroup,
+  Divider,
+  CssBaseline,
 } from "@mui/material";
+import Breadcrumb from "../components/Breadcrumb";
 import { useNavigate, useParams } from "react-router-dom";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import useOrders from "../hooks/useOrders";
 import useProducts from "../hooks/useProducts";
 import useSuppliers from "../hooks/useSuppliers";
-import { Order, Product, Supplier } from "../types";
+import { Order, Product } from "../types";
+import theme from "../utils/theme";
 
 const OrderForm: React.FC = () => {
   const { addOrder, updateOrder, orders } = useOrders();
@@ -28,8 +41,20 @@ const OrderForm: React.FC = () => {
     totalAmount: 0,
   });
   const [isEditing, setIsEditing] = useState(false);
+  const [selectedSuppliers, setSelectedSuppliers] = useState<string[]>([]);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedPriceRanges, setSelectedPriceRanges] = useState<string[]>([]);
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
+
+  const PRICE_RANGES = [
+    { label: "Below $10", value: "below-10" },
+    { label: "$10 - $50", value: "10-50" },
+    { label: "$50 - $100", value: "50-100" },
+    { label: "$100 - $150", value: "100-150" },
+    { label: "Above $150", value: "above-150" },
+  ];
 
   useEffect(() => {
     if (id) {
@@ -41,47 +66,14 @@ const OrderForm: React.FC = () => {
     }
   }, [id, orders]);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setOrder({ ...order, [name]: value });
-  };
-
-  const handleSupplierChange = (e: React.ChangeEvent<{ value: unknown }>) => {
-    const supplierId = e.target.value as string;
-    const supplier = suppliers.find((s) => s._id === supplierId);
-    if (supplier) {
-      setOrder({ ...order, supplier });
-    }
-  };
-
-  const handleProductChange = (index: number, productId: string) => {
-    const product = products.find((p) => p._id === productId);
-    if (product) {
-      const updatedProducts = [...order.products];
-      updatedProducts[index] = { ...updatedProducts[index], product };
-      setOrder({ ...order, products: updatedProducts });
-    }
-  };
-
-  const handleQuantityChange = (index: number, quantity: number) => {
-    const updatedProducts = [...order.products];
-    updatedProducts[index] = { ...updatedProducts[index], quantity };
-    setOrder({ ...order, products: updatedProducts });
-  };
-
-  const handleAddProduct = () => {
-    setOrder({
-      ...order,
+  const handleAddProduct = (product: Product) => {
+    setOrder((prevOrder) => ({
+      ...prevOrder,
       products: [
-        ...order.products,
-        { product: { _id: "", productName: "" }, quantity: 1, price: 0 },
+        ...prevOrder.products,
+        { product, quantity: 1, price: product.retailPrice ?? 0 },
       ],
-    });
-  };
-
-  const handleRemoveProduct = (index: number) => {
-    const updatedProducts = order.products.filter((_, i) => i !== index);
-    setOrder({ ...order, products: updatedProducts });
+    }));
   };
 
   const handleSubmit = async () => {
@@ -93,85 +85,243 @@ const OrderForm: React.FC = () => {
     navigate("/dashboard/orders");
   };
 
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      document.documentElement.scrollHeight
+    ) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const filteredProducts = useMemo(() => {
+    let filtered = products;
+
+    if (selectedSuppliers.length > 0) {
+      filtered = filtered.filter(
+        (product) =>
+          product.supplier && selectedSuppliers.includes(product.supplier)
+      );
+    }
+
+    if (selectedCategories.length > 0) {
+      filtered = filtered.filter((product) =>
+        selectedCategories.includes(product.productCategory ?? "")
+      );
+    }
+
+    if (selectedPriceRanges.length > 0) {
+      filtered = filtered.filter((product) => {
+        const price = product.retailPrice ?? 0;
+        if (selectedPriceRanges.includes("below-10") && price < 10) return true;
+        if (selectedPriceRanges.includes("10-50") && price >= 10 && price <= 50)
+          return true;
+        if (
+          selectedPriceRanges.includes("50-100") &&
+          price >= 50 &&
+          price <= 100
+        )
+          return true;
+        if (
+          selectedPriceRanges.includes("100-150") &&
+          price >= 100 &&
+          price <= 150
+        )
+          return true;
+        if (selectedPriceRanges.includes("above-150") && price > 150)
+          return true;
+        return false;
+      });
+    }
+
+    return filtered.slice(0, page * 20);
+  }, [
+    products,
+    selectedSuppliers,
+    selectedCategories,
+    selectedPriceRanges,
+    page,
+  ]);
+
   return (
-    <Container maxWidth="md">
-      <Paper elevation={3} sx={{ p: 3, mt: 3 }}>
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ fontWeight: "bold", mb: 2 }}
-        >
-          {isEditing ? "Edit Order" : "New Order"}
-        </Typography>
-        <Box component="form" noValidate autoComplete="off">
-          <TextField
-            fullWidth
-            select
-            label="Supplier"
-            value={order.supplier._id}
-            onChange={handleSupplierChange}
-            helperText="Please select a supplier"
-            margin="normal"
-          >
-            {suppliers.map((supplier) => (
-              <MenuItem key={supplier._id} value={supplier._id}>
-                {supplier.supplierName}
-              </MenuItem>
-            ))}
-          </TextField>
-          <Grid container spacing={2}>
-            {order.products.map((item, index) => (
-              <Grid item xs={12} key={index}>
-                <Paper elevation={1} sx={{ p: 2, mb: 2 }}>
-                  <TextField
-                    fullWidth
-                    select
-                    label="Product"
-                    value={item.product._id}
-                    onChange={(e) => handleProductChange(index, e.target.value)}
-                    helperText="Please select a product"
-                    margin="normal"
-                  >
-                    {products.map((product) => (
-                      <MenuItem key={product._id} value={product._id}>
-                        {product.productName}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                  <TextField
-                    fullWidth
-                    label="Quantity"
-                    type="number"
-                    value={item.quantity}
-                    onChange={(e) =>
-                      handleQuantityChange(index, parseInt(e.target.value))
-                    }
-                    margin="normal"
-                  />
-                  <Box display="flex" justifyContent="flex-end">
-                    <Button
-                      color="secondary"
-                      onClick={() => handleRemoveProduct(index)}
-                    >
-                      Remove
-                    </Button>
-                  </Box>
-                </Paper>
-              </Grid>
-            ))}
-          </Grid>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleAddProduct}
-          >
-            Add Product
+    <Container maxWidth={false} disableGutters>
+      <CssBaseline />
+      <Breadcrumb
+        title="Order Management"
+        paths={[
+          { name: "Dashboard", link: "/dashboard/orders" },
+          { name: "Orders" },
+        ]}
+      />
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: 2,
+          backgroundColor: theme.palette.background.paper,
+          borderRadius: 2,
+          mb: 2,
+          mt: 3,
+        }}
+      >
+        <Grid item xs={12} sm={12}>
+          <Typography variant="h6" component="div" sx={{ fontWeight: "bold" }}>
+            {isEditing ? "Edit Order" : "New Order"}
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
+            {isEditing ? "Update Order" : "Create Order"}
           </Button>
-          <Box mt={2} display="flex" justifyContent="flex-end">
-            <Button variant="contained" color="primary" onClick={handleSubmit}>
-              {isEditing ? "Update Order" : "Create Order"}
-            </Button>
-          </Box>
+        </Grid>
+      </Box>
+      <Paper sx={{ p: 3, mt: 3 }}>
+        <Box component="form" noValidate autoComplete="off">
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={2}>
+              <Typography variant="h6">Filters</Typography>
+              <Divider sx={{ my: 1 }} />
+              <Typography variant="subtitle1">Suppliers</Typography>
+              <FormGroup>
+                {suppliers.map((supplier) => (
+                  <FormControlLabel
+                    key={supplier._id}
+                    control={
+                      <Checkbox
+                        checked={selectedSuppliers.includes(supplier._id)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedSuppliers([
+                              ...selectedSuppliers,
+                              supplier._id,
+                            ]);
+                          } else {
+                            setSelectedSuppliers(
+                              selectedSuppliers.filter(
+                                (id) => id !== supplier._id
+                              )
+                            );
+                          }
+                        }}
+                      />
+                    }
+                    label={supplier.supplierName}
+                  />
+                ))}
+              </FormGroup>
+              <Divider sx={{ my: 1 }} />
+              <Typography variant="subtitle1">Categories</Typography>
+              <FormGroup>
+                {Array.from(
+                  new Set(
+                    products.map((product) => product.productCategory ?? "")
+                  )
+                )
+                  .filter(Boolean)
+                  .map((category) => (
+                    <FormControlLabel
+                      key={category}
+                      control={
+                        <Checkbox
+                          checked={selectedCategories.includes(category)}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setSelectedCategories([
+                                ...selectedCategories,
+                                category,
+                              ]);
+                            } else {
+                              setSelectedCategories(
+                                selectedCategories.filter((c) => c !== category)
+                              );
+                            }
+                          }}
+                        />
+                      }
+                      label={category}
+                    />
+                  ))}
+              </FormGroup>
+              <Divider sx={{ my: 1 }} />
+              <Typography variant="subtitle1">Price Ranges</Typography>
+              <FormGroup>
+                {PRICE_RANGES.map((range) => (
+                  <FormControlLabel
+                    key={range.value}
+                    control={
+                      <Checkbox
+                        checked={selectedPriceRanges.includes(range.value)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setSelectedPriceRanges([
+                              ...selectedPriceRanges,
+                              range.value,
+                            ]);
+                          } else {
+                            setSelectedPriceRanges(
+                              selectedPriceRanges.filter(
+                                (r) => r !== range.value
+                              )
+                            );
+                          }
+                        }}
+                      />
+                    }
+                    label={range.label}
+                  />
+                ))}
+              </FormGroup>
+            </Grid>
+            <Grid item xs={12} md={10}>
+              <Grid container spacing={2}>
+                {filteredProducts.map((product) => (
+                  <Grid item xs={12} sm={6} md={4} lg={3} key={product._id}>
+                    <Card>
+                      <CardMedia>
+                        <LazyLoadImage
+                          alt={product.productName}
+                          height={140}
+                          src={product.imageUrl}
+                          effect="blur"
+                        />
+                      </CardMedia>
+                      <CardContent>
+                        <Typography variant="h6" component="div">
+                          {product.productName}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {product.brand}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {product.supplier}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          ${product.retailPrice}
+                        </Typography>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          startIcon={<AddShoppingCartIcon />}
+                          onClick={() => handleAddProduct(product)}
+                          sx={{ mt: 1 }}
+                        >
+                          Add to Order
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+          </Grid>
         </Box>
       </Paper>
     </Container>

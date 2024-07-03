@@ -5,18 +5,12 @@ import {
   getInvoices,
   updateInvoice,
 } from "../controllers/invoiceController";
-import authMiddleware from "../middlewares/authMiddleware";
 
 const router = express.Router();
 const upload = multer({ dest: "uploads/" });
 
-router.post(
-  "/uploadInvoices",
-  upload.single("file"),
-  authMiddleware,
-  postInvoice
-);
-router.get("/invoices", authMiddleware, getInvoices);
-router.put("/invoices/:id", authMiddleware, updateInvoice);
+router.post("/uploadInvoices", upload.single("file"), postInvoice);
+router.get("/invoices", getInvoices);
+router.put("/invoices/:id", updateInvoice);
 
 export default router;
