@@ -50,11 +50,12 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
     setPage(1);
   };
 
-  const filteredItems = useMemo(
+  const filteredSuppliers = useMemo(
     () =>
-      items.filter((item) =>
-        item.supplierName.toLowerCase().includes(search.toLowerCase())
-      ),
+      items.filter((item) => {
+        const supplierName = item.supplierName || "";
+        return supplierName.toLowerCase().includes(search.toLowerCase());
+      }),
     [search, items]
   );
 
@@ -99,28 +100,30 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {suppliers.map((supplier) => (
-                <TableRow key={supplier._id}>
-                  <TableCell>{supplier.supplierName}</TableCell>
-                  <TableCell>{supplier.defaultMarkup}%</TableCell>
-                  <TableCell>{supplier.description}</TableCell>
-                  <TableCell>{`${supplier.firstName} ${supplier.lastName}`}</TableCell>
-                  <TableCell>
-                    <IconButton onClick={() => onEdit(supplier)}>
-                      <EditIcon />
-                    </IconButton>
-                    <IconButton onClick={() => onDelete(supplier._id)}>
-                      <DeleteIcon />
-                    </IconButton>
-                  </TableCell>
-                </TableRow>
-              ))}
+              {filteredSuppliers
+                .slice((page - 1) * rowsPerPage, page * rowsPerPage)
+                .map((supplier) => (
+                  <TableRow key={supplier._id}>
+                    <TableCell>{supplier.supplierName}</TableCell>
+                    <TableCell>{supplier.defaultMarkup}%</TableCell>
+                    <TableCell>{supplier.description}</TableCell>
+                    <TableCell>{`${supplier.firstName} ${supplier.lastName}`}</TableCell>
+                    <TableCell>
+                      <IconButton onClick={() => onEdit(supplier)}>
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton onClick={() => onDelete(supplier._id)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
             </TableBody>
           </Table>
         </TableContainer>
         <Box display="flex" justifyContent="center" mb={2} p={2}>
           <Pagination
-            count={Math.ceil(filteredItems.length / rowsPerPage)}
+            count={Math.ceil(filteredSuppliers.length / rowsPerPage)}
             page={page}
             onChange={handleChangePage}
           />

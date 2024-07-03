@@ -1,0 +1,166 @@
+// src/components/OrderList.tsx
+import React, { useState, useMemo } from "react";
+import {
+  Container,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Pagination,
+  Typography,
+  TextField,
+  Box,
+  Grid,
+  Chip,
+  useTheme,
+  Checkbox,
+  Button,
+  IconButton,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import useOrders from "../hooks/useOrders";
+import { Order } from "../types";
+import { useNavigate } from "react-router-dom";
+
+const OrderList: React.FC = () => {
+  const { orders, addOrder, updateOrder, loading, error, deleteOrder } =
+    useOrders();
+  const [page, setPage] = useState<number>(1);
+  const rowsPerPage = 7;
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [editingField, setEditingField] = useState<string | null>(null);
+  const [search, setSearch] = useState<string>("");
+  const theme = useTheme();
+  const navigate = useNavigate();
+
+  const handleChangePage = (
+    event: React.ChangeEvent<unknown>,
+    newPage: number
+  ) => {
+    setPage(newPage);
+  };
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+    setPage(1);
+  };
+
+  const handleAddClick = () => {
+    navigate("/dashboard/orders/new");
+  };
+
+  const handleEditClick = (order: Order) => {
+    navigate(`/dashboard/orders/edit/${order._id}`);
+  };
+
+  const handleDeleteClick = (id: string) => {
+    deleteOrder(id);
+  };
+
+  const filteredOrders = useMemo(
+    () =>
+      orders.filter((order) => {
+        const supplierName = order.supplier?.supplierName || "";
+        return supplierName.toLowerCase().includes(search.toLowerCase());
+      }),
+    [search, orders]
+  );
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error loading orders</div>;
+
+  return (
+    <Container maxWidth={false} disableGutters>
+      <Grid container spacing={3} mb={2} mt={2}>
+        <Grid item xs={12} sm={12}>
+          <Typography variant="h6" component="div" sx={{ fontWeight: "bold" }}>
+            Orders Management
+          </Typography>
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <TextField
+            label="Search"
+            variant="outlined"
+            fullWidth
+            value={search}
+            onChange={handleSearchChange}
+            size="small"
+          />
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleAddClick}
+            sx={{ mr: 2 }}
+          >
+            Add Order
+          </Button>
+        </Grid>
+      </Grid>
+      <Paper>
+        <TableContainer>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell sx={{ fontWeight: 900 }}>Supplier</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Order Date</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Status</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Total Amount</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {filteredOrders
+                .slice((page - 1) * rowsPerPage, page * rowsPerPage)
+                .map((order) => (
+                  <TableRow key={order._id} hover>
+                    <TableCell>{order.supplier.supplierName}</TableCell>
+                    <TableCell>
+                      {new Date(order.orderDate).toLocaleDateString()}
+                    </TableCell>
+                    <TableCell>
+                      <Chip
+                        label={order.status}
+                        style={{
+                          //   backgroundColor: `${
+                          //     theme.palette[order.status.toLowerCase()].main
+                          //   }22`,
+                          //   border: `1px solid ${
+                          //     theme.palette[order.status.toLowerCase()].main
+                          //   }40`,
+                          color: theme.palette.grey[900],
+                        }}
+                      />
+                    </TableCell>
+                    <TableCell>{order.totalAmount}</TableCell>
+                    <TableCell>
+                      <IconButton onClick={() => handleEditClick(order)}>
+                        <EditIcon />
+                      </IconButton>
+                      <IconButton onClick={() => handleDeleteClick(order._id!)}>
+                        <DeleteIcon />
+                      </IconButton>
+                    </TableCell>
+                  </TableRow>
+                ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Box display="flex" justifyContent="center" mb={2} p={2}>
+          <Pagination
+            count={Math.ceil(filteredOrders.length / rowsPerPage)}
+            page={page}
+            onChange={handleChangePage}
+          />
+        </Box>
+      </Paper>
+    </Container>
+  );
+};
+
+export default OrderList;

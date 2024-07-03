@@ -53,11 +53,12 @@ const ProductsList: React.FC<ProductsListProps> = ({
     setPage(1);
   };
 
-  const filteredItems = useMemo(
+  const filteredProducts = useMemo(
     () =>
-      items.filter((item) =>
-        item.productName.toLowerCase().includes(search.toLowerCase())
-      ),
+      items.filter((item) => {
+        const productName = item.productName || "";
+        return productName.toLowerCase().includes(search.toLowerCase());
+      }),
     [search, items]
   );
 
@@ -128,7 +129,7 @@ const ProductsList: React.FC<ProductsListProps> = ({
               </TableRow>
             </TableHead>
             <TableBody>
-              {filteredItems
+              {filteredProducts
                 .slice((page - 1) * rowsPerPage, page * rowsPerPage)
                 .map((product) => (
                   <TableRow key={product._id}>
@@ -137,7 +138,9 @@ const ProductsList: React.FC<ProductsListProps> = ({
                     <TableCell>{product.supplier}</TableCell>
                     <TableCell>{product.retailPrice}</TableCell>
                     <TableCell>
-                      {new Date(product.createdAt).toLocaleDateString()}
+                      {product.createdAt
+                        ? new Date(product.createdAt).toLocaleDateString()
+                        : "N/A"}
                     </TableCell>
                     <TableCell>
                       <IconButton onClick={() => onEdit(product)}>
@@ -154,7 +157,7 @@ const ProductsList: React.FC<ProductsListProps> = ({
         </TableContainer>
         <Box display="flex" justifyContent="center" mb={2} p={2}>
           <Pagination
-            count={Math.ceil(filteredItems.length / rowsPerPage)}
+            count={Math.ceil(filteredProducts.length / rowsPerPage)}
             page={page}
             onChange={handleChangePage}
           />

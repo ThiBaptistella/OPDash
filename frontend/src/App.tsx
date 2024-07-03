@@ -16,6 +16,8 @@ import responsiveTheme from "./utils/theme";
 import Inventory from "./pages/Inventory";
 import Suppliers from "./pages/Suppliers";
 import Products from "./pages/Products";
+import OrderForm from "./components/OrderForm";
+import OrderPage from "./pages/OrderPage";
 
 const App: React.FC = () => {
   return (
@@ -42,6 +44,9 @@ const App: React.FC = () => {
             <Route path="inventory" element={<Inventory />} />
             <Route path="suppliers" element={<Suppliers />} />
             <Route path="products" element={<Products />} />
+            <Route path="orders" element={<OrderPage />} />
+            <Route path="orders/new" element={<OrderForm />} />
+            <Route path="orders/edit/:id" element={<OrderForm />} />
             {/* Add more routes here as needed */}
           </Route>
         </Routes>
