@@ -20,7 +20,7 @@ import useEODs from "../hooks/useEODs";
 import { EOD } from "../types/EOD";
 
 const EODComponent: React.FC = () => {
-  const { eods, setEods, addEOD, updateEOD, loading, error } = useEODs();
+  const { eods, addEOD, updateEOD, loading, error } = useEODs();
   const [page, setPage] = useState<number>(1);
   const rowsPerPage = 7;
   const [editingId, setEditingId] = useState<string | null>(null);
@@ -100,19 +100,15 @@ const EODComponent: React.FC = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell sx={{ fontWeight: 900 }}>Date</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Register</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Opened</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Closed</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Gift Card Amount</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Cash Amount</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>
-                  Opening Till Amount
+                  Eftpos / New Afterpay Amount
                 </TableCell>
-                <TableCell sx={{ fontWeight: 900 }}>
-                  Closing Till Amount
-                </TableCell>
-                <TableCell sx={{ fontWeight: 900 }}>
-                  Cash Takings Amount
-                </TableCell>
-                <TableCell sx={{ fontWeight: 900 }}>EFTPOS/Afterpay</TableCell>
-                <TableCell sx={{ fontWeight: 900 }}>Staff</TableCell>
-                <TableCell sx={{ fontWeight: 900 }}>Date Banked</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Total</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -121,39 +117,13 @@ const EODComponent: React.FC = () => {
                 .map((eod) => (
                   <TableRow key={eod._id}>
                     <TableCell>
-                      {editingId === eod._id && editingField === "date" ? (
+                      {editingId === eod._id && editingField === "register" ? (
                         <TextField
                           size="small"
-                          value={eod.date}
-                          onChange={(e) =>
-                            handleUpdateEOD(eod._id, { date: e.target.value })
-                          }
-                          onBlur={() => {
-                            setEditingId(null);
-                            setEditingField(null);
-                          }}
-                          autoFocus
-                        />
-                      ) : (
-                        <span
-                          onClick={() => {
-                            setEditingId(eod._id);
-                            setEditingField("date");
-                          }}
-                        >
-                          {eod.date}
-                        </span>
-                      )}
-                    </TableCell>
-                    <TableCell>
-                      {editingId === eod._id &&
-                      editingField === "openingTillAmount" ? (
-                        <TextField
-                          size="small"
-                          value={eod.openingTillAmount}
+                          value={eod.register}
                           onChange={(e) =>
                             handleUpdateEOD(eod._id, {
-                              openingTillAmount: parseFloat(e.target.value),
+                              register: e.target.value,
                             })
                           }
                           onBlur={() => {
@@ -166,22 +136,21 @@ const EODComponent: React.FC = () => {
                         <span
                           onClick={() => {
                             setEditingId(eod._id);
-                            setEditingField("openingTillAmount");
+                            setEditingField("register");
                           }}
                         >
-                          {eod.openingTillAmount}
+                          {eod.register}
                         </span>
                       )}
                     </TableCell>
                     <TableCell>
-                      {editingId === eod._id &&
-                      editingField === "closingTillAmount" ? (
+                      {editingId === eod._id && editingField === "opened" ? (
                         <TextField
                           size="small"
-                          value={eod.closingTillAmount}
+                          value={new Date(eod.opened).toLocaleString()}
                           onChange={(e) =>
                             handleUpdateEOD(eod._id, {
-                              closingTillAmount: parseFloat(e.target.value),
+                              opened: new Date(e.target.value),
                             })
                           }
                           onBlur={() => {
@@ -194,22 +163,21 @@ const EODComponent: React.FC = () => {
                         <span
                           onClick={() => {
                             setEditingId(eod._id);
-                            setEditingField("closingTillAmount");
+                            setEditingField("opened");
                           }}
                         >
-                          {eod.closingTillAmount}
+                          {new Date(eod.opened).toLocaleString()}
                         </span>
                       )}
                     </TableCell>
                     <TableCell>
-                      {editingId === eod._id &&
-                      editingField === "cashTakingsAmount" ? (
+                      {editingId === eod._id && editingField === "closed" ? (
                         <TextField
                           size="small"
-                          value={eod.cashTakingsAmount}
+                          value={new Date(eod.closed).toLocaleString()}
                           onChange={(e) =>
                             handleUpdateEOD(eod._id, {
-                              cashTakingsAmount: parseFloat(e.target.value),
+                              closed: new Date(e.target.value),
                             })
                           }
                           onBlur={() => {
@@ -222,22 +190,22 @@ const EODComponent: React.FC = () => {
                         <span
                           onClick={() => {
                             setEditingId(eod._id);
-                            setEditingField("cashTakingsAmount");
+                            setEditingField("closed");
                           }}
                         >
-                          {eod.cashTakingsAmount}
+                          {new Date(eod.closed).toLocaleString()}
                         </span>
                       )}
                     </TableCell>
                     <TableCell>
                       {editingId === eod._id &&
-                      editingField === "eftposAfterpay" ? (
+                      editingField === "giftCardAmount" ? (
                         <TextField
                           size="small"
-                          value={eod.eftposAfterpay}
+                          value={eod.giftCardAmount}
                           onChange={(e) =>
                             handleUpdateEOD(eod._id, {
-                              eftposAfterpay: parseFloat(e.target.value),
+                              giftCardAmount: parseFloat(e.target.value),
                             })
                           }
                           onBlur={() => {
@@ -250,47 +218,22 @@ const EODComponent: React.FC = () => {
                         <span
                           onClick={() => {
                             setEditingId(eod._id);
-                            setEditingField("eftposAfterpay");
+                            setEditingField("giftCardAmount");
                           }}
                         >
-                          {eod.eftposAfterpay}
-                        </span>
-                      )}
-                    </TableCell>
-                    <TableCell>
-                      {editingId === eod._id && editingField === "staff" ? (
-                        <TextField
-                          size="small"
-                          value={eod.staff}
-                          onChange={(e) =>
-                            handleUpdateEOD(eod._id, { staff: e.target.value })
-                          }
-                          onBlur={() => {
-                            setEditingId(null);
-                            setEditingField(null);
-                          }}
-                          autoFocus
-                        />
-                      ) : (
-                        <span
-                          onClick={() => {
-                            setEditingId(eod._id);
-                            setEditingField("staff");
-                          }}
-                        >
-                          {eod.staff}
+                          {eod.giftCardAmount}
                         </span>
                       )}
                     </TableCell>
                     <TableCell>
                       {editingId === eod._id &&
-                      editingField === "dateBanked" ? (
+                      editingField === "cashAmount" ? (
                         <TextField
                           size="small"
-                          value={eod.dateBanked}
+                          value={eod.cashAmount}
                           onChange={(e) =>
                             handleUpdateEOD(eod._id, {
-                              dateBanked: e.target.value,
+                              cashAmount: parseFloat(e.target.value),
                             })
                           }
                           onBlur={() => {
@@ -303,10 +246,67 @@ const EODComponent: React.FC = () => {
                         <span
                           onClick={() => {
                             setEditingId(eod._id);
-                            setEditingField("dateBanked");
+                            setEditingField("cashAmount");
                           }}
                         >
-                          {eod.dateBanked}
+                          {eod.cashAmount}
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {editingId === eod._id &&
+                      editingField === "eftposNewAfterpayAmount" ? (
+                        <TextField
+                          size="small"
+                          value={eod.eftposNewAfterpayAmount}
+                          onChange={(e) =>
+                            handleUpdateEOD(eod._id, {
+                              eftposNewAfterpayAmount: parseFloat(
+                                e.target.value
+                              ),
+                            })
+                          }
+                          onBlur={() => {
+                            setEditingId(null);
+                            setEditingField(null);
+                          }}
+                          autoFocus
+                        />
+                      ) : (
+                        <span
+                          onClick={() => {
+                            setEditingId(eod._id);
+                            setEditingField("eftposNewAfterpayAmount");
+                          }}
+                        >
+                          {eod.eftposNewAfterpayAmount}
+                        </span>
+                      )}
+                    </TableCell>
+                    <TableCell>
+                      {editingId === eod._id && editingField === "total" ? (
+                        <TextField
+                          size="small"
+                          value={eod.total}
+                          onChange={(e) =>
+                            handleUpdateEOD(eod._id, {
+                              total: parseFloat(e.target.value),
+                            })
+                          }
+                          onBlur={() => {
+                            setEditingId(null);
+                            setEditingField(null);
+                          }}
+                          autoFocus
+                        />
+                      ) : (
+                        <span
+                          onClick={() => {
+                            setEditingId(eod._id);
+                            setEditingField("total");
+                          }}
+                        >
+                          {eod.total}
                         </span>
                       )}
                     </TableCell>

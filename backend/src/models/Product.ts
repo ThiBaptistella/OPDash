@@ -1,5 +1,6 @@
 // src/models/Product.ts
 import mongoose, { Schema, Document } from "mongoose";
+import { ISupplier } from "./Supplier";
 
 export interface IProduct extends Document {
   handle: string;
@@ -18,7 +19,7 @@ export interface IProduct extends Document {
   averageCost: number;
   inventory: number;
   brand: string;
-  supplier: string;
+  supplier: ISupplier | mongoose.Types.ObjectId;
   supplierCode: string;
   active: string;
   createdAt: Date;
@@ -41,7 +42,11 @@ const ProductSchema: Schema = new Schema({
   averageCost: { type: Number, required: true, default: 0 },
   inventory: { type: Number, required: true, default: 0 },
   brand: { type: String, required: true, default: "Unknown" },
-  supplier: { type: String, required: true, default: "Unknown" },
+  supplier: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Supplier",
+    required: true,
+  },
   supplierCode: { type: String, required: true, default: "unknown-code" },
   active: { type: String, required: true, default: "unknown-active" },
   createdAt: { type: Date, default: Date.now },

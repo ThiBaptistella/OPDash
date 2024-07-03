@@ -8,9 +8,11 @@ import {
   DialogContent,
   DialogActions,
   styled,
+  MenuItem,
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import { Product } from "../types/Product";
+import useSuppliers from "../hooks/useSuppliers";
 
 interface ProductFormProps {
   open: boolean;
@@ -56,6 +58,8 @@ const ProductForm: React.FC<ProductFormProps> = ({
     inventory: 0,
     createdAt: new Date(),
   });
+
+  const { suppliers } = useSuppliers();
 
   useEffect(() => {
     if (initialData) {
@@ -198,7 +202,13 @@ const ProductForm: React.FC<ProductFormProps> = ({
               value={product.supplier}
               onChange={handleChange}
               fullWidth
-            />
+            >
+              {suppliers.map((supplier) => (
+                <MenuItem key={supplier._id} value={supplier._id}>
+                  {supplier.supplierName}
+                </MenuItem>
+              ))}
+            </TextField>
           </Grid>
           <Grid item xs={12}>
             <TextField

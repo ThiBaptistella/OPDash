@@ -35,23 +35,63 @@ export const uploadEOD = async (req: Request, res: Response) => {
     const eodData = extractEODData(path);
 
     // Validate data before inserting
-    const validatedData = eodData.map((data) => {
-      return {
-        date: data.date || new Date().toISOString(),
-        openingTillAmount: isNaN(data.openingTillAmount)
-          ? 0
-          : data.openingTillAmount,
-        closingTillAmount: isNaN(data.closingTillAmount)
-          ? 0
-          : data.closingTillAmount,
-        cashTakingsAmount: isNaN(data.cashTakingsAmount)
-          ? 0
-          : data.cashTakingsAmount,
-        eftposAfterpay: isNaN(data.eftposAfterpay) ? 0 : data.eftposAfterpay,
-        staff: data.staff || "Unknown",
-        dateBanked: data.dateBanked || new Date().toISOString(),
-      };
-    });
+    const validatedData = eodData.map((data) => ({
+      register: data.register || "Unknown",
+      sequence: data.sequence || "Unknown",
+      opened: data.opened ? new Date(data.opened) : new Date(),
+      closed: data.closed ? new Date(data.closed) : new Date(),
+      xeroAmount: isNaN(data.xeroAmount) ? 0 : data.xeroAmount,
+      xeroPosted: data.xeroPosted || "Unknown",
+      xeroCreditNoteAmount: isNaN(data.xeroCreditNoteAmount)
+        ? 0
+        : data.xeroCreditNoteAmount,
+      xeroCreditNotePosted: data.xeroCreditNotePosted || "Unknown",
+      giftCardAmount: isNaN(data.giftCardAmount) ? 0 : data.giftCardAmount,
+      giftCardPosted: data.giftCardPosted || "Unknown",
+      cashRoundingAmount: isNaN(data.cashRoundingAmount)
+        ? 0
+        : data.cashRoundingAmount,
+      cashRoundingPosted: data.cashRoundingPosted || "Unknown",
+      eftposCommbankAmount: isNaN(data.eftposCommbankAmount)
+        ? 0
+        : data.eftposCommbankAmount,
+      eftposCommbankPosted: data.eftposCommbankPosted || "Unknown",
+      smartpayAmount: isNaN(data.smartpayAmount) ? 0 : data.smartpayAmount,
+      smartpayPosted: data.smartpayPosted || "Unknown",
+      shopbackAmount: isNaN(data.shopbackAmount) ? 0 : data.shopbackAmount,
+      shopbackPosted: data.shopbackPosted || "Unknown",
+      lightspeedPaymentsAmount: isNaN(data.lightspeedPaymentsAmount)
+        ? 0
+        : data.lightspeedPaymentsAmount,
+      lightspeedPaymentsPosted: data.lightspeedPaymentsPosted || "Unknown",
+      amexAmount: isNaN(data.amexAmount) ? 0 : data.amexAmount,
+      amexPosted: data.amexPosted || "Unknown",
+      squareAmount: isNaN(data.squareAmount) ? 0 : data.squareAmount,
+      squarePosted: data.squarePosted || "Unknown",
+      storeCreditAmount: isNaN(data.storeCreditAmount)
+        ? 0
+        : data.storeCreditAmount,
+      storeCreditPosted: data.storeCreditPosted || "Unknown",
+      zipPayAmount: isNaN(data.zipPayAmount) ? 0 : data.zipPayAmount,
+      zipPayPosted: data.zipPayPosted || "Unknown",
+      otherPaymentMethodAmount: isNaN(data.otherPaymentMethodAmount)
+        ? 0
+        : data.otherPaymentMethodAmount,
+      otherPaymentMethodPosted: data.otherPaymentMethodPosted || "Unknown",
+      afterpayManualAmount: isNaN(data.afterpayManualAmount)
+        ? 0
+        : data.afterpayManualAmount,
+      afterpayManualPosted: data.afterpayManualPosted || "Unknown",
+      cashAmount: isNaN(data.cashAmount) ? 0 : data.cashAmount,
+      cashPosted: data.cashPosted || "Unknown",
+      zellerT1Amount: isNaN(data.zellerT1Amount) ? 0 : data.zellerT1Amount,
+      zellerT1Posted: data.zellerT1Posted || "Unknown",
+      eftposNewAfterpayAmount: isNaN(data.eftposNewAfterpayAmount)
+        ? 0
+        : data.eftposNewAfterpayAmount,
+      eftposNewAfterpayPosted: data.eftposNewAfterpayPosted || "Unknown",
+      total: isNaN(data.total) ? 0 : data.total,
+    }));
 
     const eodDocuments = validatedData.map((data) => new EOD(data));
     await EOD.insertMany(eodDocuments);
@@ -88,6 +128,7 @@ export const uploadEOD = async (req: Request, res: Response) => {
 export const getEODs = async (req: Request, res: Response) => {
   try {
     const eods = await EOD.find();
+    console.error("EOD:", eods);
     res.status(200).json(eods);
   } catch (error) {
     console.error("Error fetching EODs:", error);
