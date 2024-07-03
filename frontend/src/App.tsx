@@ -18,6 +18,7 @@ import Suppliers from "./pages/Suppliers";
 import Products from "./pages/Products";
 import OrderForm from "./components/OrderForm";
 import OrderPage from "./pages/OrderPage";
+import OrderDetails from "./pages/OrderDetails";
 
 const App: React.FC = () => {
   return (
@@ -47,6 +48,7 @@ const App: React.FC = () => {
             <Route path="orders" element={<OrderPage />} />
             <Route path="orders/new" element={<OrderForm />} />
             <Route path="orders/edit/:id" element={<OrderForm />} />
+            <Route path="orders/details/:id" element={<OrderDetails />} />
             {/* Add more routes here as needed */}
           </Route>
         </Routes>

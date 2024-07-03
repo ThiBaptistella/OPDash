@@ -72,6 +72,17 @@ const OrderForm: React.FC = () => {
     }
   }, [id, orders]);
 
+  useEffect(() => {
+    const totalAmount = order.products.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    setOrder((prevOrder) => ({
+      ...prevOrder,
+      totalAmount,
+    }));
+  }, [order.products]);
+
   const handleAddProduct = (product: Product) => {
     setOrder((prevOrder) => {
       const existingProduct = prevOrder.products.find(
@@ -215,10 +226,33 @@ const OrderForm: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <Grid item xs={6} sm={6} sx={{ mr: 3 }}>
-            <Badge badgeContent={order.products.length} color="primary">
+          <Grid
+            item
+            xs={6}
+            sm={6}
+            sx={{
+              mr: 3,
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Badge
+              badgeContent={order.products.length}
+              color="primary"
+              sx={{
+                mr: 3,
+              }}
+            >
               <ShoppingCartIcon />
             </Badge>
+            <Typography variant="h6">
+              Balance:{" "}
+              {new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "AUD",
+              }).format(order.totalAmount)}
+            </Typography>
           </Grid>
           <Grid item xs={6} sm={6} sx={{ mr: 3 }}>
             <Button variant="contained" color="primary" onClick={handleSubmit}>
@@ -313,7 +347,6 @@ const OrderForm: React.FC = () => {
               )}
               <Divider sx={{ my: 1 }} />
               <Typography variant="h6">Price Ranges</Typography>
-
               <FormGroup>
                 {PRICE_RANGES.map((range) => (
                   <FormControlLabel
@@ -358,7 +391,7 @@ const OrderForm: React.FC = () => {
                         <LazyLoadImage
                           alt={product.productName}
                           height={140}
-                          src={product.imageUrl} // Assuming product has an imageUrl property
+                          src={product.imageUrl}
                           effect="blur"
                         />
                       </CardMedia>

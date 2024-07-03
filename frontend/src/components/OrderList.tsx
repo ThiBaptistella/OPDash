@@ -19,6 +19,7 @@ import {
   Button,
   IconButton,
 } from "@mui/material";
+import EyeIcon from "@mui/icons-material/RemoveRedEye";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useOrders from "../hooks/useOrders";
@@ -47,6 +48,10 @@ const OrderList: React.FC = () => {
 
   const handleAddClick = () => {
     navigate("/dashboard/orders/new");
+  };
+
+  const handleDetailsClick = (order: Order) => {
+    navigate(`/dashboard/orders/details/${order._id}`);
   };
 
   const handleEditClick = (order: Order) => {
@@ -156,8 +161,16 @@ const OrderList: React.FC = () => {
                         }}
                       />
                     </TableCell>
-                    <TableCell>{order.totalAmount}</TableCell>
                     <TableCell>
+                      {new Intl.NumberFormat("en-US", {
+                        style: "currency",
+                        currency: "AUD",
+                      }).format(order.totalAmount)}
+                    </TableCell>
+                    <TableCell>
+                      <IconButton onClick={() => handleDetailsClick(order)}>
+                        <EyeIcon />
+                      </IconButton>
                       <IconButton onClick={() => handleEditClick(order)}>
                         <EditIcon />
                       </IconButton>
