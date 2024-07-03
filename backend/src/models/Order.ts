@@ -4,7 +4,6 @@ import { IProduct } from "./Product";
 import { ISupplier } from "./Supplier";
 
 export interface IOrder extends Document {
-  supplier: ISupplier["_id"];
   products: {
     product: IProduct["_id"];
     quantity: number;
@@ -16,7 +15,6 @@ export interface IOrder extends Document {
 }
 
 const OrderSchema: Schema = new Schema({
-  supplier: { type: Schema.Types.ObjectId, ref: "Supplier", required: true },
   products: [
     {
       product: { type: Schema.Types.ObjectId, ref: "Product", required: true },

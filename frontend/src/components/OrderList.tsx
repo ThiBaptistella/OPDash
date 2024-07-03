@@ -16,7 +16,6 @@ import {
   Grid,
   Chip,
   useTheme,
-  Checkbox,
   Button,
   IconButton,
 } from "@mui/material";
@@ -27,12 +26,9 @@ import { Order } from "../types";
 import { useNavigate } from "react-router-dom";
 
 const OrderList: React.FC = () => {
-  const { orders, addOrder, updateOrder, loading, error, deleteOrder } =
-    useOrders();
+  const { orders, loading, error, deleteOrder } = useOrders();
   const [page, setPage] = useState<number>(1);
   const rowsPerPage = 7;
-  const [editingId, setEditingId] = useState<string | null>(null);
-  const [editingField, setEditingField] = useState<string | null>(null);
   const [search, setSearch] = useState<string>("");
   const theme = useTheme();
   const navigate = useNavigate();
@@ -64,8 +60,10 @@ const OrderList: React.FC = () => {
   const filteredOrders = useMemo(
     () =>
       orders.filter((order) => {
-        const supplierName = order.supplier?.supplierName || "";
-        return supplierName.toLowerCase().includes(search.toLowerCase());
+        const supplierNames = order.products
+          .map((product) => product.product.supplier || "")
+          .join(" ");
+        return supplierNames.toLowerCase().includes(search.toLowerCase());
       }),
     [search, orders]
   );
@@ -119,7 +117,11 @@ const OrderList: React.FC = () => {
                 .slice((page - 1) * rowsPerPage, page * rowsPerPage)
                 .map((order) => (
                   <TableRow key={order._id} hover>
-                    <TableCell>{order.supplier.supplierName}</TableCell>
+                    <TableCell>
+                      {order.products
+                        .map((product) => product.product.supplier)
+                        .join(", ")}
+                    </TableCell>
                     <TableCell>
                       {new Date(order.orderDate).toLocaleDateString()}
                     </TableCell>
@@ -127,12 +129,6 @@ const OrderList: React.FC = () => {
                       <Chip
                         label={order.status}
                         style={{
-                          //   backgroundColor: `${
-                          //     theme.palette[order.status.toLowerCase()].main
-                          //   }22`,
-                          //   border: `1px solid ${
-                          //     theme.palette[order.status.toLowerCase()].main
-                          //   }40`,
                           color: theme.palette.grey[900],
                         }}
                       />

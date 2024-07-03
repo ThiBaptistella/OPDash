@@ -4,8 +4,8 @@ import Order from "../models/Order";
 
 export const createOrder = async (req: Request, res: Response) => {
   try {
-    const { supplier, products, totalAmount } = req.body;
-    const newOrder = new Order({ supplier, products, totalAmount });
+    const { products, totalAmount } = req.body;
+    const newOrder = new Order({ products, totalAmount });
     await newOrder.save();
     res.status(201).json(newOrder);
   } catch (error) {
