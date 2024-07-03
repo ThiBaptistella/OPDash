@@ -9,7 +9,7 @@ import path from "path";
 const trainNerModel = () => {
   const scriptPath = path.join(
     __dirname,
-    "../../../ai-ml/scripts/train_ner_model.py"
+    "../../../ai-ml/scripts/train_invoice_model.py"
   );
   exec(`python3 ${scriptPath}`, (error, stdout, stderr) => {
     if (error) {
