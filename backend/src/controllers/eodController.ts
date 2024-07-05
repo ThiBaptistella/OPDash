@@ -31,7 +31,7 @@ export const uploadEOD = async (req: Request, res: Response) => {
     }
 
     const { path } = req.file;
-    console.log("path", path);
+    // console.log("path", path);
     const eodData = extractEODData(path);
 
     // Validate data before inserting
@@ -128,7 +128,6 @@ export const uploadEOD = async (req: Request, res: Response) => {
 export const getEODs = async (req: Request, res: Response) => {
   try {
     const eods = await EOD.find();
-    console.error("EOD:", eods);
     res.status(200).json(eods);
   } catch (error) {
     console.error("Error fetching EODs:", error);

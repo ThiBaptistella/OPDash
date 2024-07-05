@@ -19,7 +19,7 @@ export interface IProduct extends Document {
   averageCost: number;
   inventory: number;
   brand: string;
-  supplier: ISupplier | mongoose.Types.ObjectId;
+  supplier: mongoose.Types.ObjectId;
   supplierCode: string;
   active: string;
   createdAt: Date;

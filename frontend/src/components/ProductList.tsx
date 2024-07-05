@@ -135,7 +135,11 @@ const ProductsList: React.FC<ProductsListProps> = ({
                   <TableRow key={product._id}>
                     <TableCell>{product.productName}</TableCell>
                     <TableCell>{product.brand}</TableCell>
-                    <TableCell>{product.supplier}</TableCell>
+                    <TableCell>
+                      {typeof product.supplier === "string"
+                        ? product.supplier
+                        : product.supplier?.supplierName}
+                    </TableCell>
                     <TableCell>{product.retailPrice}</TableCell>
                     <TableCell>
                       {product.createdAt

@@ -42,6 +42,7 @@ const OrderForm: React.FC = () => {
     status: "Pending",
     orderDate: new Date(),
     totalAmount: 0,
+    supplier: "",
   });
   const [isEditing, setIsEditing] = useState(false);
   const [selectedSuppliers, setSelectedSuppliers] = useState<string[]>([]);
@@ -51,6 +52,7 @@ const OrderForm: React.FC = () => {
   const [page, setPage] = useState(1);
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [showMoreCategories, setShowMoreCategories] = useState(false);
+  const [showMoreSuppliers, setShowMoreSuppliers] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
@@ -104,8 +106,13 @@ const OrderForm: React.FC = () => {
       return {
         ...prevOrder,
         products: newProducts,
+        supplier:
+          typeof product.supplier === "string"
+            ? product.supplier
+            : product.supplier?._id ?? "", // Set supplier ID
       };
     });
+
     setNotificationOpen(true);
   };
 
@@ -129,10 +136,13 @@ const OrderForm: React.FC = () => {
     }
 
     if (selectedSuppliers.length > 0) {
-      filtered = filtered.filter(
-        (product) =>
-          product.supplier && selectedSuppliers.includes(product.supplier)
-      );
+      filtered = filtered.filter((product) => {
+        const supplierId =
+          typeof product.supplier === "string"
+            ? product.supplier
+            : product.supplier?._id;
+        return selectedSuppliers.includes(supplierId ?? "");
+      });
     }
 
     if (selectedCategories.length > 0) {
@@ -276,32 +286,42 @@ const OrderForm: React.FC = () => {
               />
               <Typography variant="h6">Suppliers</Typography>
               <FormGroup>
-                {suppliers.map((supplier) => (
-                  <FormControlLabel
-                    key={supplier._id}
-                    control={
-                      <Checkbox
-                        checked={selectedSuppliers.includes(supplier._id)}
-                        onChange={(e) => {
-                          if (e.target.checked) {
-                            setSelectedSuppliers([
-                              ...selectedSuppliers,
-                              supplier._id,
-                            ]);
-                          } else {
-                            setSelectedSuppliers(
-                              selectedSuppliers.filter(
-                                (id) => id !== supplier._id
-                              )
-                            );
-                          }
-                        }}
-                      />
-                    }
-                    label={supplier.supplierName}
-                  />
-                ))}
+                {suppliers
+                  .slice(0, showMoreSuppliers ? suppliers.length : 5)
+                  .map((supplier) => (
+                    <FormControlLabel
+                      key={supplier._id}
+                      control={
+                        <Checkbox
+                          checked={selectedSuppliers.includes(supplier._id)}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setSelectedSuppliers([
+                                ...selectedSuppliers,
+                                supplier._id,
+                              ]);
+                            } else {
+                              setSelectedSuppliers(
+                                selectedSuppliers.filter(
+                                  (id) => id !== supplier._id
+                                )
+                              );
+                            }
+                          }}
+                        />
+                      }
+                      label={supplier.supplierName}
+                    />
+                  ))}
               </FormGroup>
+              {suppliers.length > 5 && (
+                <Button
+                  variant="text"
+                  onClick={() => setShowMoreSuppliers((prev) => !prev)}
+                >
+                  {showMoreSuppliers ? "Show Less" : "Show More"}
+                </Button>
+              )}
               <Divider sx={{ my: 1 }} />
               <Typography variant="h6">Categories</Typography>
               <FormGroup>
@@ -311,7 +331,7 @@ const OrderForm: React.FC = () => {
                   )
                 )
                   .filter(Boolean)
-                  .slice(0, showMoreCategories ? undefined : 10)
+                  .slice(0, showMoreCategories ? undefined : 5)
                   .map((category) => (
                     <FormControlLabel
                       key={category}
@@ -337,7 +357,7 @@ const OrderForm: React.FC = () => {
                   ))}
               </FormGroup>
               {products.filter((product) => product.productCategory).length >
-                10 && (
+                5 && (
                 <Button
                   variant="text"
                   onClick={() => setShowMoreCategories((prev) => !prev)}
@@ -400,10 +420,9 @@ const OrderForm: React.FC = () => {
                           {product.productName}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                          {product.brand}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {product.supplier}
+                          {typeof product.supplier === "string"
+                            ? product.supplier
+                            : product.supplier?.supplierName || ""}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                           ${product.retailPrice}

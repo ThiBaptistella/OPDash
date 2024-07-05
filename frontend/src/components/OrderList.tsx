@@ -1,4 +1,3 @@
-// src/components/OrderList.tsx
 import React, { useState, useMemo } from "react";
 import {
   Container,
@@ -62,13 +61,17 @@ const OrderList: React.FC = () => {
     deleteOrder(id);
   };
 
+  const getSupplierName = (
+    supplier: string | { supplierName: string }
+  ): string => {
+    return typeof supplier === "string" ? supplier : supplier.supplierName;
+  };
+
   const filteredOrders = useMemo(
     () =>
       orders.filter((order) => {
-        const supplierNames = order.products
-          .map((product) => product.product.supplier || "")
-          .join(" ");
-        return supplierNames.toLowerCase().includes(search.toLowerCase());
+        const supplierName = getSupplierName(order.supplier) || "";
+        return supplierName.toLowerCase().includes(search.toLowerCase());
       }),
     [search, orders]
   );
@@ -145,11 +148,7 @@ const OrderList: React.FC = () => {
                 .slice((page - 1) * rowsPerPage, page * rowsPerPage)
                 .map((order) => (
                   <TableRow key={order._id} hover>
-                    <TableCell>
-                      {order.products
-                        .map((product) => product.product.supplier)
-                        .join(", ")}
-                    </TableCell>
+                    <TableCell>{getSupplierName(order.supplier)}</TableCell>
                     <TableCell>
                       {new Date(order.orderDate).toLocaleDateString()}
                     </TableCell>

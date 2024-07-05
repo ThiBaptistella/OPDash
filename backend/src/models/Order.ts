@@ -1,17 +1,18 @@
 // src/models/Order.ts
-import mongoose, { Document, Schema } from "mongoose";
-import { IProduct } from "./Product";
-import { ISupplier } from "./Supplier";
+import mongoose, { Schema, Document } from "mongoose";
+import { IProduct } from "../types/Products";
+import { ISupplier } from "../types/Supplier";
 
-export interface IOrder extends Document {
+export interface Order extends Document {
   products: {
-    product: IProduct["_id"];
+    product: IProduct;
     quantity: number;
     price: number;
   }[];
   status: "Pending" | "Completed" | "Cancelled";
   orderDate: Date;
   totalAmount: number;
+  supplier: ISupplier | string; // Add supplier field
 }
 
 const OrderSchema: Schema = new Schema({
@@ -29,6 +30,7 @@ const OrderSchema: Schema = new Schema({
   },
   orderDate: { type: Date, default: Date.now },
   totalAmount: { type: Number, required: true },
+  supplier: { type: Schema.Types.ObjectId, ref: "Supplier", required: true }, // Add supplier field
 });
 
-export default mongoose.model<IOrder>("Order", OrderSchema);
+export default mongoose.model<Order>("Order", OrderSchema);

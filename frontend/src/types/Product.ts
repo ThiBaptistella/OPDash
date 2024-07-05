@@ -1,3 +1,11 @@
+// src/types/Product.ts
+
+interface Supplier {
+  _id: string;
+  supplierName: string;
+  // other fields if necessary
+}
+
 export interface Product {
   _id?: any;
   productName?: string;
@@ -11,7 +19,7 @@ export interface Product {
   supplyPrice?: number;
   retailPrice?: number;
   brand?: string;
-  supplier?: string;
+  supplier?: string | Supplier;
   supplierCode?: string;
   active?: boolean;
   handle?: string;

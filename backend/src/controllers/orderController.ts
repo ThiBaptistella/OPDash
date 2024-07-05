@@ -4,8 +4,8 @@ import Order from "../models/Order";
 
 export const createOrder = async (req: Request, res: Response) => {
   try {
-    const { products, totalAmount } = req.body;
-    const newOrder = new Order({ products, totalAmount });
+    const { products, totalAmount, supplier } = req.body;
+    const newOrder = new Order({ products, totalAmount, supplier });
     await newOrder.save();
     res.status(201).json(newOrder);
   } catch (error) {
@@ -15,9 +15,7 @@ export const createOrder = async (req: Request, res: Response) => {
 
 export const getOrders = async (req: Request, res: Response) => {
   try {
-    const orders = await Order.find()
-      .populate("supplier")
-      .populate("products.product");
+    const orders = await Order.find().populate("supplier");
     res.status(200).json(orders);
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch orders", error });

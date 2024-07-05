@@ -1,6 +1,8 @@
 // src/controllers/productController.ts
 import { Request, Response } from "express";
+import mongoose from "mongoose";
 import Product, { IProduct } from "../models/Product";
+import Supplier, { ISupplier } from "../models/Supplier";
 import extractProductData from "../utils/extractProductData";
 import { saveAnnotatedData } from "../utils/saveAnnotatedData";
 import { exec } from "child_process";
@@ -24,6 +26,31 @@ const trainNerModel = () => {
   });
 };
 
+const linkOrCreateSupplier = async (
+  supplierName: string
+): Promise<mongoose.Types.ObjectId> => {
+  let supplier = await Supplier.findOne({ supplierName });
+
+  if (!supplier) {
+    supplier = new Supplier({ supplierName });
+    await supplier.save();
+  }
+
+  return supplier._id;
+};
+
+const findOrCreateSupplier = async (
+  supplierName: string
+): Promise<mongoose.Types.ObjectId> => {
+  let supplier = await Supplier.findOne({ supplierName });
+  if (!supplier) {
+    supplier = new Supplier({ supplierName });
+    await supplier.save();
+  }
+  return supplier._id;
+};
+
+// upload file
 // upload file
 export const uploadProductFile = async (req: Request, res: Response) => {
   try {
@@ -35,7 +62,28 @@ export const uploadProductFile = async (req: Request, res: Response) => {
     console.log("path", path);
     const productData = extractProductData(path);
 
-    const validatedData = productData.map((data) => new Product(data));
+    const validatedData = [];
+    const supplierCache: { [key: string]: mongoose.Types.ObjectId } = {};
+
+    for (const data of productData) {
+      const supplierName = data.supplier as unknown as string;
+      let supplierId: mongoose.Types.ObjectId;
+
+      if (supplierCache[supplierName]) {
+        supplierId = supplierCache[supplierName];
+      } else {
+        supplierId = await findOrCreateSupplier(supplierName);
+        supplierCache[supplierName] = supplierId;
+      }
+
+      const newProduct = new Product({
+        ...data,
+        supplier: supplierId,
+      });
+
+      validatedData.push(newProduct);
+    }
+
     await Product.insertMany(validatedData);
 
     const entities = productData.flatMap((data) =>
@@ -67,7 +115,7 @@ export const uploadProductFile = async (req: Request, res: Response) => {
 // Get all products
 export const getProducts = async (req: Request, res: Response) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find().populate("supplier");
     res.status(200).json(products);
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch products", error });
@@ -77,8 +125,11 @@ export const getProducts = async (req: Request, res: Response) => {
 // Create a new product
 export const createProduct = async (req: Request, res: Response) => {
   try {
-    const productData: IProduct = req.body;
-    const newProduct = new Product(productData);
+    const productData: Partial<IProduct> = req.body;
+    const supplierId = await linkOrCreateSupplier(
+      productData.supplier as unknown as string
+    );
+    const newProduct = new Product({ ...productData, supplier: supplierId });
     await newProduct.save();
     res.status(201).json(newProduct);
   } catch (error) {
@@ -90,9 +141,17 @@ export const createProduct = async (req: Request, res: Response) => {
 export const updateProduct = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const updatedProduct = await Product.findByIdAndUpdate(id, req.body, {
-      new: true,
-    });
+    const productData: Partial<IProduct> = req.body;
+    const supplierId = await linkOrCreateSupplier(
+      productData.supplier as unknown as string
+    );
+    const updatedProduct = await Product.findByIdAndUpdate(
+      id,
+      { ...productData, supplier: supplierId },
+      { new: true }
+    )
+      .lean()
+      .exec();
     if (!updatedProduct) {
       return res.status(404).json({ message: "Product not found" });
     }

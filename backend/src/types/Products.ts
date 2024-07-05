@@ -1,3 +1,5 @@
+import { ISupplier } from "./Supplier";
+
 export interface IProduct {
   productName: string;
   productCategory: string;
@@ -10,7 +12,7 @@ export interface IProduct {
   supplyPrice: number;
   retailPrice: number;
   brand: string;
-  supplier: string;
+  supplier: ISupplier | string;
   supplierCode: string;
   active: boolean;
   handle: string;
