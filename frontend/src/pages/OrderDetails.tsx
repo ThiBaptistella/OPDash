@@ -74,7 +74,7 @@ const OrderDetails: React.FC = () => {
               <TableBody>
                 {order.products.map((item, index) => (
                   <TableRow key={index}>
-                    <TableCell>{item.product.productName}</TableCell>
+                    <TableCell>{item.product?.productName ?? "N/A"}</TableCell>
                     <TableCell>{item.quantity}</TableCell>
                     <TableCell>${item.price}</TableCell>
                   </TableRow>

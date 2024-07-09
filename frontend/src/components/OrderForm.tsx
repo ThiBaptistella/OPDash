@@ -1,4 +1,5 @@
 // src/pages/OrderForm.tsx
+
 import React, { useState, useEffect, useMemo } from "react";
 import {
   Container,
@@ -32,6 +33,8 @@ import useProducts from "../hooks/useProducts";
 import useSuppliers from "../hooks/useSuppliers";
 import { Order, Product } from "../types";
 import theme from "../utils/theme";
+import ProductDetailModal from "../components/ProductDetailModal";
+import Placeholder from "../assets/whey.png";
 
 const OrderForm: React.FC = () => {
   const { addOrder, updateOrder, orders } = useOrders();
@@ -53,6 +56,7 @@ const OrderForm: React.FC = () => {
   const [notificationOpen, setNotificationOpen] = useState(false);
   const [showMoreCategories, setShowMoreCategories] = useState(false);
   const [showMoreSuppliers, setShowMoreSuppliers] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
@@ -85,7 +89,7 @@ const OrderForm: React.FC = () => {
     }));
   }, [order.products]);
 
-  const handleAddProduct = (product: Product) => {
+  const handleAddProduct = (product: Product, quantity: number) => {
     setOrder((prevOrder) => {
       const existingProduct = prevOrder.products.find(
         (item) => item.product._id === product._id
@@ -94,13 +98,13 @@ const OrderForm: React.FC = () => {
       if (existingProduct) {
         newProducts = prevOrder.products.map((item) =>
           item.product._id === product._id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantity }
             : item
         );
       } else {
         newProducts = [
           ...prevOrder.products,
-          { product, quantity: 1, price: product.retailPrice ?? 0 },
+          { product, quantity, price: product.retailPrice ?? 0 },
         ];
       }
       return {
@@ -197,6 +201,14 @@ const OrderForm: React.FC = () => {
 
   const loadMoreProducts = () => {
     setPage((prevPage) => prevPage + 1);
+  };
+
+  const handleOpenProductDetail = (product: Product) => {
+    setSelectedProduct(product);
+  };
+
+  const handleCloseProductDetail = () => {
+    setSelectedProduct(null);
   };
 
   return (
@@ -411,8 +423,13 @@ const OrderForm: React.FC = () => {
                         <LazyLoadImage
                           alt={product.productName}
                           height={140}
-                          src={product.imageUrl}
+                          width={"100%"}
+                          src={
+                            product.imageUrl ? product.imageUrl : Placeholder
+                          }
                           effect="blur"
+                          onClick={() => handleOpenProductDetail(product)}
+                          style={{ cursor: "pointer" }}
                         />
                       </CardMedia>
                       <CardContent>
@@ -431,7 +448,7 @@ const OrderForm: React.FC = () => {
                           variant="contained"
                           color="primary"
                           startIcon={<AddShoppingCartIcon />}
-                          onClick={() => handleAddProduct(product)}
+                          onClick={() => handleOpenProductDetail(product)}
                           sx={{ mt: 1 }}
                         >
                           Add to Order
@@ -468,6 +485,12 @@ const OrderForm: React.FC = () => {
             </IconButton>
           </>
         }
+      />
+      <ProductDetailModal
+        open={!!selectedProduct}
+        onClose={handleCloseProductDetail}
+        product={selectedProduct}
+        onAddProduct={handleAddProduct}
       />
     </Container>
   );

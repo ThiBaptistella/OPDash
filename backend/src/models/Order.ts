@@ -5,14 +5,14 @@ import { ISupplier } from "../types/Supplier";
 
 export interface Order extends Document {
   products: {
-    product: IProduct;
+    product: IProduct | string;
     quantity: number;
     price: number;
   }[];
   status: "Pending" | "Completed" | "Cancelled";
   orderDate: Date;
   totalAmount: number;
-  supplier: ISupplier | string; // Add supplier field
+  supplier: ISupplier | string;
 }
 
 const OrderSchema: Schema = new Schema({
@@ -30,7 +30,7 @@ const OrderSchema: Schema = new Schema({
   },
   orderDate: { type: Date, default: Date.now },
   totalAmount: { type: Number, required: true },
-  supplier: { type: Schema.Types.ObjectId, ref: "Supplier", required: true }, // Add supplier field
+  supplier: { type: Schema.Types.ObjectId, ref: "Supplier", required: true },
 });
 
 export default mongoose.model<Order>("Order", OrderSchema);

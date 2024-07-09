@@ -8,7 +8,7 @@ export interface Order {
     quantity: number;
     price: number;
   }[];
-  supplier: string; // Make sure the supplier is a string
+  supplier: string;
   status: "Pending" | "Completed" | "Cancelled";
   orderDate: Date;
   totalAmount: number;

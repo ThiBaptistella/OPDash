@@ -15,7 +15,10 @@ export const createOrder = async (req: Request, res: Response) => {
 
 export const getOrders = async (req: Request, res: Response) => {
   try {
-    const orders = await Order.find().populate("supplier");
+    const orders = await Order.find().populate("supplier").populate({
+      path: "products.product",
+      model: "Product",
+    });
     res.status(200).json(orders);
   } catch (error) {
     res.status(500).json({ message: "Failed to fetch orders", error });
