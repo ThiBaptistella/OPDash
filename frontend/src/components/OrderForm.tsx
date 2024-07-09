@@ -1,5 +1,3 @@
-// src/pages/OrderForm.tsx
-
 import React, { useState, useEffect, useMemo } from "react";
 import {
   Container,
@@ -34,7 +32,9 @@ import useSuppliers from "../hooks/useSuppliers";
 import { Order, Product } from "../types";
 import theme from "../utils/theme";
 import ProductDetailModal from "../components/ProductDetailModal";
+import Cart from "../components/Cart";
 import Placeholder from "../assets/whey.png";
+import Checkout from "../pages/Checkout";
 
 const OrderForm: React.FC = () => {
   const { addOrder, updateOrder, orders } = useOrders();
@@ -57,14 +57,16 @@ const OrderForm: React.FC = () => {
   const [showMoreCategories, setShowMoreCategories] = useState(false);
   const [showMoreSuppliers, setShowMoreSuppliers] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [cartItems, setCartItems] = useState<any[]>([]);
+  const [checkout, setCheckout] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
   const PRICE_RANGES = [
     { label: "Below $10", value: "below-10" },
-    { label: "$10 - $50", value: "10-50" },
-    { label: "$50 - $100", value: "50-100" },
-    { label: "$100 - $150", value: "100-150" },
+    { label: "10 - $50", value: "10-50" },
+    { label: "50 - $100", value: "50-100" },
+    { label: "100 - $150", value: "100-150" },
     { label: "Above $150", value: "above-150" },
   ];
 
@@ -74,57 +76,86 @@ const OrderForm: React.FC = () => {
       if (orderToEdit) {
         setOrder(orderToEdit);
         setIsEditing(true);
+        setCartItems(
+          orderToEdit.products.map((p) => ({
+            product: p.product,
+            quantity: p.quantity,
+            selectedVariants: {}, // Adjust as per your variant logic
+          }))
+        );
       }
     }
   }, [id, orders]);
 
   useEffect(() => {
-    const totalAmount = order.products.reduce(
-      (total, item) => total + item.price * item.quantity,
+    const totalAmount = cartItems.reduce(
+      (total, item) => total + item.product.retailPrice * item.quantity,
       0
     );
     setOrder((prevOrder) => ({
       ...prevOrder,
       totalAmount,
     }));
-  }, [order.products]);
+  }, [cartItems]);
 
   const handleAddProduct = (product: Product, quantity: number) => {
-    setOrder((prevOrder) => {
-      const existingProduct = prevOrder.products.find(
+    setCartItems((prevItems) => {
+      const existingItemIndex = prevItems.findIndex(
         (item) => item.product._id === product._id
       );
-      let newProducts;
-      if (existingProduct) {
-        newProducts = prevOrder.products.map((item) =>
-          item.product._id === product._id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        );
-      } else {
-        newProducts = [
-          ...prevOrder.products,
-          { product, quantity, price: product.retailPrice ?? 0 },
-        ];
+
+      if (existingItemIndex >= 0) {
+        const updatedItems = [...prevItems];
+        updatedItems[existingItemIndex].quantity += quantity;
+        return updatedItems;
       }
-      return {
-        ...prevOrder,
-        products: newProducts,
-        supplier:
-          typeof product.supplier === "string"
-            ? product.supplier
-            : product.supplier?._id ?? "", // Set supplier ID
-      };
+
+      return [
+        ...prevItems,
+        {
+          product,
+          quantity,
+          selectedVariants: {}, // Adjust as per your variant logic
+        },
+      ];
     });
 
     setNotificationOpen(true);
   };
 
-  const handleSubmit = async () => {
+  const handleRemoveItem = (index: number) => {
+    setCartItems((prevItems) => prevItems.filter((_, i) => i !== index));
+  };
+
+  const handleUpdateQuantity = (index: number, quantity: number) => {
+    setCartItems((prevItems) =>
+      prevItems.map((item, i) => (i === index ? { ...item, quantity } : item))
+    );
+  };
+
+  const handleCheckout = () => {
+    setCheckout(true);
+  };
+
+  const handlePlaceOrder = async () => {
     if (isEditing) {
-      await updateOrder(order._id!, order);
+      await updateOrder(order._id!, {
+        ...order,
+        products: cartItems.map((item) => ({
+          product: item.product._id,
+          quantity: item.quantity,
+          price: item.product.retailPrice,
+        })),
+      });
     } else {
-      await addOrder(order);
+      await addOrder({
+        ...order,
+        products: cartItems.map((item) => ({
+          product: item.product._id,
+          quantity: item.quantity,
+          price: item.product.retailPrice,
+        })),
+      });
     }
     navigate("/dashboard/orders");
   };
@@ -211,6 +242,10 @@ const OrderForm: React.FC = () => {
     setSelectedProduct(null);
   };
 
+  if (checkout) {
+    return <Checkout cartItems={cartItems} onPlaceOrder={handlePlaceOrder} />;
+  }
+
   return (
     <Container maxWidth={false} disableGutters>
       <CssBaseline />
@@ -260,7 +295,7 @@ const OrderForm: React.FC = () => {
             }}
           >
             <Badge
-              badgeContent={order.products.length}
+              badgeContent={cartItems.length}
               color="primary"
               sx={{
                 mr: 3,
@@ -277,8 +312,12 @@ const OrderForm: React.FC = () => {
             </Typography>
           </Grid>
           <Grid item xs={6} sm={6} sx={{ mr: 3 }}>
-            <Button variant="contained" color="primary" onClick={handleSubmit}>
-              {isEditing ? "Update Order" : "Create Order"}
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleCheckout}
+            >
+              {isEditing ? "Update Order" : "Checkout"}
             </Button>
           </Grid>
         </Grid>

@@ -11,6 +11,10 @@ import {
   styled,
   TextField,
   Grid,
+  MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
 } from "@mui/material";
 import { Product } from "../types";
 
@@ -18,7 +22,11 @@ interface ProductDetailModalProps {
   open: boolean;
   onClose: () => void;
   product: Product | null;
-  onAddProduct: (product: Product, quantity: number) => void;
+  onAddProduct: (
+    product: Product,
+    quantity: number,
+    selectedVariants: any
+  ) => void;
 }
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -37,10 +45,18 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
   onAddProduct,
 }) => {
   const [quantity, setQuantity] = useState<number>(1);
+  const [selectedVariants, setSelectedVariants] = useState<any>({});
+
+  const handleVariantChange = (variantName: string, value: string) => {
+    setSelectedVariants((prev: any) => ({
+      ...prev,
+      [variantName]: value,
+    }));
+  };
 
   const handleAddProduct = () => {
     if (product) {
-      onAddProduct(product, quantity);
+      onAddProduct(product, quantity, selectedVariants);
       onClose();
     }
   };
@@ -99,6 +115,75 @@ const ProductDetailModal: React.FC<ProductDetailModalProps> = ({
               <strong>Supplier Code:</strong> {product.supplierCode}
             </Typography>
           </Grid>
+          {product.productVariantOne && (
+            <Grid item xs={12}>
+              <FormControl fullWidth margin="normal">
+                <InputLabel>{product.productVariantOne}</InputLabel>
+                <Select
+                  value={selectedVariants[product.productVariantOne] || ""}
+                  onChange={(e) =>
+                    handleVariantChange(
+                      product.productVariantOne!,
+                      e.target.value as string
+                    )
+                  }
+                >
+                  <MenuItem value="">{`Select ${product.productVariantOne}`}</MenuItem>
+                  {product.productVariantOneValue?.split(",").map((value) => (
+                    <MenuItem key={value} value={value}>
+                      {value}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+          )}
+          {product.productVariantTwo && (
+            <Grid item xs={12}>
+              <FormControl fullWidth margin="normal">
+                <InputLabel>{product.productVariantTwo}</InputLabel>
+                <Select
+                  value={selectedVariants[product.productVariantTwo] || ""}
+                  onChange={(e) =>
+                    handleVariantChange(
+                      product.productVariantTwo!,
+                      e.target.value as string
+                    )
+                  }
+                >
+                  <MenuItem value="">{`Select ${product.productVariantTwo}`}</MenuItem>
+                  {product.productVariantTwoValue?.split(",").map((value) => (
+                    <MenuItem key={value} value={value}>
+                      {value}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+          )}
+          {product.productVariantThree && (
+            <Grid item xs={12}>
+              <FormControl fullWidth margin="normal">
+                <InputLabel>{product.productVariantThree}</InputLabel>
+                <Select
+                  value={selectedVariants[product.productVariantThree] || ""}
+                  onChange={(e) =>
+                    handleVariantChange(
+                      product.productVariantThree!,
+                      e.target.value as string
+                    )
+                  }
+                >
+                  <MenuItem value="">{`Select ${product.productVariantThree}`}</MenuItem>
+                  {product.productVariantThreeValue?.split(",").map((value) => (
+                    <MenuItem key={value} value={value}>
+                      {value}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+          )}
           <Grid item xs={12}>
             <TextField
               label="Quantity"
