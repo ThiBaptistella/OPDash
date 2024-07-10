@@ -32,7 +32,6 @@ import useSuppliers from "../hooks/useSuppliers";
 import { Order, Product } from "../types";
 import theme from "../utils/theme";
 import ProductDetailModal from "../components/ProductDetailModal";
-import Cart from "../components/Cart";
 import Placeholder from "../assets/whey.png";
 import Checkout from "../pages/Checkout";
 
@@ -46,6 +45,7 @@ const OrderForm: React.FC = () => {
     orderDate: new Date(),
     totalAmount: 0,
     supplier: "",
+    address: "",
   });
   const [isEditing, setIsEditing] = useState(false);
   const [selectedSuppliers, setSelectedSuppliers] = useState<string[]>([]);
@@ -99,6 +99,16 @@ const OrderForm: React.FC = () => {
   }, [cartItems]);
 
   const handleAddProduct = (product: Product, quantity: number) => {
+    if (!order.supplier) {
+      setOrder((prevOrder) => ({
+        ...prevOrder,
+        supplier:
+          typeof product.supplier === "string"
+            ? product.supplier
+            : product.supplier?._id ?? "",
+      }));
+    }
+
     setCartItems((prevItems) => {
       const existingItemIndex = prevItems.findIndex(
         (item) => item.product._id === product._id
@@ -115,7 +125,7 @@ const OrderForm: React.FC = () => {
         {
           product,
           quantity,
-          selectedVariants: {}, // Adjust as per your variant logic
+          selectedVariants: {},
         },
       ];
     });
@@ -137,25 +147,21 @@ const OrderForm: React.FC = () => {
     setCheckout(true);
   };
 
-  const handlePlaceOrder = async () => {
+  const handlePlaceOrder = async (address: string) => {
+    const orderData = {
+      ...order,
+      address,
+      products: cartItems.map((item) => ({
+        product: item.product._id,
+        quantity: item.quantity,
+        price: item.product.retailPrice,
+      })),
+    };
+
     if (isEditing) {
-      await updateOrder(order._id!, {
-        ...order,
-        products: cartItems.map((item) => ({
-          product: item.product._id,
-          quantity: item.quantity,
-          price: item.product.retailPrice,
-        })),
-      });
+      await updateOrder(order._id!, orderData);
     } else {
-      await addOrder({
-        ...order,
-        products: cartItems.map((item) => ({
-          product: item.product._id,
-          quantity: item.quantity,
-          price: item.product.retailPrice,
-        })),
-      });
+      await addOrder(orderData);
     }
     navigate("/dashboard/orders");
   };
@@ -252,7 +258,7 @@ const OrderForm: React.FC = () => {
       <Breadcrumb
         title="Order Management"
         paths={[
-          { name: "Dashboard", link: "/dashboard/orders" },
+          { name: "Dashboard", link: "/dashboard/orders/new" },
           { name: "Orders" },
         ]}
       />

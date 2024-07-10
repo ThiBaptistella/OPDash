@@ -13,6 +13,7 @@ export interface Order extends Document {
   orderDate: Date;
   totalAmount: number;
   supplier: ISupplier | mongoose.Types.ObjectId;
+  address: string;
 }
 
 const OrderSchema: Schema = new Schema({
@@ -31,6 +32,7 @@ const OrderSchema: Schema = new Schema({
   orderDate: { type: Date, default: Date.now },
   totalAmount: { type: Number, required: true },
   supplier: { type: Schema.Types.ObjectId, ref: "Supplier", required: true },
+  address: { type: String, required: true },
 });
 
 export default mongoose.model<Order>("Order", OrderSchema);

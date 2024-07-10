@@ -1,5 +1,3 @@
-// src/pages/Checkout.tsx
-
 import React, { useState } from "react";
 import {
   Container,
@@ -20,7 +18,7 @@ interface CheckoutProps {
     quantity: number;
     selectedVariants: any;
   }[];
-  onPlaceOrder: () => void;
+  onPlaceOrder: (address: string) => void;
 }
 
 const Checkout: React.FC<CheckoutProps> = ({ cartItems, onPlaceOrder }) => {
@@ -28,8 +26,7 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, onPlaceOrder }) => {
   const navigate = useNavigate();
 
   const handlePlaceOrder = () => {
-    // Handle order placement logic
-    onPlaceOrder();
+    onPlaceOrder(address);
     navigate("/dashboard/orders");
   };
 
@@ -74,13 +71,11 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, onPlaceOrder }) => {
           <Box display="flex" justifyContent="space-between" mt={2}>
             <Typography variant="h6">
               Total: $
-              {cartItems
-                .reduce(
-                  (total, item) =>
-                    total + (item.product.retailPrice ?? 0) * item.quantity,
-                  0
-                )
-                .toFixed(2)}
+              {cartItems.reduce(
+                (total, item) =>
+                  total + (item.product.retailPrice || 0) * item.quantity,
+                0
+              )}
             </Typography>
             <Button
               variant="contained"

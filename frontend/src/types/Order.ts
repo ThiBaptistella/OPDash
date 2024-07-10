@@ -12,4 +12,5 @@ export interface Order {
   status: "Pending" | "Completed" | "Cancelled";
   orderDate: Date;
   totalAmount: number;
+  address: string;
 }
