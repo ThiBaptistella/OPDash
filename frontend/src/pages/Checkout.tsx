@@ -62,8 +62,10 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, onPlaceOrder }) => {
                     .join(", ")}
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  $
-                  {((item.product.retailPrice ?? 0) * item.quantity).toFixed(2)}
+                  {new Intl.NumberFormat("en-US", {
+                    style: "currency",
+                    currency: "AUD",
+                  }).format((item.product.retailPrice ?? 0) * item.quantity)}
                 </Typography>
               </Grid>
             ))}
@@ -71,10 +73,15 @@ const Checkout: React.FC<CheckoutProps> = ({ cartItems, onPlaceOrder }) => {
           <Box display="flex" justifyContent="space-between" mt={2}>
             <Typography variant="h6">
               Total: $
-              {cartItems.reduce(
-                (total, item) =>
-                  total + (item.product.retailPrice || 0) * item.quantity,
-                0
+              {new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "AUD",
+              }).format(
+                cartItems.reduce(
+                  (total, item) =>
+                    total + (item.product.retailPrice || 0) * item.quantity,
+                  0
+                )
               )}
             </Typography>
             <Button
