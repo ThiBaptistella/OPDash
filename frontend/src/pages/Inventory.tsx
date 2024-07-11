@@ -1,4 +1,3 @@
-// src/pages/Inventory.tsx
 import React, { useState, useMemo } from "react";
 import {
   Container,
@@ -20,30 +19,13 @@ import {
   CssBaseline,
 } from "@mui/material";
 import Breadcrumb from "../components/Breadcrumb";
-import { InventoryItem } from "../types";
-
-const inventoryItems: InventoryItem[] = [
-  {
-    id: 1,
-    name: "Product 1",
-    category: "Category 1",
-    stock: 100,
-    price: 50.0,
-  },
-  {
-    id: 2,
-    name: "Product 2",
-    category: "Category 2",
-    stock: 200,
-    price: 75.0,
-  },
-];
+import useInventoryItems from "../hooks/useInventoryItems";
 
 const Inventory: React.FC = () => {
   const theme = useTheme();
+  const { inventoryItems } = useInventoryItems();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
-  const [items, setItems] = useState(inventoryItems);
   const rowsPerPage = 10;
 
   const handleChangePage = (
@@ -60,12 +42,16 @@ const Inventory: React.FC = () => {
 
   const filteredItems = useMemo(
     () =>
-      items.filter(
+      inventoryItems.filter(
         (item) =>
-          item.name.toLowerCase().includes(search.toLowerCase()) ||
-          item.category.toLowerCase().includes(search.toLowerCase())
+          item.product?.productName
+            ?.toLowerCase()
+            .includes(search.toLowerCase()) ||
+          item.product?.productCategory
+            ?.toLowerCase()
+            .includes(search.toLowerCase())
       ),
-    [search, items]
+    [search, inventoryItems]
   );
 
   return (
@@ -83,7 +69,7 @@ const Inventory: React.FC = () => {
           <Card>
             <CardContent>
               <Typography variant="h6">Total Items</Typography>
-              <Typography variant="h4">{items.length}</Typography>
+              <Typography variant="h4">{inventoryItems.length}</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -92,7 +78,12 @@ const Inventory: React.FC = () => {
             <CardContent>
               <Typography variant="h6">Total Value</Typography>
               <Typography variant="h4">
-                ${items.reduce((acc, item) => acc + item.price * item.stock, 0)}
+                $
+                {inventoryItems.reduce(
+                  (acc, item) =>
+                    acc + (item.product?.retailPrice || 0) * (item.stock || 0),
+                  0
+                )}
               </Typography>
             </CardContent>
           </Card>
@@ -133,6 +124,8 @@ const Inventory: React.FC = () => {
                 <TableCell sx={{ fontWeight: 900 }}>Category</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Stock</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Price</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>SKU</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Tracked</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -141,10 +134,14 @@ const Inventory: React.FC = () => {
                 .map((item) => (
                   <TableRow key={item.id} hover>
                     <TableCell>{item.id}</TableCell>
-                    <TableCell>{item.name}</TableCell>
-                    <TableCell>{item.category}</TableCell>
+                    <TableCell>{item.product?.productName || "N/A"}</TableCell>
+                    <TableCell>
+                      {item.product?.productCategory || "N/A"}
+                    </TableCell>
                     <TableCell>{item.stock}</TableCell>
-                    <TableCell>{item.price}</TableCell>
+                    <TableCell>{item.product?.retailPrice || "N/A"}</TableCell>
+                    <TableCell>{item.sku}</TableCell>
+                    <TableCell>{item.tracked ? "Yes" : "No"}</TableCell>
                   </TableRow>
                 ))}
             </TableBody>
