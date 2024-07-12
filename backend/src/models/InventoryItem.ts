@@ -2,6 +2,7 @@
 import mongoose, { Schema, Document } from "mongoose";
 
 export interface InventoryItem extends Document {
+  stock: number;
   sku: string;
   product: mongoose.Types.ObjectId; // Reference to Product
   tracked: boolean;
@@ -10,6 +11,7 @@ export interface InventoryItem extends Document {
 const InventoryItemSchema: Schema = new Schema({
   sku: { type: String, required: true },
   product: { type: Schema.Types.ObjectId, ref: "Product", required: true },
+  stock: { type: Number, required: true },
   tracked: { type: Boolean, default: true },
 });
 
