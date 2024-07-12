@@ -17,7 +17,6 @@ export interface IProduct extends Document {
   supplyPrice: number;
   retailPrice: number;
   averageCost: number;
-  inventory: number;
   brand: string;
   supplier: mongoose.Types.ObjectId;
   supplierCode: string;
@@ -40,7 +39,6 @@ const ProductSchema: Schema = new Schema({
   supplyPrice: { type: Number, required: true, default: 0 },
   retailPrice: { type: Number, required: true, default: 0 },
   averageCost: { type: Number, required: true, default: 0 },
-  inventory: { type: Number, required: true, default: 0 },
   brand: { type: String, required: true, default: "Unknown" },
   supplier: {
     type: mongoose.Schema.Types.ObjectId,

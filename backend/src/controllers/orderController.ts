@@ -2,7 +2,7 @@
 import { Request, Response } from "express";
 import Order from "../models/Order";
 import InventoryItem from "../models/InventoryItem";
-import Product from "../models/Product"; // Make sure to import the Product model
+import Product from "../models/Product"; // Ensure to import Product model
 
 export const createOrder = async (req: Request, res: Response) => {
   try {
@@ -49,7 +49,7 @@ export const createOrder = async (req: Request, res: Response) => {
         inventoryItem = new InventoryItem({
           product: item.product,
           sku: product.sku, // Assign the SKU from the product
-          stock: item.quantity, // Set initial stock to the order quantity
+          stock: item.quantity, // Set initial stock to negative order quantity
           tracked: true,
         });
         await inventoryItem.save();
@@ -120,7 +120,7 @@ export const updateOrder = async (req: Request, res: Response) => {
         product: item.product,
       });
       if (inventoryItem) {
-        inventoryItem.stock -= item.quantity;
+        inventoryItem.stock += item.quantity;
         await inventoryItem.save();
       }
     }
@@ -145,7 +145,7 @@ export const deleteOrder = async (req: Request, res: Response) => {
         products: item.product,
       });
       if (inventoryItem) {
-        inventoryItem.stock += item.quantity;
+        inventoryItem.stock -= item.quantity;
         await inventoryItem.save();
       }
     }

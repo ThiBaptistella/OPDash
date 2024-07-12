@@ -1,3 +1,4 @@
+// src/pages/Inventory.tsx
 import React, { useState, useMemo } from "react";
 import {
   Container,
@@ -44,15 +45,25 @@ const Inventory: React.FC = () => {
     () =>
       inventoryItems.filter(
         (item) =>
-          item.product?.productName
-            ?.toLowerCase()
+          (item.product?.productName || "")
+            .toLowerCase()
             .includes(search.toLowerCase()) ||
-          item.product?.productCategory
-            ?.toLowerCase()
+          (item.product?.productCategory || "")
+            .toLowerCase()
             .includes(search.toLowerCase())
       ),
     [search, inventoryItems]
   );
+
+  const totalValue = inventoryItems.reduce(
+    (acc, item) => acc + (item.product?.retailPrice || 0) * (item.stock || 0),
+    0
+  );
+
+  const formattedTotalValue = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "AUD",
+  }).format(totalValue);
 
   return (
     <Container maxWidth={false} disableGutters>
@@ -77,14 +88,7 @@ const Inventory: React.FC = () => {
           <Card>
             <CardContent>
               <Typography variant="h6">Total Value</Typography>
-              <Typography variant="h4">
-                $
-                {inventoryItems.reduce(
-                  (acc, item) =>
-                    acc + (item.product?.retailPrice || 0) * (item.stock || 0),
-                  0
-                )}
-              </Typography>
+              <Typography variant="h4">{formattedTotalValue}</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -124,8 +128,6 @@ const Inventory: React.FC = () => {
                 <TableCell sx={{ fontWeight: 900 }}>Category</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Stock</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Price</TableCell>
-                <TableCell sx={{ fontWeight: 900 }}>SKU</TableCell>
-                <TableCell sx={{ fontWeight: 900 }}>Tracked</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -134,14 +136,14 @@ const Inventory: React.FC = () => {
                 .map((item) => (
                   <TableRow key={item.id} hover>
                     <TableCell>{item.id}</TableCell>
-                    <TableCell>{item.product?.productName || "N/A"}</TableCell>
                     <TableCell>
-                      {item.product?.productCategory || "N/A"}
+                      {item.product?.productName || "Unknown"}
+                    </TableCell>
+                    <TableCell>
+                      {item.product?.productCategory || "Unknown"}
                     </TableCell>
                     <TableCell>{item.stock}</TableCell>
-                    <TableCell>{item.product?.retailPrice || "N/A"}</TableCell>
-                    <TableCell>{item.sku}</TableCell>
-                    <TableCell>{item.tracked ? "Yes" : "No"}</TableCell>
+                    <TableCell>{item.product?.retailPrice || 0}</TableCell>
                   </TableRow>
                 ))}
             </TableBody>
