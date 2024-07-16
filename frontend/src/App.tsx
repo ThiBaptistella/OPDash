@@ -5,7 +5,6 @@ import { ThemeProvider, CssBaseline } from "@mui/material";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-import CustomerProfile from "./components/CustomerProfile";
 import Layout from "./components/Layout";
 import PrivateRoute from "./components/PrivateRoute";
 import Users from "./pages/Users";
@@ -19,6 +18,7 @@ import Products from "./pages/Products";
 import OrderForm from "./components/OrderForm";
 import OrderPage from "./pages/OrderPage";
 import OrderDetails from "./pages/OrderDetails";
+import Sales from "./pages/Sales";
 
 const App: React.FC = () => {
   return (
@@ -42,6 +42,7 @@ const App: React.FC = () => {
             <Route path="users/:id" element={<UserDetail />} />
             <Route path="integrations" element={<Integrations />} />
             <Route path="invoices" element={<Invoices />} />
+            <Route path="sales" element={<Sales />} />
             <Route path="inventory" element={<Inventory />} />
             <Route path="suppliers" element={<Suppliers />} />
             <Route path="products" element={<Products />} />

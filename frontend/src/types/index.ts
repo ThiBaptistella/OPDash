@@ -9,3 +9,4 @@ export * from "./BankSummary";
 export * from "./Supplier";
 export * from "./Product";
 export * from "./Order";
+export * from "./Sale";

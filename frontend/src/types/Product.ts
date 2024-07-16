@@ -3,7 +3,6 @@
 interface Supplier {
   _id: string;
   supplierName: string;
-  // other fields if necessary
 }
 
 export interface Product {
