@@ -33,68 +33,71 @@ export const uploadSales = async (req: Request, res: Response) => {
 
     const { path } = req.file;
     const salesData = extractSalesData(path);
-    console.log("salesData", salesData[0]); // Log the sales data
 
     // Validate data before inserting
     const validatedSalesData = salesData.map((sale) => ({
-      Sku: sale.Sku || "Unknown",
-      Quantity: isNaN(sale.Quantity) ? 0 : sale.Quantity,
-      Total: isNaN(sale.Total) ? 0 : sale.Total,
-      SaleDate: sale.SaleDate ? new Date(sale.SaleDate) : new Date(),
-      ReceiptNumber: sale.ReceiptNumber || "Unknown",
-      LineType: sale.LineType || "Unknown",
-      CustomerCode: sale.CustomerCode || "Unknown",
-      CustomerName: sale.CustomerName || "Unknown",
-      Note: sale.Note || "Unknown",
-      Subtotal: isNaN(sale.Subtotal) ? 0 : sale.Subtotal,
-      SalesTax: isNaN(sale.SalesTax) ? 0 : sale.SalesTax,
-      Discount: isNaN(sale.Discount) ? 0 : sale.Discount,
-      Loyalty: isNaN(sale.Loyalty) ? 0 : sale.Loyalty,
-      Paid: isNaN(sale.Paid) ? 0 : sale.Paid,
-      Details: sale.Details || "Unknown",
-      Register: sale.Register || "Unknown",
-      User: sale.User || "Unknown",
-      Status: sale.Status || "Unknown",
-      AccountCodeSale: sale.AccountCodeSale || "Unknown",
-      AccountCodePurchase: sale.AccountCodePurchase || "Unknown",
+      sku: sale.Sku || "Unknown",
+      quantity: isNaN(sale.Quantity) ? 0 : sale.Quantity,
+      total: isNaN(sale.Total) ? 0 : sale.Total,
+      saleDate: sale.SaleDate ? new Date(sale.SaleDate) : new Date(),
+      receiptNumber: sale.ReceiptNumber || "Unknown",
+      lineType: sale.LineType || "Unknown",
+      customerCode: sale.CustomerCode || "Unknown",
+      customerName: sale.CustomerName || "Unknown",
+      note: sale.Note || "Unknown",
+      subtotal: isNaN(sale.Subtotal) ? 0 : sale.Subtotal,
+      salesTax: isNaN(sale.SalesTax) ? 0 : sale.SalesTax,
+      discount: isNaN(sale.Discount) ? 0 : sale.Discount,
+      loyalty: isNaN(sale.Loyalty) ? 0 : sale.Loyalty,
+      paid: isNaN(sale.Paid) ? 0 : sale.Paid,
+      details: sale.Details || "Unknown",
+      register: sale.Register || "Unknown",
+      user: sale.User || "Unknown",
+      status: sale.Status || "Unknown",
+      accountCodeSale: sale.AccountCodeSale || "Unknown",
+      accountCodePurchase: sale.AccountCodePurchase || "Unknown",
     }));
+
+    console.log("validatedSalesData", validatedSalesData);
 
     const saleDocuments = [];
     for (const sale of validatedSalesData) {
-      const product = await Product.findOne({ sku: sale.Sku });
+      const product = await Product.findOne({ sku: sale.sku });
       if (product) {
         const newSale = new Sale({
           product: product._id,
-          quantity: sale.Quantity,
-          totalRevenue: sale.Total,
-          saleDate: sale.SaleDate,
-          receiptNumber: sale.ReceiptNumber,
-          lineType: sale.LineType,
-          customerCode: sale.CustomerCode,
-          customerName: sale.CustomerName,
-          note: sale.Note,
-          subtotal: sale.Subtotal,
-          salesTax: sale.SalesTax,
-          discount: sale.Discount,
-          loyalty: sale.Loyalty,
-          paid: sale.Paid,
-          details: sale.Details,
-          register: sale.Register,
-          user: sale.User,
-          status: sale.Status,
-          accountCodeSale: sale.AccountCodeSale,
-          accountCodePurchase: sale.AccountCodePurchase,
+          quantity: sale.quantity,
+          total: sale.total,
+          saleDate: sale.saleDate,
+          receiptNumber: sale.receiptNumber,
+          lineType: sale.lineType,
+          customerCode: sale.customerCode,
+          customerName: sale.customerName,
+          note: sale.note,
+          subtotal: sale.subtotal,
+          salesTax: sale.salesTax,
+          discount: sale.discount,
+          loyalty: sale.loyalty,
+          paid: sale.paid,
+          details: sale.details,
+          register: sale.register,
+          user: sale.user,
+          status: sale.status,
+          sku: sale.sku,
+          accountCodeSale: sale.accountCodeSale,
+          accountCodePurchase: sale.accountCodePurchase,
         });
 
         await newSale.save();
         saleDocuments.push(newSale);
+        console.log("saleDocuments", saleDocuments);
 
         // Update inventory stock
         const inventoryItem = await InventoryItem.findOne({
           product: product._id,
         });
         if (inventoryItem) {
-          inventoryItem.stock -= sale.Quantity;
+          inventoryItem.stock -= sale.quantity;
           await inventoryItem.save();
         }
       }

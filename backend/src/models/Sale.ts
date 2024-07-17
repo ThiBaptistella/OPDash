@@ -20,7 +20,7 @@ export interface ISale extends Document {
   register: string;
   user: string;
   status: string;
-  sku: number;
+  sku: string;
   accountCodeSale: string;
   accountCodePurchase: string;
   saleDate: Date;
@@ -38,13 +38,13 @@ const SaleSchema: Schema = new Schema({
   salesTax: { type: Number, required: true },
   discount: { type: Number, required: true },
   loyalty: { type: Number, required: true },
-  total: { type: Number, required: false },
+  total: { type: Number, required: true },
   paid: { type: Number, required: true },
   details: { type: String, required: true },
   register: { type: String, required: true },
   user: { type: String, required: true },
   status: { type: String, required: true },
-  sku: { type: Number, required: false },
+  sku: { type: String, required: true },
   accountCodeSale: { type: String, required: true },
   accountCodePurchase: { type: String, required: true },
   saleDate: { type: Date, required: true },
