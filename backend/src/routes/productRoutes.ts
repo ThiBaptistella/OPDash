@@ -6,6 +6,7 @@ import {
   createProduct,
   updateProduct,
   deleteProduct,
+  lookupProductBySKU,
 } from "../controllers/productController";
 import authMiddleware from "../middlewares/authMiddleware";
 
@@ -23,5 +24,6 @@ router.get("/products", authMiddleware, getProducts);
 router.post("/products", authMiddleware, createProduct);
 router.put("/products/:id", authMiddleware, updateProduct);
 router.delete("/products/:id", authMiddleware, deleteProduct);
+router.post("/lookup", lookupProductBySKU);
 
 export default router;

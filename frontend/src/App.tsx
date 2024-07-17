@@ -19,6 +19,7 @@ import OrderForm from "./components/OrderForm";
 import OrderPage from "./pages/OrderPage";
 import OrderDetails from "./pages/OrderDetails";
 import Sales from "./pages/Sales";
+import Scan from "./pages/Scan";
 
 const App: React.FC = () => {
   return (
@@ -29,6 +30,7 @@ const App: React.FC = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Login />} />
+          <Route path="/scan" element={<Scan />} />
           <Route
             path="/dashboard/*"
             element={

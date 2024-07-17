@@ -22,6 +22,7 @@ export interface IProduct extends Document {
   supplierCode: string;
   active: string;
   createdAt: Date;
+  barcode?: string;
 }
 
 const ProductSchema: Schema = new Schema({
@@ -48,6 +49,7 @@ const ProductSchema: Schema = new Schema({
   supplierCode: { type: String, required: true, default: "unknown-code" },
   active: { type: String, required: true, default: "unknown-active" },
   createdAt: { type: Date, default: Date.now },
+  barcode: { type: String, required: true },
 });
 
 export default mongoose.model<IProduct>("Product", ProductSchema);

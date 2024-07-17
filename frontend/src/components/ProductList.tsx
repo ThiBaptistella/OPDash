@@ -15,10 +15,15 @@ import {
   Typography,
   TextField,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
 } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Product } from "../types/Product";
+import BarcodeReader from "./BarcodeReader"; // Import the BarcodeReader component
 
 interface ProductsListProps {
   products: Product[];
@@ -39,6 +44,7 @@ const ProductsList: React.FC<ProductsListProps> = ({
   const [page, setPage] = useState(1);
   const rowsPerPage = 10;
   const [search, setSearch] = useState("");
+  const [isScannerOpen, setIsScannerOpen] = useState(false);
   const theme = useTheme();
 
   const handleChangePage = (
@@ -101,6 +107,14 @@ const ProductsList: React.FC<ProductsListProps> = ({
           >
             Add Product
           </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={() => setIsScannerOpen(true)}
+            sx={{ mr: 2 }}
+          >
+            Scan Barcode
+          </Button>
           <input
             accept=".xlsx, .xls"
             style={{ display: "none" }}
@@ -123,6 +137,7 @@ const ProductsList: React.FC<ProductsListProps> = ({
                 <TableCell sx={{ fontWeight: 900 }}>Product Name</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Brand</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Supplier</TableCell>
+                <TableCell sx={{ fontWeight: 900 }}>Barcode</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Price</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Created</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Actions</TableCell>
@@ -139,6 +154,15 @@ const ProductsList: React.FC<ProductsListProps> = ({
                       {typeof product.supplier === "string"
                         ? product.supplier
                         : product.supplier?.supplierName}
+                    </TableCell>
+                    <TableCell>
+                      {product.barcode && (
+                        <img
+                          src={`data:image/png;base64,${product.barcode}`}
+                          alt="Barcode"
+                          style={{ width: "150px", height: "50px" }}
+                        />
+                      )}
                     </TableCell>
                     <TableCell>{product.retailPrice}</TableCell>
                     <TableCell>
@@ -167,6 +191,22 @@ const ProductsList: React.FC<ProductsListProps> = ({
           />
         </Box>
       </Paper>
+      <Dialog
+        open={isScannerOpen}
+        onClose={() => setIsScannerOpen(false)}
+        maxWidth="md"
+        fullWidth
+      >
+        <DialogTitle>Scan Barcode</DialogTitle>
+        <DialogContent>
+          <BarcodeReader onClose={() => setIsScannerOpen(false)} />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setIsScannerOpen(false)} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };

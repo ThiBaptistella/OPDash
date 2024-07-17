@@ -28,4 +28,5 @@ export interface Product {
   inventory?: number;
   createdAt?: Date;
   imageUrl?: string | undefined;
+  barcode?: string;
 }

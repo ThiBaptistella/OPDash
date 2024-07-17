@@ -22,11 +22,13 @@
     "react-apexcharts": "^1.4.1",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.3.1",
+    "react-html5-qrcode-reader": "^1.1.1",
     "react-lazy-load-image-component": "^1.6.2",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "webnfc": "^1.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

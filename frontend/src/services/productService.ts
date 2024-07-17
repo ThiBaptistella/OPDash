@@ -44,10 +44,15 @@ const deleteProduct = (id: string) => {
   return axios.delete(`${API_URL}/products/${id}`, getAuthHeaders());
 };
 
+const lookupProductBySKU = (sku: string) => {
+  return axios.post<Product>(`${API_URL}/lookup`, { sku }, getAuthHeaders());
+};
+
 export default {
   getProducts,
   addProduct,
   updateProduct,
   deleteProduct,
   uploadProductFile,
+  lookupProductBySKU,
 };

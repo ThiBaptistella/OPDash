@@ -63,6 +63,16 @@ const useProducts = () => {
     }
   };
 
+  const lookupProductBySKU = async (sku: string) => {
+    try {
+      const response = await productService.lookupProductBySKU(sku);
+      return response.data;
+    } catch (error) {
+      setError((error as any).message);
+      throw error;
+    }
+  };
+
   return {
     products,
     setProducts,
@@ -70,6 +80,7 @@ const useProducts = () => {
     updateProduct,
     deleteProduct,
     uploadProductFile,
+    lookupProductBySKU,
     loading,
     error,
   };

@@ -1,5 +1,4 @@
-// src/components/NFCReader.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const NFCReader: React.FC = () => {
   const [status, setStatus] = useState<string>("");
@@ -27,18 +26,8 @@ const NFCReader: React.FC = () => {
 
           setOutput(outputText);
 
-          // Send the data to your backend server for further processing
-          fetch("/log-product", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ serialNumber, records: message.records }),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log("Product logged:", data);
-            });
+          // You can handle the data here or send it to your backend
+          alert(outputText);
         };
 
         ndef.onreadingerror = () => {
@@ -48,14 +37,19 @@ const NFCReader: React.FC = () => {
         setStatus(`NFC scan failed: ${error}`);
       }
     } else {
-      setStatus("Web NFC is not supported on this device.");
+      setStatus(
+        "Web NFC is not supported on this device. Please use a compatible Android device."
+      );
     }
   };
+
+  useEffect(() => {
+    startScan();
+  }, []);
 
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
       <h1>NFC Reader</h1>
-      <button onClick={startScan}>Scan NFC Tag</button>
       <div id="status" style={{ margin: "20px 0" }}>
         {status}
       </div>

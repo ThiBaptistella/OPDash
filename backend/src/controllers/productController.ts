@@ -7,6 +7,7 @@ import extractProductData from "../utils/extractProductData";
 import { saveAnnotatedData } from "../utils/saveAnnotatedData";
 import { exec } from "child_process";
 import path from "path";
+import bwipjs from "bwip-js";
 
 const trainNerModel = () => {
   const scriptPath = path.join(
@@ -50,7 +51,28 @@ const findOrCreateSupplier = async (
   return supplier._id;
 };
 
-// upload file
+const generateBarcode = (sku: string): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    bwipjs.toBuffer(
+      {
+        bcid: "code128", // Barcode type
+        text: sku, // Text to encode
+        scale: 3, // 3x scaling factor
+        height: 10, // Bar height, in millimeters
+        includetext: true, // Show human-readable text
+        textxalign: "center", // Always good to set this
+      },
+      (err, png) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(png.toString("base64"));
+        }
+      }
+    );
+  });
+};
+
 // upload file
 export const uploadProductFile = async (req: Request, res: Response) => {
   try {
@@ -75,9 +97,13 @@ export const uploadProductFile = async (req: Request, res: Response) => {
         supplierCache[supplierName] = supplierId;
       }
 
+      // Generate barcode
+      const barcode = await generateBarcode(data.sku);
+
       const newProduct = new Product({
         ...data,
         supplier: supplierId,
+        barcode,
       });
 
       validatedData.push(newProduct);
@@ -128,7 +154,15 @@ export const createProduct = async (req: Request, res: Response) => {
     const supplierId = await linkOrCreateSupplier(
       productData.supplier as unknown as string
     );
-    const newProduct = new Product({ ...productData, supplier: supplierId });
+
+    // Generate barcode
+    const barcode = await generateBarcode(productData.sku as string);
+
+    const newProduct = new Product({
+      ...productData,
+      supplier: supplierId,
+      barcode,
+    });
     await newProduct.save();
     res.status(201).json(newProduct);
   } catch (error) {
@@ -144,9 +178,16 @@ export const updateProduct = async (req: Request, res: Response) => {
     const supplierId = await linkOrCreateSupplier(
       productData.supplier as unknown as string
     );
+
+    let barcode;
+
+    if (productData.sku) {
+      barcode = await generateBarcode(productData.sku);
+    }
+
     const updatedProduct = await Product.findByIdAndUpdate(
       id,
-      { ...productData, supplier: supplierId },
+      { ...productData, supplier: supplierId, barcode },
       { new: true }
     )
       .lean()
@@ -171,5 +212,18 @@ export const deleteProduct = async (req: Request, res: Response) => {
     res.status(200).json(deletedProduct);
   } catch (error) {
     res.status(500).json({ message: "Failed to delete product", error });
+  }
+};
+
+export const lookupProductBySKU = async (req: Request, res: Response) => {
+  try {
+    const { sku } = req.body;
+    const product = await Product.findOne({ sku });
+    if (!product) {
+      return res.status(404).json({ message: "Product not found" });
+    }
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json({ message: "Failed to lookup product by SKU", error });
   }
 };

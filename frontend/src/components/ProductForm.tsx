@@ -260,7 +260,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
           <Grid item xs={12}>
             <TextField
               label="Price"
-              name="price"
+              name="retailPrice"
               type="number"
               value={product.retailPrice}
               onChange={handleChange}
