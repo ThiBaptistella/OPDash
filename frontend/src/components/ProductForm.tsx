@@ -9,10 +9,16 @@ import {
   DialogActions,
   styled,
   MenuItem,
+  Select,
+  InputLabel,
+  FormControl,
+  Checkbox,
+  FormControlLabel,
 } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import { Product } from "../types/Product";
 import useSuppliers from "../hooks/useSuppliers";
+import { SelectChangeEvent } from "@mui/material/Select";
 
 interface ProductFormProps {
   open: boolean;
@@ -90,9 +96,16 @@ const ProductForm: React.FC<ProductFormProps> = ({
     }
   }, [initialData]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | { name?: string; value: unknown }>
+  ) => {
     const { name, value } = e.target;
-    setProduct((prev) => ({ ...prev, [name]: value }));
+    setProduct((prev) => ({ ...prev, [name as string]: value }));
+  };
+
+  const handleSelectChange = (event: SelectChangeEvent<string>) => {
+    const { name, value } = event.target;
+    setProduct((prev) => ({ ...prev, [name as string]: value }));
   };
 
   const handleSave = () => {
@@ -196,19 +209,21 @@ const ProductForm: React.FC<ProductFormProps> = ({
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
-              label="Supplier"
-              name="supplier"
-              value={product.supplier}
-              onChange={handleChange}
-              fullWidth
-            >
-              {suppliers.map((supplier) => (
-                <MenuItem key={supplier._id} value={supplier._id}>
-                  {supplier.supplierName}
-                </MenuItem>
-              ))}
-            </TextField>
+            <FormControl fullWidth>
+              <InputLabel>Supplier</InputLabel>
+              <Select
+                label="Supplier"
+                name="supplier"
+                value={product.supplier as string} // Ensure the value is always a string
+                onChange={handleSelectChange}
+              >
+                {suppliers.map((supplier) => (
+                  <MenuItem key={supplier._id} value={supplier._id}>
+                    {supplier.supplierName}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </Grid>
           <Grid item xs={12}>
             <TextField
@@ -287,12 +302,20 @@ const ProductForm: React.FC<ProductFormProps> = ({
             />
           </Grid>
           <Grid item xs={12}>
-            <TextField
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={product.active}
+                  onChange={(e) =>
+                    setProduct((prev) => ({
+                      ...prev,
+                      active: e.target.checked,
+                    }))
+                  }
+                  name="active"
+                />
+              }
               label="Active"
-              name="active"
-              value={product.active}
-              onChange={handleChange}
-              fullWidth
             />
           </Grid>
         </Grid>
