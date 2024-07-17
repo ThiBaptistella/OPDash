@@ -59,7 +59,6 @@ export const uploadProductFile = async (req: Request, res: Response) => {
     }
 
     const { path } = req.file;
-    console.log("path", path);
     const productData = extractProductData(path);
 
     const validatedData = [];

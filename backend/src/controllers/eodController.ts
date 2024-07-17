@@ -31,7 +31,6 @@ export const uploadEOD = async (req: Request, res: Response) => {
     }
 
     const { path } = req.file;
-    // console.log("path", path);
     const eodData = extractEODData(path);
 
     // Validate data before inserting

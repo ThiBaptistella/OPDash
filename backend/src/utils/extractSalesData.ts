@@ -1,5 +1,5 @@
 import xlsx from "xlsx";
-
+import moment from "moment";
 interface SalesData {
   SaleDate: string;
   ReceiptNumber: string;
@@ -31,7 +31,7 @@ const extractSalesData = (filePath: string): SalesData[] => {
 
   // Map the extracted data to the sales structure
   const salesData = jsonData.slice(1).map((row: any) => ({
-    SaleDate: row[0], // Column A
+    SaleDate: moment(row[0], "DD/MM/YYYY hh:mm:ss A").toISOString(), // Column A
     ReceiptNumber: row[1], // Column B
     LineType: row[2], // Column C
     CustomerCode: row[3], // Column D

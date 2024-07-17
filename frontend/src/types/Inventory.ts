@@ -2,7 +2,7 @@ import { Product } from "./Product";
 
 // src/types.ts
 export interface InventoryItem {
-  id: string;
+  _id: any;
   sku: string;
   product: Product;
   tracked: boolean;
@@ -10,14 +10,14 @@ export interface InventoryItem {
 }
 
 export interface InventoryLevel {
-  id: string;
+  _id: any;
   inventoryItem: InventoryItem;
   location: Location;
   quantity: number;
 }
 
 export interface Location {
-  id: string;
+  _id: any;
   name: string;
   address: string;
 }

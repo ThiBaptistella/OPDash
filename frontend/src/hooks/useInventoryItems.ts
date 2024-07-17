@@ -40,7 +40,7 @@ const useInventoryItems = () => {
       const response = await inventoryService.updateInventoryItem(id, item);
       setInventoryItems((prevItems) =>
         prevItems.map((invItem) =>
-          invItem.id === id ? response.data : invItem
+          invItem._id === id ? response.data : invItem
         )
       );
     } catch (error) {
@@ -52,7 +52,7 @@ const useInventoryItems = () => {
     try {
       await inventoryService.deleteInventoryItem(id);
       setInventoryItems((prevItems) =>
-        prevItems.filter((invItem) => invItem.id !== id)
+        prevItems.filter((invItem) => invItem._id !== id)
       );
     } catch (error) {
       setError((error as any).message);

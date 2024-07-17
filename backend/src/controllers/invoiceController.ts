@@ -31,10 +31,8 @@ export const postInvoice = async (req: Request, res: Response) => {
     }
 
     const { path } = req.file;
-    console.log("path", path);
     const response = await extractInvoiceData(path);
     const extractedData: ExtractedData = response.extracted_data;
-    console.log("extractedData", extractedData.balance);
 
     // Ensure balance is a number
     const balance = Number(extractedData.balance);
@@ -52,7 +50,6 @@ export const postInvoice = async (req: Request, res: Response) => {
     };
 
     const invoice = new Invoice(invoiceData);
-    console.log("invoice", invoice);
     await invoice.save();
 
     // Format the entities correctly

@@ -123,7 +123,6 @@ const Inventory: React.FC = () => {
           <Table>
             <TableHead>
               <TableRow>
-                <TableCell sx={{ fontWeight: 900 }}>ID</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Product</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Category</TableCell>
                 <TableCell sx={{ fontWeight: 900 }}>Stock</TableCell>
@@ -134,8 +133,7 @@ const Inventory: React.FC = () => {
               {filteredItems
                 .slice((page - 1) * rowsPerPage, page * rowsPerPage)
                 .map((item) => (
-                  <TableRow key={item.id} hover>
-                    <TableCell>{item.id}</TableCell>
+                  <TableRow key={item._id} hover>
                     <TableCell>
                       {item.product?.productName || "Unknown"}
                     </TableCell>

@@ -60,7 +60,6 @@ const Sales: React.FC = () => {
       ),
     [search, sales]
   );
-  console.log("filteredSales", filteredSales);
   return (
     <Container maxWidth={false} disableGutters>
       <CssBaseline />
@@ -111,7 +110,7 @@ const Sales: React.FC = () => {
         </Grid>
         <Grid item xs={12} sm={12}>
           <input
-            accept=".xlsx, .xls"
+            accept=".xlsx, .xls, .csv"
             style={{ display: "none" }}
             id="contained-button-file"
             type="file"

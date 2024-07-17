@@ -26,20 +26,16 @@ export const createOrder = async (req: Request, res: Response) => {
 
     // Update or create inventory items
     for (const item of products) {
-      console.log("Processing product:", item.product);
       let inventoryItem = await InventoryItem.findOne({
         product: item.product,
       });
 
       if (inventoryItem) {
-        console.log(`Found inventory item: ${inventoryItem}`);
         inventoryItem.stock -= item.quantity;
         await inventoryItem.save();
-        console.log("Updated inventory item:", inventoryItem);
       } else {
         const product = await Product.findById(item.product); // Retrieve the product to get the SKU
         if (!product) {
-          console.log(`Product not found for ID ${item.product}`);
           continue;
         }
 
