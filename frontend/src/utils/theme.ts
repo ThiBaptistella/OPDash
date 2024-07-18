@@ -119,17 +119,31 @@ const theme = createTheme({
         },
       },
     },
-    MuiListItemIcon: {
+    MuiListItem: {
       styleOverrides: {
         root: {
+          backgroundColor: "transparent",
           color: colors.text.primary,
+
+          "&:hover": {
+            backgroundColor: colors.primary.light,
+            color: colors.primary.dark,
+            borderRadius: "8px",
+          },
         },
       },
     },
-    MuiListItemText: {
+    MuiListItemIcon: {
       styleOverrides: {
-        primary: {
+        root: {
+          backgroundColor: "transparent",
           color: colors.text.primary,
+
+          "&:hover": {
+            backgroundColor: colors.primary.light,
+            color: colors.primary.dark,
+            borderRadius: "8px",
+          },
         },
       },
     },

@@ -10,3 +10,4 @@ export * from "./Supplier";
 export * from "./Product";
 export * from "./Order";
 export * from "./Sale";
+export * from "./LoyaltyProgram";

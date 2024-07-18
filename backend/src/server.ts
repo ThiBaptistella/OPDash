@@ -12,6 +12,7 @@ import productRoutes from "./routes/productRoutes";
 import orderRoutes from "./routes/orderRoutes";
 import inventoryRoutes from "./routes/inventoryRoutes";
 import salesRoutes from "./routes/saleRoutes";
+import loyaltyProgramRoutes from "./routes/loyaltyProgramRoutes";
 
 dotenv.config();
 
@@ -36,6 +37,7 @@ app.use("/api/products", productRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/inventory", inventoryRoutes);
 app.use("/api/sales", salesRoutes);
+app.use("/api/loyaltyPrograms", loyaltyProgramRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

@@ -11,6 +11,7 @@ import {
   IconButton,
   Divider,
   useTheme,
+  Typography,
 } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PeopleIcon from "@mui/icons-material/People";
@@ -66,8 +67,24 @@ const SideMenu: React.FC<SideMenuProps> = ({ drawerWidth, toggleDrawer }) => {
           />
         </Box>
       </Toolbar>
-      <Divider />
-      <List>
+
+      <List
+        sx={{
+          pl: "8px",
+          pr: "8px",
+        }}
+      >
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{
+            color: "#121926",
+            mt: "10px",
+            mb: "0.35em;",
+          }}
+        >
+          Menagement
+        </Typography>
         <ListItem button component={Link} to="/dashboard">
           <ListItemIcon>
             <DashboardIcon />
@@ -122,6 +139,39 @@ const SideMenu: React.FC<SideMenuProps> = ({ drawerWidth, toggleDrawer }) => {
           </ListItemIcon>
           <ListItemText primary="Orders" />
         </ListItem>
+      </List>
+      <Divider />
+
+      <List
+        sx={{
+          pl: "8px",
+          pr: "8px",
+        }}
+      >
+        <Typography
+          variant="h6"
+          component="div"
+          sx={{
+            color: "#121926",
+            mt: "10px",
+            mb: "0.35em;",
+          }}
+        >
+          Marketing
+        </Typography>
+        <ListItem
+          button
+          component={Link}
+          to="/dashboard/marketing/loyalty-programs"
+        >
+          <ListItemIcon>
+            <PeopleIcon />
+          </ListItemIcon>
+          <ListItemText primary="Loyalty Program" />
+        </ListItem>
+      </List>
+      <Divider />
+      <List>
         <ListItem button onClick={handleLogout}>
           <ListItemIcon>
             <ExitToAppIcon />
