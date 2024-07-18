@@ -32,9 +32,18 @@ const deleteLoyaltyProgram = (id: string) => {
   return axios.delete(`${API_URL}/loyalty/${id}`, getAuthHeaders());
 };
 
+const subscribeToProgram = (userId: string, programId: string) => {
+  return axios.post(
+    `${API_URL}/subscriptions/subscribe`,
+    { userId, loyaltyProgramId: programId },
+    getAuthHeaders()
+  );
+};
+
 export default {
   getLoyaltyPrograms,
   createLoyaltyProgram,
   updateLoyaltyProgram,
   deleteLoyaltyProgram,
+  subscribeToProgram,
 };

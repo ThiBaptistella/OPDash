@@ -23,6 +23,14 @@ const useLoyaltyPrograms = () => {
     fetchLoyaltyPrograms();
   }, []);
 
+  const subscribeToProgram = async (userId: string, programId: string) => {
+    const response = await loyaltyProgramService.subscribeToProgram(
+      userId,
+      programId
+    );
+    return response.data.qrCode;
+  };
+
   const createLoyaltyProgram = async (program: LoyaltyProgram) => {
     try {
       const response = await loyaltyProgramService.createLoyaltyProgram(
@@ -69,6 +77,7 @@ const useLoyaltyPrograms = () => {
     deleteLoyaltyProgram,
     loading,
     error,
+    subscribeToProgram,
   };
 };
 
