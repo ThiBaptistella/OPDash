@@ -105,6 +105,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
 
   const handleSelectChange = (event: SelectChangeEvent<string>) => {
     const { name, value } = event.target;
+    console.log(name, value);
     setProduct((prev) => ({ ...prev, [name as string]: value }));
   };
 
@@ -214,11 +215,11 @@ const ProductForm: React.FC<ProductFormProps> = ({
               <Select
                 label="Supplier"
                 name="supplier"
-                value={product.supplier as string} // Ensure the value is always a string
+                value={product.supplier as string}
                 onChange={handleSelectChange}
               >
                 {suppliers.map((supplier) => (
-                  <MenuItem key={supplier._id} value={supplier._id}>
+                  <MenuItem key={supplier._id} value={supplier.supplierName}>
                     {supplier.supplierName}
                   </MenuItem>
                 ))}

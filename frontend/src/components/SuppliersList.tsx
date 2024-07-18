@@ -35,7 +35,6 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const theme = useTheme();
-  const [items] = useState(suppliers);
   const rowsPerPage = 10;
 
   const handleChangePage = (
@@ -52,11 +51,11 @@ const SuppliersList: React.FC<SuppliersListProps> = ({
 
   const filteredSuppliers = useMemo(
     () =>
-      items.filter((item) => {
-        const supplierName = item.supplierName || "";
+      suppliers.filter((supplier) => {
+        const supplierName = supplier.supplierName || "";
         return supplierName.toLowerCase().includes(search.toLowerCase());
       }),
-    [search, items]
+    [search, suppliers]
   );
 
   return (

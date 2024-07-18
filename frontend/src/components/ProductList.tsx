@@ -1,5 +1,5 @@
 // src/components/ProductsList.tsx
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Table,
   TableBody,
@@ -40,7 +40,6 @@ const ProductsList: React.FC<ProductsListProps> = ({
   onAdd,
   onUpload,
 }) => {
-  const [items] = useState(products);
   const [page, setPage] = useState(1);
   const rowsPerPage = 10;
   const [search, setSearch] = useState("");
@@ -61,11 +60,11 @@ const ProductsList: React.FC<ProductsListProps> = ({
 
   const filteredProducts = useMemo(
     () =>
-      items.filter((item) => {
-        const productName = item.productName || "";
+      products.filter((product) => {
+        const productName = product.productName || "";
         return productName.toLowerCase().includes(search.toLowerCase());
       }),
-    [search, items]
+    [search, products]
   );
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -151,9 +150,10 @@ const ProductsList: React.FC<ProductsListProps> = ({
                     <TableCell>{product.productName}</TableCell>
                     <TableCell>{product.brand}</TableCell>
                     <TableCell>
-                      {typeof product.supplier === "string"
-                        ? product.supplier
-                        : product.supplier?.supplierName}
+                      {typeof product.supplier === "object" &&
+                      product.supplier !== null
+                        ? product.supplier.supplierName
+                        : product.supplier}
                     </TableCell>
                     <TableCell>
                       {product.barcode && (
