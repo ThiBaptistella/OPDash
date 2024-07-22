@@ -4,21 +4,45 @@ import { LoyaltyProgram } from "../types/loyaltyProgram";
 
 const useLoyaltyPrograms = () => {
   const [loyaltyPrograms, setLoyaltyPrograms] = useState<LoyaltyProgram[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchLoyaltyPrograms = async () => {
-    const response = await loyaltyProgramService.getLoyaltyPrograms();
-    setLoyaltyPrograms(response.data);
+    setLoading(true);
+    try {
+      const response = await loyaltyProgramService.getLoyaltyPrograms();
+      setLoyaltyPrograms(response.data);
+    } catch (error) {
+      setError("Failed to fetch loyalty programs");
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const subscribeToProgram = async (programId: string) => {
-    await loyaltyProgramService.subscribeToProgram(programId);
-    // handle success or error feedback
+  const subscribeToProgram = async (userId: string, programId: string) => {
+    try {
+      const response = await loyaltyProgramService.subscribeToProgram(
+        userId,
+        programId
+      );
+      console.log("response.data.qrCode", response.data.qrCode);
+      return response.data.qrCode;
+    } catch (error) {
+      setError("Failed to subscribe to loyalty program");
+      return null;
+    }
   };
+
+  useEffect(() => {
+    fetchLoyaltyPrograms();
+  }, []);
 
   return {
     loyaltyPrograms,
     fetchLoyaltyPrograms,
     subscribeToProgram,
+    loading,
+    error,
   };
 };
 

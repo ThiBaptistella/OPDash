@@ -17,12 +17,18 @@ type LoyaltyProgramListNavigationProp = StackNavigationProp<
 >;
 
 const LoyaltyProgramList: React.FC = () => {
-  const { loyaltyPrograms, fetchLoyaltyPrograms } = useLoyaltyPrograms();
+  const { loyaltyPrograms, loading, error } = useLoyaltyPrograms();
   const navigation = useNavigation<LoyaltyProgramListNavigationProp>();
 
-  useEffect(() => {
-    fetchLoyaltyPrograms();
-  }, []);
+  console.log("loyaltyPrograms", loyaltyPrograms);
+
+  if (loading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (error) {
+    return <Text>{error}</Text>;
+  }
 
   return (
     <View style={styles.container}>

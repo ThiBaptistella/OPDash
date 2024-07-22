@@ -1,14 +1,31 @@
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { LoyaltyProgram } from "../types/loyaltyProgram";
 
 const API_URL = "http://localhost:5002/api/loyaltyPrograms";
+const SUBSCRIPTION_API_URL = "http://localhost:5002/api/subscriptions";
 
-const getLoyaltyPrograms = () => {
-  return axios.get<LoyaltyProgram[]>(`${API_URL}/loyalty`);
+const getAuthHeaders = async () => {
+  const token = await AsyncStorage.getItem("token");
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
 };
 
-const subscribeToProgram = (programId: string) => {
-  return axios.post(`${API_URL}/subscribe`, { programId });
+const getLoyaltyPrograms = async () => {
+  const headers = await getAuthHeaders();
+  return axios.get<LoyaltyProgram[]>(`${API_URL}/loyalty`, headers);
+};
+
+const subscribeToProgram = async (userId: string, programId: string) => {
+  const headers = await getAuthHeaders();
+  return axios.post(
+    `${SUBSCRIPTION_API_URL}/subscribe`,
+    { userId, programId },
+    headers
+  );
 };
 
 export default {

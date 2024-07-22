@@ -18,6 +18,7 @@ export const getLoyaltyPrograms = async (req: Request, res: Response) => {
     const loyaltyPrograms = await LoyaltyProgram.find();
     res.status(200).json(loyaltyPrograms);
   } catch (error) {
+    console.error("Error fetching loyalty programs:", error);
     res
       .status(500)
       .json({ message: "Failed to fetch loyalty programs", error });
