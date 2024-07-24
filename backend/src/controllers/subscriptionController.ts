@@ -2,7 +2,7 @@
 import { Request, Response } from "express";
 import Subscription from "../models/Subscription";
 import UserApp from "../models/UserApp";
-import LoyaltyProgram from "../models/LoyaltyProgram";
+import LoyaltyProgram, { ILoyaltyProgram } from "../models/LoyaltyProgram";
 import QRCode from "qrcode";
 
 // Subscribe to a loyalty program
@@ -86,13 +86,27 @@ export const trackUsage = async (req: Request, res: Response) => {
       return res.status(404).json({ message: "QR code not found" });
     }
 
+    const program = subscription.programId as unknown as ILoyaltyProgram;
+
     subscription.usageCount += 1;
     await subscription.save();
 
+    let rewardEarned = false;
+
+    // Check if the user qualifies for a reward
+    if (subscription.usageCount >= program.pointsRedemptionRatio) {
+      rewardEarned = true;
+      // Reset the usage count or handle as needed
+      subscription.usageCount = 0;
+      await subscription.save();
+    }
+
     console.log("Subscription Usage Updated:", subscription);
-    return res
-      .status(200)
-      .json({ message: "Loyalty program usage tracked", subscription });
+    return res.status(200).json({
+      message: "Loyalty program usage tracked",
+      subscription,
+      rewardEarned,
+    });
   } catch (error) {
     console.error("Error in trackUsage:", error);
     return res

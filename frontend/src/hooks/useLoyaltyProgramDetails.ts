@@ -1,4 +1,3 @@
-// src/hooks/useLoyaltyProgramDetails.ts
 import { useState, useEffect } from "react";
 import loyaltyProgramService from "../services/loyaltyProgramService";
 import { LoyaltyProgram, Subscription } from "../types";
@@ -32,11 +31,8 @@ const useLoyaltyProgramDetails = (programId: string) => {
 
   const trackUsage = async (qrCode: string) => {
     try {
-      await loyaltyProgramService.trackUsage(qrCode);
-      // Refresh subscriptions to get updated usage count
-      const subscriptionsResponse =
-        await loyaltyProgramService.getUserSubscriptions(programId);
-      setSubscriptions(subscriptionsResponse.data);
+      const response = await loyaltyProgramService.trackUsage(qrCode);
+      return response.data;
     } catch (error) {
       setError((error as any).message);
       throw error;
