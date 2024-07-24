@@ -162,7 +162,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ drawerWidth, toggleDrawer }) => {
         <ListItem
           button
           component={Link}
-          to="/dashboard/marketing/loyalty-programs"
+          to="/dashboard/marketing/loyaltyPrograms"
         >
           <ListItemIcon>
             <PeopleIcon />

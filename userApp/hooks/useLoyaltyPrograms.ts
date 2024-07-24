@@ -25,11 +25,20 @@ const useLoyaltyPrograms = () => {
         userId,
         programId
       );
-      console.log("response.data.qrCode", response.data.qrCode);
-      return response.data.qrCode;
+      console.log("Subscription response:", response);
+      return response;
     } catch (error) {
-      setError("Failed to subscribe to loyalty program");
-      return null;
+      setError((error as any).message);
+      throw error;
+    }
+  };
+
+  const unsubscribeFromProgram = async (userId: string, programId: string) => {
+    try {
+      await loyaltyProgramService.unsubscribeFromProgram(userId, programId);
+    } catch (error) {
+      setError((error as any).message);
+      throw error;
     }
   };
 
@@ -41,6 +50,7 @@ const useLoyaltyPrograms = () => {
     loyaltyPrograms,
     fetchLoyaltyPrograms,
     subscribeToProgram,
+    unsubscribeFromProgram,
     loading,
     error,
   };

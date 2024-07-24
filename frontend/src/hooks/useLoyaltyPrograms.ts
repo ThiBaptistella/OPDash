@@ -1,3 +1,4 @@
+// hooks/useLoyaltyPrograms.ts
 import { useState, useEffect } from "react";
 import loyaltyProgramService from "../services/loyaltyProgramService";
 import { LoyaltyProgram } from "../types";

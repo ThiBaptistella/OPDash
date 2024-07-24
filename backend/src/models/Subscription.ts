@@ -3,7 +3,8 @@ import mongoose, { Schema, Document } from "mongoose";
 export interface ISubscription extends Document {
   userId: mongoose.Types.ObjectId;
   programId: mongoose.Types.ObjectId;
-  qrCode: string;
+  qrCodeImage: string;
+  qrCodeData: string;
   usageCount: number;
 }
 
@@ -14,7 +15,8 @@ const SubscriptionSchema: Schema = new Schema({
     ref: "LoyaltyProgram",
     required: true,
   },
-  qrCode: { type: String, required: true },
+  qrCodeImage: { type: String, required: true },
+  qrCodeData: { type: String, required: true },
   usageCount: { type: Number, default: 0 },
 });
 

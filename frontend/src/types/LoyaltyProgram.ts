@@ -18,3 +18,12 @@ export interface LoyaltyProgram {
   visibility: string;
   displayLocations: string[];
 }
+
+export interface Subscription {
+  _id: string;
+  qrCodeImage: string | undefined;
+  userId: string;
+  programId: string;
+  qrCode: string;
+  usageCount: number;
+}

@@ -1,7 +1,10 @@
+// services/loyaltyProgramService.ts
 import axios from "axios";
 import { LoyaltyProgram } from "../types";
+import { Subscription } from "../types";
 
 const API_URL = "http://localhost:5002/api/loyaltyPrograms";
+const API_SUBSCRIBE_URL = "http://localhost:5002/api/subscriptions";
 
 const getAuthHeaders = () => {
   const token = localStorage.getItem("token");
@@ -32,10 +35,24 @@ const deleteLoyaltyProgram = (id: string) => {
   return axios.delete(`${API_URL}/loyalty/${id}`, getAuthHeaders());
 };
 
-const subscribeToProgram = (userId: string, programId: string) => {
+const getLoyaltyProgramDetails = (id: string) => {
+  return axios.get<LoyaltyProgram>(
+    `${API_URL}/loyalty/${id}`,
+    getAuthHeaders()
+  );
+};
+
+const getUserSubscriptions = (programId: string) => {
+  return axios.get<Subscription[]>(
+    `${API_SUBSCRIBE_URL}/user/${programId}`,
+    getAuthHeaders()
+  );
+};
+
+const trackUsage = (qrCode: string) => {
   return axios.post(
-    `${API_URL}/subscriptions/subscribe`,
-    { userId, loyaltyProgramId: programId },
+    `${API_SUBSCRIBE_URL}/trackUsage`,
+    { qrCode },
     getAuthHeaders()
   );
 };
@@ -45,5 +62,7 @@ export default {
   createLoyaltyProgram,
   updateLoyaltyProgram,
   deleteLoyaltyProgram,
-  subscribeToProgram,
+  getLoyaltyProgramDetails,
+  getUserSubscriptions,
+  trackUsage,
 };

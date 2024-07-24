@@ -13,6 +13,19 @@ export const createLoyaltyProgram = async (req: Request, res: Response) => {
   }
 };
 
+export const getByIdLoyaltyPrograms = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const loyaltyPrograms = await LoyaltyProgram.findById(id);
+    res.status(200).json(loyaltyPrograms);
+  } catch (error) {
+    console.error("Error fetching loyalty programs:", error);
+    res
+      .status(500)
+      .json({ message: "Failed to fetch loyalty programs", error });
+  }
+};
+
 export const getLoyaltyPrograms = async (req: Request, res: Response) => {
   try {
     const loyaltyPrograms = await LoyaltyProgram.find();

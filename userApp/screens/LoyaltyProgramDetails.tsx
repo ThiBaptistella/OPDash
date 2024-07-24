@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, Button, StyleSheet, Image } from "react-native";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { LoyaltyProgram } from "../types/loyaltyProgram";
@@ -17,25 +17,78 @@ type LoyaltyProgramDetailsRouteProp = RouteProp<
 const LoyaltyProgramDetails: React.FC = () => {
   const route = useRoute<LoyaltyProgramDetailsRouteProp>();
   const { program } = route.params;
-  const { subscribeToProgram } = useLoyaltyPrograms();
-  const [qrCode, setQrCode] = useState<string | null>(null);
+  const { subscribeToProgram, unsubscribeFromProgram } = useLoyaltyPrograms();
+  const [qrCodeImage, setQrCodeImage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const loadQrCodeImage = async () => {
+      const storedQrCodeImage = await AsyncStorage.getItem(
+        `qrCodeImage_${program._id}`
+      );
+      if (storedQrCodeImage) {
+        setQrCodeImage(storedQrCodeImage);
+      }
+    };
+    loadQrCodeImage();
+  }, [program._id]);
 
   const handleSubscribe = async () => {
+    setLoading(true);
     const userId = await AsyncStorage.getItem("userId");
-    console.log("userId", userId);
     if (userId) {
-      const qrCode = await subscribeToProgram(userId, program._id);
-      console.log("qrCode", qrCode);
-      setQrCode(qrCode);
+      try {
+        const response = await subscribeToProgram(userId, program._id);
+        const { qrCodeImage } = response;
+        console.log("Subscribe Response:", qrCodeImage);
+        if (qrCodeImage) {
+          setQrCodeImage(qrCodeImage);
+          await AsyncStorage.setItem(`qrCodeImage_${program._id}`, qrCodeImage);
+        } else {
+          console.error("Received undefined qrCodeImage");
+        }
+      } catch (error) {
+        console.error("Error during subscription:", error);
+      }
     }
+    setLoading(false);
+  };
+
+  const handleUnsubscribe = async () => {
+    setLoading(true);
+    const userId = await AsyncStorage.getItem("userId");
+    if (userId) {
+      try {
+        await unsubscribeFromProgram(userId, program._id);
+        setQrCodeImage(null);
+        await AsyncStorage.removeItem(`qrCodeImage_${program._id}`);
+      } catch (error) {
+        console.error("Error during unsubscription:", error);
+      }
+    }
+    setLoading(false);
   };
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{program.name}</Text>
       <Text style={styles.description}>{program.description}</Text>
-      <Button title="Subscribe" onPress={handleSubscribe} />
-      {qrCode && <Image style={styles.qrCode} source={{ uri: qrCode }} />}
+      {!qrCodeImage ? (
+        <Button
+          title={loading ? "Subscribing..." : "Subscribe"}
+          onPress={handleSubscribe}
+          disabled={loading}
+        />
+      ) : (
+        <>
+          <Image style={styles.qrCode} source={{ uri: qrCodeImage }} />
+          <Button
+            title={loading ? "Unsubscribing..." : "Unsubscribe"}
+            onPress={handleUnsubscribe}
+            disabled={loading}
+          />
+        </>
+      )}
     </View>
   );
 };

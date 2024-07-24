@@ -21,6 +21,7 @@ import OrderDetails from "./pages/OrderDetails";
 import Sales from "./pages/Sales";
 import LoyaltyProgramList from "./components/LoyaltyProgramList";
 import Scan from "./pages/Scan";
+import LoyaltyProgramDetails from "./components/LoyaltyProgramDetails";
 
 const App: React.FC = () => {
   return (
@@ -54,7 +55,11 @@ const App: React.FC = () => {
             <Route path="orders/edit/:id" element={<OrderForm />} />
             <Route path="orders/details/:id" element={<OrderDetails />} />
             <Route
-              path="marketing/loyalty-programs"
+              path="marketing/loyaltyPrograms/:id"
+              element={<LoyaltyProgramDetails />}
+            />
+            <Route
+              path="marketing/loyaltyPrograms"
               element={<LoyaltyProgramList />}
             />
             {/* Add more routes here as needed */}
