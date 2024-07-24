@@ -30,11 +30,25 @@ const useLoyaltyProgramDetails = (programId: string) => {
     fetchProgramDetails();
   }, [programId]);
 
+  const trackUsage = async (qrCode: string) => {
+    try {
+      await loyaltyProgramService.trackUsage(qrCode);
+      // Refresh subscriptions to get updated usage count
+      const subscriptionsResponse =
+        await loyaltyProgramService.getUserSubscriptions(programId);
+      setSubscriptions(subscriptionsResponse.data);
+    } catch (error) {
+      setError((error as any).message);
+      throw error;
+    }
+  };
+
   return {
     program,
     subscriptions,
     loading,
     error,
+    trackUsage,
   };
 };
 

@@ -1,12 +1,14 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Html5Qrcode, Html5QrcodeScannerState } from "html5-qrcode";
 import { Button } from "@mui/material";
-import useTrackUsage from "../hooks/useTrackUsage";
 
-const QrCodeScanner: React.FC = () => {
+interface QrCodeScannerProps {
+  onScan: (qrCode: string) => void;
+}
+
+const QrCodeScanner: React.FC<QrCodeScannerProps> = ({ onScan }) => {
   const [isScanning, setIsScanning] = useState(false);
   const [scanResult, setScanResult] = useState<string | null>(null);
-  const { trackUsage, loading, error, success, subscription } = useTrackUsage();
   const qrCodeRegionId = "html5qr-code-full-region";
   const html5QrCodeRef = useRef<Html5Qrcode | null>(null);
 
@@ -34,7 +36,7 @@ const QrCodeScanner: React.FC = () => {
           },
           (decodedText: string) => {
             setScanResult(decodedText);
-            trackUsage(decodedText);
+            onScan(decodedText); // Use the onScan prop
             stopScanning(); // Automatically stop scanning after a successful scan
           },
           (errorMessage: string) => {
@@ -69,19 +71,6 @@ const QrCodeScanner: React.FC = () => {
         {isScanning ? "Stop Scanning" : "Start Scanning"}
       </Button>
       <div id={qrCodeRegionId} style={{ marginTop: "20px" }}></div>
-      {loading && <p>Loading...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {success && (
-        <div>
-          <p style={{ color: "green" }}>{success}</p>
-          {subscription && (
-            <div>
-              <p>Loyalty Program: {subscription}</p>
-              <p>Usage Count: {subscription}</p>
-            </div>
-          )}
-        </div>
-      )}
       {scanResult && <p>Scanned QR Code: {scanResult}</p>}
     </div>
   );

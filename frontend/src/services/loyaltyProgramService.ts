@@ -1,7 +1,6 @@
 // services/loyaltyProgramService.ts
 import axios from "axios";
-import { LoyaltyProgram } from "../types";
-import { Subscription } from "../types";
+import { LoyaltyProgram, Subscription } from "../types";
 
 const API_URL = "http://localhost:5002/api/loyaltyPrograms";
 const API_SUBSCRIBE_URL = "http://localhost:5002/api/subscriptions";
