@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Html5Qrcode, Html5QrcodeScannerState } from "html5-qrcode";
 import { Button } from "@mui/material";
+import useTrackUsage from "../hooks/useTrackUsage";
 
 interface QrCodeScannerProps {
   onScan: (qrCode: string) => void;

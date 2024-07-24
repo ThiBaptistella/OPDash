@@ -78,9 +78,9 @@ export const trackUsage = async (req: Request, res: Response) => {
   console.log("Track Usage Request Received:", { qrCode });
 
   try {
-    const subscription = await Subscription.findOne({ qrCode }).populate(
-      "programId"
-    );
+    const subscription = await Subscription.findOne({
+      qrCodeData: qrCode,
+    }).populate("programId");
 
     if (!subscription) {
       return res.status(404).json({ message: "QR code not found" });
