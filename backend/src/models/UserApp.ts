@@ -5,11 +5,13 @@ export interface IUserApp extends Document {
   email: string;
   password: string;
   comparePassword(candidatePassword: string): Promise<boolean>;
+  loyaltyPrograms: mongoose.Types.ObjectId[];
 }
 
 const UserSchema: Schema<IUserApp> = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  loyaltyPrograms: [{ type: mongoose.Types.ObjectId, ref: "LoyaltyProgram" }],
 });
 
 UserSchema.pre<IUserApp>("save", async function (next) {

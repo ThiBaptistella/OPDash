@@ -11,9 +11,14 @@ import {
   Typography,
   CircularProgress,
   Snackbar,
+  Box,
+  Grid,
+  CssBaseline,
 } from "@mui/material";
 import useLoyaltyProgramDetails from "../hooks/useLoyaltyProgramDetails";
 import QrCodeScanner from "./QrCodeScanner";
+import theme from "../utils/theme";
+import Breadcrumb from "./Breadcrumb";
 
 const LoyaltyProgramDetails: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -48,28 +53,49 @@ const LoyaltyProgramDetails: React.FC = () => {
 
   return (
     <div>
+      <CssBaseline />
+      <Breadcrumb
+        title="Subscribed Users"
+        paths={[
+          { name: "Dashboard", link: "/dashboard/loyaltyPrograms" },
+          { name: "Loyalty Programs", link: "/dashboard/loyaltyPrograms" },
+          { name: "Subscribed Users" },
+        ]}
+      />
+
       {program && (
         <div>
-          <Typography variant="h4">{program.name}</Typography>
-          <Typography variant="body1">{program.description}</Typography>
-          <Typography variant="body1">Type: {program.type}</Typography>
-
-          <Typography variant="h6" style={{ marginTop: "20px" }}>
-            Subscribed Users
-          </Typography>
+          <Box
+            sx={{
+              padding: 2,
+              backgroundColor: theme.palette.background.paper,
+              borderRadius: 2,
+              mb: 2,
+              mt: 3,
+            }}
+          >
+            <Typography variant="h4">{program.name}</Typography>
+            <Typography variant="body1">{program.description}</Typography>
+            <Typography variant="body1">Type: {program.type}</Typography>
+          </Box>
           <TableContainer component={Paper}>
             <Table>
               <TableHead>
                 <TableRow>
-                  <TableCell>User ID</TableCell>
-                  <TableCell>QR Code</TableCell>
-                  <TableCell>Usage Count</TableCell>
+                  <TableCell sx={{ fontWeight: 900 }}>User ID</TableCell>
+                  <TableCell sx={{ fontWeight: 900 }}>QR Code</TableCell>
+                  <TableCell sx={{ fontWeight: 900 }}>Usage Count</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
                 {subscriptions.map((subscription) => (
                   <TableRow key={subscription._id}>
-                    {/* <TableCell>{subscription.userId}</TableCell> */}
+                    <TableCell>
+                      {subscription.userId &&
+                      typeof subscription.userId === "object"
+                        ? subscription.userId.email
+                        : "N/A"}
+                    </TableCell>
                     <TableCell>
                       <img
                         src={subscription.qrCodeImage}

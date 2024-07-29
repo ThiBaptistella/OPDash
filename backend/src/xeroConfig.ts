@@ -3,7 +3,7 @@ import { XeroClient } from "xero-node";
 import { config } from "./config";
 import jwt from "jsonwebtoken";
 import axios from "axios";
-import User from "./models/User";
+import User from "./models/Vendor";
 
 interface CustomRequest extends Request {
   user?: {

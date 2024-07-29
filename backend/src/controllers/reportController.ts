@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { xero } from "../xeroConfig";
-import User from "../models/User";
+import User from "../models/Vendor";
 
 const getTenantId = async (userId: string) => {
   const user = await User.findById(userId);

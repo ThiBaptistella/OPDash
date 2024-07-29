@@ -40,7 +40,6 @@ const LoyaltyProgramDetails: React.FC = () => {
       try {
         const response = await subscribeToProgram(userId, program._id);
         const { qrCodeImage } = response;
-        console.log("Subscribe Response:", qrCodeImage);
         if (qrCodeImage) {
           setQrCodeImage(qrCodeImage);
           await AsyncStorage.setItem(`qrCodeImage_${program._id}`, qrCodeImage);
@@ -71,6 +70,7 @@ const LoyaltyProgramDetails: React.FC = () => {
 
   return (
     <View style={styles.container}>
+      {/* <Image source={{ uri: program.image }} style={styles.image} /> */}
       <Text style={styles.title}>{program.name}</Text>
       <Text style={styles.description}>{program.description}</Text>
       {!qrCodeImage ? (
@@ -97,6 +97,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 16,
+    backgroundColor: "#fff",
+  },
+  image: {
+    width: "100%",
+    height: 200,
+    marginBottom: 20,
   },
   title: {
     fontSize: 24,

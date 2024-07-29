@@ -159,11 +159,7 @@ const SideMenu: React.FC<SideMenuProps> = ({ drawerWidth, toggleDrawer }) => {
         >
           Marketing
         </Typography>
-        <ListItem
-          button
-          component={Link}
-          to="/dashboard/marketing/loyaltyPrograms"
-        >
+        <ListItem button component={Link} to="/dashboard/loyaltyPrograms">
           <ListItemIcon>
             <PeopleIcon />
           </ListItemIcon>

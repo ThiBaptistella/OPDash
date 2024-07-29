@@ -10,10 +10,9 @@ const register = async (email: string, password: string) => {
       password,
     });
     console.log("Register API response:", response.data);
-    await AsyncStorage.setItem("userId", response.data.user._id); // Correctly set the userId
+    await AsyncStorage.setItem("userId", response.data.user._id);
     return response.data;
   } catch (error) {
-    console.error("Error during registration:", error);
     throw error;
   }
 };
@@ -21,8 +20,7 @@ const register = async (email: string, password: string) => {
 const login = async (email: string, password: string) => {
   try {
     const response = await axios.post(`${API_URL}/login`, { email, password });
-    console.log("Login API response:", response.data);
-    await AsyncStorage.setItem("userId", response.data.user._id); // Correctly set the userId
+    await AsyncStorage.setItem("userId", response.data.user._id);
     return response.data;
   } catch (error) {
     console.error("Error during login:", error);
@@ -30,7 +28,12 @@ const login = async (email: string, password: string) => {
   }
 };
 
+const resetPassword = (email: string) => {
+  return axios.post(`${API_URL}/reset-password`, { email });
+};
+
 export default {
   register,
+  resetPassword,
   login,
 };

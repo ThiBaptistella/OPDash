@@ -11,37 +11,31 @@ import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../types/navigation";
 import useAuth from "../hooks/useAuth";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
-type LoginScreenNavigationProp = StackNavigationProp<
+type ForgotPasswordScreenNavigationProp = StackNavigationProp<
   RootStackParamList,
-  "Login"
+  "ForgotPassword"
 >;
 
-const LoginScreen: React.FC = () => {
+const ForgotPasswordScreen: React.FC = () => {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigation = useNavigation<LoginScreenNavigationProp>();
-  const { login, loading, error } = useAuth();
+  const navigation = useNavigation<ForgotPasswordScreenNavigationProp>();
+  const { resetPassword, loading, error } = useAuth();
 
-  const handleLogin = async () => {
-    console.log("Attempting login with:", { email, password });
+  const handleResetPassword = async () => {
+    console.log("Attempting password reset for:", email);
     try {
-      const user = await login(email, password);
-      console.log("Login response:", user);
-      if (user) {
-        await AsyncStorage.setItem("userId", user.user._id);
-        console.log("Stored userId:", user.user._id);
-        navigation.navigate("LoyaltyProgramList"); // Correct screen name
-      }
+      await resetPassword(email);
+      console.log("Password reset email sent");
+      navigation.navigate("Login");
     } catch (err) {
-      console.error("Login error:", err);
+      console.error("Password reset error:", err);
     }
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Reset Password</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -49,35 +43,21 @@ const LoginScreen: React.FC = () => {
         value={email}
         onChangeText={setEmail}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        placeholderTextColor="#757575"
-        value={password}
-        onChangeText={setPassword}
-        secureTextEntry
-      />
       {error && <Text style={styles.error}>{error}</Text>}
       <TouchableOpacity
         style={styles.button}
-        onPress={handleLogin}
+        onPress={handleResetPassword}
         disabled={loading}
       >
         <Text style={styles.buttonText}>
-          {loading ? "Logging in..." : "Login"}
+          {loading ? "Sending..." : "Send Reset Link"}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.link}
-        onPress={() => navigation.navigate("Register")}
+        onPress={() => navigation.navigate("Login")}
       >
-        <Text style={styles.linkText}>Create an Account</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.link}
-        onPress={() => navigation.navigate("ForgotPassword")}
-      >
-        <Text style={styles.linkText}>Forgot Password?</Text>
+        <Text style={styles.linkText}>Back to Login</Text>
       </TouchableOpacity>
     </View>
   );
@@ -130,4 +110,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default ForgotPasswordScreen;

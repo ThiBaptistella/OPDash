@@ -19,10 +19,15 @@ export interface LoyaltyProgram {
   displayLocations: string[];
 }
 
+export interface User {
+  _id: string;
+  email: string;
+}
+
 export interface Subscription {
   _id: string;
   qrCodeImage: string | undefined;
-  userId: string;
+  userId: User;
   programId: string;
   qrCode: string;
   usageCount: number;

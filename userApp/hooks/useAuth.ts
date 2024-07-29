@@ -37,9 +37,26 @@ const useAuth = () => {
     }
   };
 
+  const resetPassword = async (email: string) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await authService.resetPassword(email);
+      console.log("Reset password response:", response);
+      return response;
+    } catch (err) {
+      console.error("Reset password error:", err);
+      setError("Failed to send reset password email. Please try again.");
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     register,
     login,
+    resetPassword,
     loading,
     error,
   };
