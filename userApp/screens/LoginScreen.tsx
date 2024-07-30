@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
@@ -32,7 +31,7 @@ const LoginScreen: React.FC = () => {
       if (user) {
         await AsyncStorage.setItem("userId", user.user._id);
         console.log("Stored userId:", user.user._id);
-        navigation.navigate("LoyaltyProgramList"); // Correct screen name
+        navigation.navigate("LoggedIn");
       }
     } catch (err) {
       console.error("Login error:", err);
@@ -41,18 +40,21 @@ const LoginScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <View style={styles.circleTopLeft} />
+      <View style={styles.circleTopRight} />
+      <View style={styles.circleTopCenter} />
+      <Text style={styles.title}>Sign In</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
-        placeholderTextColor="#757575"
+        placeholderTextColor="#bdbdbd"
         value={email}
         onChangeText={setEmail}
       />
       <TextInput
         style={styles.input}
         placeholder="Password"
-        placeholderTextColor="#757575"
+        placeholderTextColor="#bdbdbd"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
@@ -64,20 +66,23 @@ const LoginScreen: React.FC = () => {
         disabled={loading}
       >
         <Text style={styles.buttonText}>
-          {loading ? "Logging in..." : "Login"}
+          {loading ? "Logging in..." : "Done"}
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.link}
-        onPress={() => navigation.navigate("Register")}
-      >
-        <Text style={styles.linkText}>Create an Account</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.link}
+        style={styles.forgotPassword}
         onPress={() => navigation.navigate("ForgotPassword")}
       >
-        <Text style={styles.linkText}>Forgot Password?</Text>
+        <Text style={styles.forgotPasswordText}>Forgot password</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.registerLink}
+        onPress={() => navigation.navigate("Register")}
+      >
+        <Text style={styles.registerLinkText}>
+          Dont have an account?{" "}
+          <Text style={styles.createAccountText}>create account</Text>
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -86,42 +91,86 @@ const LoginScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     padding: 16,
-    backgroundColor: "#F4F6F8",
+    backgroundColor: "#FFFFFF",
+    justifyContent: "center",
+  },
+  circleTopLeft: {
+    position: "absolute",
+    top: -70,
+    left: -50,
+    width: 150,
+    height: 150,
+    backgroundColor: "#D9D9D9",
+    borderRadius: 75,
+  },
+  circleTopCenter: {
+    position: "absolute",
+    top: -80,
+    left: 90,
+    width: 200,
+    height: 200,
+    backgroundColor: "#7351E4",
+    borderRadius: 100,
+  },
+  circleTopRight: {
+    position: "absolute",
+    top: -50,
+    right: -50,
+    width: 150,
+    height: 150,
+    backgroundColor: "#D9D9D9",
+    borderRadius: 75,
   },
   title: {
-    fontSize: 36,
-    marginBottom: 16,
-    textAlign: "center",
-    color: "#673AB7",
+    fontSize: 32,
+    fontWeight: "bold",
+    marginBottom: 24,
+    textAlign: "left",
+    color: "#000000",
   },
   input: {
-    height: 40,
-    borderColor: "#ccc",
+    height: 48,
+    borderColor: "#e0e0e0",
     borderWidth: 1,
     marginBottom: 12,
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
     color: "#000",
-    backgroundColor: "#FFF",
+    backgroundColor: "#f5f5f5",
+    borderRadius: 8,
   },
   button: {
-    backgroundColor: "#2196F3",
-    paddingVertical: 10,
+    backgroundColor: "#7351E4",
+    paddingVertical: 12,
     marginVertical: 10,
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: "#FFF",
-    textAlign: "center",
-    fontSize: 18,
-  },
-  link: {
-    marginTop: 10,
+    borderRadius: 24,
     alignItems: "center",
   },
-  linkText: {
-    color: "#1E88E5",
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 18,
+  },
+  forgotPassword: {
+    marginTop: 8,
+    alignItems: "flex-end",
+  },
+  forgotPasswordText: {
+    color: "#9e9e9e",
+    fontSize: 14,
+  },
+  registerLink: {
+    position: "absolute",
+    bottom: 20,
+    width: "100%",
+    alignItems: "center",
+  },
+  registerLinkText: {
+    color: "#757575",
+    fontSize: 14,
+  },
+  createAccountText: {
+    color: "#000000",
+    fontWeight: "bold",
   },
   error: {
     color: "red",

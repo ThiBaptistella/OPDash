@@ -14,9 +14,7 @@
     "noEmit": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     }
   },
   "exclude": [
@@ -25,5 +23,6 @@
     "metro.config.js",
     "jest.config.js"
   ],
-  "extends": "expo/tsconfig.base"
+  "extends": "expo/tsconfig.base",
+  "include": ["src", "declarations.d.ts"]
 }

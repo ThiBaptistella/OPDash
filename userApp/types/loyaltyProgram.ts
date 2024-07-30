@@ -16,4 +16,6 @@ export interface LoyaltyProgram {
   exclusionRules?: string;
   visibility: string;
   displayLocations: string[];
+  isActive: boolean;
+  image: string;
 }

@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
@@ -35,11 +34,14 @@ const ForgotPasswordScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Reset Password</Text>
+      <View style={styles.circleTopLeft} />
+      <View style={styles.circleTopRight} />
+      <View style={styles.circleTopCenter} />
+      <Text style={styles.title}>Forgot Password</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
-        placeholderTextColor="#757575"
+        placeholderTextColor="#bdbdbd"
         value={email}
         onChangeText={setEmail}
       />
@@ -49,15 +51,16 @@ const ForgotPasswordScreen: React.FC = () => {
         onPress={handleResetPassword}
         disabled={loading}
       >
-        <Text style={styles.buttonText}>
-          {loading ? "Sending..." : "Send Reset Link"}
-        </Text>
+        <Text style={styles.buttonText}>{loading ? "Sending..." : "Done"}</Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={styles.link}
+        style={styles.registerLink}
         onPress={() => navigation.navigate("Login")}
       >
-        <Text style={styles.linkText}>Back to Login</Text>
+        <Text style={styles.registerLinkText}>
+          Already have an account?{" "}
+          <Text style={styles.createAccountText}>sign in</Text>
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -66,42 +69,78 @@ const ForgotPasswordScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
     padding: 16,
-    backgroundColor: "#F4F6F8",
+    backgroundColor: "#FFFFFF",
+    justifyContent: "center",
+  },
+  circleTopLeft: {
+    position: "absolute",
+    top: -70,
+    left: -50,
+    width: 150,
+    height: 150,
+    backgroundColor: "#D9D9D9",
+    borderRadius: 75,
+  },
+  circleTopCenter: {
+    position: "absolute",
+    top: -80,
+    left: 90,
+    width: 200,
+    height: 200,
+    backgroundColor: "#7351E4",
+    borderRadius: 100,
+  },
+  circleTopRight: {
+    position: "absolute",
+    top: -50,
+    right: -50,
+    width: 150,
+    height: 150,
+    backgroundColor: "#D9D9D9",
+    borderRadius: 75,
   },
   title: {
-    fontSize: 36,
-    marginBottom: 16,
-    textAlign: "center",
-    color: "#673AB7",
+    fontSize: 32,
+    fontWeight: "bold",
+    marginBottom: 24,
+    textAlign: "left",
+    color: "#000000",
   },
   input: {
-    height: 40,
-    borderColor: "#ccc",
+    height: 48,
+    borderColor: "#e0e0e0",
     borderWidth: 1,
     marginBottom: 12,
-    paddingHorizontal: 8,
+    paddingHorizontal: 16,
     color: "#000",
-    backgroundColor: "#FFF",
+    backgroundColor: "#f5f5f5",
+    borderRadius: 8,
   },
   button: {
-    backgroundColor: "#2196F3",
-    paddingVertical: 10,
+    backgroundColor: "#7351E4",
+    paddingVertical: 12,
     marginVertical: 10,
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: "#FFF",
-    textAlign: "center",
-    fontSize: 18,
-  },
-  link: {
-    marginTop: 10,
+    borderRadius: 24,
     alignItems: "center",
   },
-  linkText: {
-    color: "#1E88E5",
+  buttonText: {
+    color: "#FFFFFF",
+    fontSize: 18,
+  },
+  registerLink: {
+    position: "absolute",
+    bottom: 20,
+    width: "100%",
+    alignItems: "center",
+  },
+  registerLinkText: {
+    color: "#757575",
+    fontSize: 14,
+  },
+  createAccountText: {
+    color: "#000000",
+    fontWeight: "bold",
   },
   error: {
     color: "red",
