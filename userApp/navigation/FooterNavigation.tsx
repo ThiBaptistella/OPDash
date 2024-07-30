@@ -30,7 +30,7 @@ const FooterNavigation: React.FC = () => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.footerIcon}
-        onPress={() => navigation.navigate("LoyaltyProgramList")}
+        onPress={() => navigation.navigate("Wallet")}
       >
         <WalletIcon width={24} height={24} />
       </TouchableOpacity>

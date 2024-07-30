@@ -25,7 +25,6 @@ const useLoyaltyPrograms = () => {
         userId,
         programId
       );
-      console.log("Subscription response:", response);
       return response;
     } catch (error) {
       setError((error as any).message);

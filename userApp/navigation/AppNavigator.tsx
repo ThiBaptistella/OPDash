@@ -6,6 +6,7 @@ import RegisterScreen from "../screens/RegisterScreen";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
 import LoggedInNavigator from "./LoggedInNavigator";
 import { RootStackParamList } from "../types/navigation";
+import WalletScreen from "../screens/WalletScreen";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -35,6 +36,11 @@ const AppNavigator: React.FC = () => {
       <Stack.Screen
         name="LoggedIn"
         component={LoggedInNavigator}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Wallet"
+        component={WalletScreen}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

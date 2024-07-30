@@ -48,62 +48,71 @@ const LoyaltyProgramList: React.FC = () => {
   const featuredPrograms = loyaltyPrograms.slice(0, 3);
 
   return (
-    <FlatList
-      contentContainerStyle={{ padding: 12, marginTop: 22, marginBottom: 22 }}
-      ListHeaderComponent={
-        <>
-          <Text style={styles.title}>Discover</Text>
-          <View style={styles.searchContainer}>
-            <TextInput
-              style={styles.searchInput}
-              placeholder="Search by local"
-              placeholderTextColor="#bdbdbd"
-            />
-          </View>
-          <Text style={styles.sectionTitle}>Featured</Text>
-          <ScrollView
-            horizontal
-            showsHorizontalScrollIndicator={false}
-            style={styles.featuredContainer}
+    <View style={styles.container}>
+      <FlatList
+        contentContainerStyle={{
+          padding: 12,
+          marginTop: 22,
+          paddingBottom: 100,
+        }}
+        ListHeaderComponent={
+          <>
+            <Text style={styles.title}>Discover</Text>
+            <View style={styles.searchContainer}>
+              <TextInput
+                style={styles.searchInput}
+                placeholder="Search by name"
+                placeholderTextColor="#bdbdbd"
+                value={searchQuery}
+                onChangeText={setSearchQuery}
+              />
+            </View>
+            <Text style={styles.sectionTitle}>Featured</Text>
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={styles.featuredContainer}
+            >
+              {featuredPrograms.map((program) => (
+                <View key={program._id} style={styles.featuredCard}>
+                  <Text style={styles.featuredTitle}>{program.name}</Text>
+                  <Text style={styles.featuredDescription}>
+                    {program.description}
+                  </Text>
+                </View>
+              ))}
+            </ScrollView>
+            <View style={styles.tabsContainer}>
+              <Text style={styles.tab}>Featured</Text>
+              <Text style={styles.tabInactive}>Location</Text>
+              <Text style={styles.tabInactive}>Category</Text>
+            </View>
+          </>
+        }
+        data={filteredPrograms}
+        keyExtractor={(item) => item._id}
+        renderItem={({ item }) => (
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() =>
+              navigation.navigate("LoyaltyProgramDetails", { program: item })
+            }
           >
-            {featuredPrograms.map((program) => (
-              <View key={program._id} style={styles.featuredCard}>
-                <Text style={styles.featuredTitle}>{program.name}</Text>
-                <Text style={styles.featuredDescription}>
-                  {program.description}
+            <Image source={{ uri: item.image }} style={styles.image} />
+            <View style={styles.textContainer}>
+              <Text style={styles.programTitle}>{item.name}</Text>
+              <Text style={styles.programDescription}>{item.description}</Text>
+              <TouchableOpacity style={styles.activeButton}>
+                <Text style={styles.activeButtonText}>
+                  {item.isActive ? "Activated" : "Active"}
                 </Text>
-              </View>
-            ))}
-          </ScrollView>
-          <View style={styles.tabsContainer}>
-            <Text style={styles.tab}>Featured</Text>
-            <Text style={styles.tabInactive}>Location</Text>
-            <Text style={styles.tabInactive}>Category</Text>
-          </View>
-        </>
-      }
-      data={loyaltyPrograms}
-      keyExtractor={(item) => item._id}
-      renderItem={({ item }) => (
-        <TouchableOpacity
-          style={styles.card}
-          onPress={() =>
-            navigation.navigate("LoyaltyProgramDetails", { program: item })
-          }
-        >
-          <Image source={{ uri: item.image }} style={styles.image} />
-          <View style={styles.textContainer}>
-            <Text style={styles.programTitle}>{item.name}</Text>
-            <Text style={styles.programDescription}>{item.description}</Text>
-            <TouchableOpacity style={styles.activeButton}>
-              <Text style={styles.activeButtonText}>
-                {item.isActive ? "Activated" : "Active"}
-              </Text>
-            </TouchableOpacity>
-          </View>
-        </TouchableOpacity>
-      )}
-    />
+              </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
+        )}
+      />
+      <FooterNavigation />
+    </View>
   );
 };
 
@@ -111,8 +120,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#FFFFFF",
-    padding: 12,
-    marginBottom: 100,
   },
   scrollContainer: {
     padding: 16,
@@ -197,7 +204,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#7351E4",
     borderRadius: 8,
     marginRight: 10,
-    padding: 16,
     justifyContent: "center",
   },
   textContainer: {
@@ -231,6 +237,10 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderTopWidth: 1,
     borderColor: "#e0e0e0",
+    backgroundColor: "#FFFFFF",
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
   },
   footerIcon: {
     alignItems: "center",

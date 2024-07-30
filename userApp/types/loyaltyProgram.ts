@@ -17,5 +17,6 @@ export interface LoyaltyProgram {
   visibility: string;
   displayLocations: string[];
   isActive: boolean;
+  isSubscribed: boolean;
   image: string;
 }
