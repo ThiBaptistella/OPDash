@@ -63,6 +63,34 @@ const useLoyaltyPrograms = () => {
     }
   };
 
+  const createTierBasedProgram = async (program: LoyaltyProgram) => {
+    try {
+      const response = await loyaltyProgramService.createTierBasedProgram(
+        program
+      );
+      setLoyaltyPrograms((prev) => [...prev, response.data]);
+    } catch (error) {
+      setError((error as any).message);
+    }
+  };
+
+  const updateTierBasedProgram = async (
+    id: string,
+    program: Partial<LoyaltyProgram>
+  ) => {
+    try {
+      const response = await loyaltyProgramService.updateTierBasedProgram(
+        id,
+        program
+      );
+      setLoyaltyPrograms((prevPrograms) =>
+        prevPrograms.map((prog) => (prog._id === id ? response.data : prog))
+      );
+    } catch (error) {
+      setError((error as any).message);
+    }
+  };
+
   return {
     loyaltyPrograms,
     createLoyaltyProgram,
@@ -70,6 +98,8 @@ const useLoyaltyPrograms = () => {
     deleteLoyaltyProgram,
     loading,
     error,
+    createTierBasedProgram,
+    updateTierBasedProgram,
   };
 };
 

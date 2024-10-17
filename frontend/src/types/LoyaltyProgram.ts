@@ -32,3 +32,12 @@ export interface Subscription {
   qrCode: string;
   usageCount: number;
 }
+
+export interface Tier {
+  name: string;
+  pointsRequired: number;
+}
+
+export interface TierBasedProgram extends LoyaltyProgram {
+  tiers: Tier[];
+}

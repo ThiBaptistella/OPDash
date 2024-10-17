@@ -56,6 +56,25 @@ const trackUsage = (qrCode: string) => {
   );
 };
 
+const createTierBasedProgram = (program: Omit<LoyaltyProgram, "_id">) => {
+  return axios.post(
+    `${API_URL}/createTierBasedProgram`,
+    program,
+    getAuthHeaders()
+  );
+};
+
+const updateTierBasedProgram = (
+  id: string,
+  program: Partial<LoyaltyProgram>
+) => {
+  return axios.put<LoyaltyProgram>(
+    `${API_URL}/tierBased/${id}`,
+    program,
+    getAuthHeaders()
+  );
+};
+
 export default {
   getLoyaltyPrograms,
   createLoyaltyProgram,
@@ -64,4 +83,6 @@ export default {
   getLoyaltyProgramDetails,
   getUserSubscriptions,
   trackUsage,
+  createTierBasedProgram,
+  updateTierBasedProgram,
 };

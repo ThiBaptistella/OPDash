@@ -23,6 +23,10 @@ import LoyaltyProgramList from "./components/LoyaltyProgramList";
 import Scan from "./pages/Scan";
 import LoyaltyProgramDetails from "./components/LoyaltyProgramDetails";
 import LoyaltyProgram from "./pages/LoyaltyProgram";
+import ProgramSelectionPage from "./pages/ProgramSelectionPage";
+import PointsProgramForm from "./components/PointsProgramForm";
+import PointsProgramPage from "./pages/PointsProgramPage";
+import TierProgramPage from "./pages/TierProgramPage";
 
 const App: React.FC = () => {
   return (
@@ -60,8 +64,12 @@ const App: React.FC = () => {
               path="loyaltyPrograms/:id"
               element={<LoyaltyProgramDetails />}
             />
-
-            {/* Add more routes here as needed */}
+            <Route path="select-program" element={<ProgramSelectionPage />} />
+            <Route
+              path="select-program/points"
+              element={<PointsProgramPage />}
+            />
+            <Route path="select-program/tier" element={<TierProgramPage />} />
           </Route>
         </Routes>
       </Router>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Table,
   TableBody,
@@ -16,21 +16,20 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import useLoyaltyPrograms from "../hooks/useLoyaltyPrograms";
-import LoyaltyProgramForm from "./LoyaltyProgramForm";
-import { LoyaltyProgram } from "../types/LoyaltyProgram";
+import { LoyaltyProgram, TierBasedProgram } from "../types/LoyaltyProgram";
 import { useNavigate } from "react-router-dom";
 import theme from "../utils/theme";
 
 const LoyaltyProgramList: React.FC = () => {
   const { loyaltyPrograms, deleteLoyaltyProgram } = useLoyaltyPrograms();
-  const [isFormOpen, setIsFormOpen] = React.useState(false);
-  const [selectedProgram, setSelectedProgram] =
-    React.useState<LoyaltyProgram | null>(null);
+  const [selectedProgram, setSelectedProgram] = useState<LoyaltyProgram | null>(
+    null
+  );
   const navigate = useNavigate();
 
   const handleEdit = (program: LoyaltyProgram) => {
     setSelectedProgram(program);
-    setIsFormOpen(true);
+    navigate(`/dashboard/edit-program/${program._id}`);
   };
 
   const handleDelete = (id: string) => {
@@ -39,6 +38,10 @@ const LoyaltyProgramList: React.FC = () => {
 
   const handleViewDetails = (id: string) => {
     navigate(`/dashboard/loyaltyPrograms/${id}`);
+  };
+
+  const handleCreateNewProgram = () => {
+    navigate("/dashboard/select-program");
   };
 
   return (
@@ -57,7 +60,7 @@ const LoyaltyProgramList: React.FC = () => {
       >
         <Grid item xs={12} sm={12}>
           <Typography variant="h6" component="div" sx={{ fontWeight: "bold" }}>
-            Loyalt Programs Management
+            Loyalty Programs Management
           </Typography>
         </Grid>
 
@@ -74,7 +77,7 @@ const LoyaltyProgramList: React.FC = () => {
             <Button
               variant="contained"
               color="primary"
-              onClick={() => setIsFormOpen(true)}
+              onClick={handleCreateNewProgram}
             >
               Create New Program
             </Button>
@@ -117,13 +120,6 @@ const LoyaltyProgramList: React.FC = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      {isFormOpen && (
-        <LoyaltyProgramForm
-          open={isFormOpen}
-          onClose={() => setIsFormOpen(false)}
-          program={selectedProgram}
-        />
-      )}
     </div>
   );
 };

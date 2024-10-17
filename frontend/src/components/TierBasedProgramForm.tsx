@@ -12,35 +12,37 @@ import {
   StepLabel,
   Typography,
 } from "@mui/material";
-import useLoyaltyPrograms from "../hooks/useLoyaltyPrograms";
-import { LoyaltyProgram } from "../types";
+import useTierBasedPrograms from "../hooks/useTierBasedPrograms";
+import { TierBasedProgram } from "../types";
 
-interface LoyaltyProgramFormProps {
+interface TierBasedProgramFormProps {
   open: boolean;
   onClose: () => void;
-  program: LoyaltyProgram | null;
+  program: TierBasedProgram | null;
 }
 
-const steps = ["Basic Info", "Points Setup", "Rules Setup", "Review & Publish"];
+const steps = ["Basic Info", "Tier Setup", "Rules Setup", "Review & Publish"];
 
-const LoyaltyProgramForm: React.FC<LoyaltyProgramFormProps> = ({
+const TierBasedProgramForm: React.FC<TierBasedProgramFormProps> = ({
   open,
   onClose,
   program,
 }) => {
-  const { createLoyaltyProgram, updateLoyaltyProgram } = useLoyaltyPrograms();
-  const [formState, setFormState] = useState<Omit<LoyaltyProgram, "_id">>({
+  const { createTierBasedProgram, updateTierBasedProgram } =
+    useTierBasedPrograms();
+  const [formState, setFormState] = useState<Omit<TierBasedProgram, "_id">>({
     name: "",
     description: "",
-    type: "Points Program",
-    pointsPerPurchase: 0,
-    pointsRedemptionRatio: 0,
+    type: "Tier Based Program",
+    tiers: [],
     rewardOptions: [],
     eligibilityCriteria: "",
     earningRules: "",
     redemptionRules: "",
     visibility: "Public",
     displayLocations: [],
+    pointsPerPurchase: 0,
+    pointsRedemptionRatio: 0,
   });
   const [activeStep, setActiveStep] = useState(0);
 
@@ -51,15 +53,16 @@ const LoyaltyProgramForm: React.FC<LoyaltyProgramFormProps> = ({
       setFormState({
         name: "",
         description: "",
-        type: "Points Program",
-        pointsPerPurchase: 0,
-        pointsRedemptionRatio: 0,
+        type: "Tier Based Program",
+        tiers: [],
         rewardOptions: [],
         eligibilityCriteria: "",
         earningRules: "",
         redemptionRules: "",
         visibility: "Public",
         displayLocations: [],
+        pointsPerPurchase: 0,
+        pointsRedemptionRatio: 0,
       });
     }
   }, [program]);
@@ -79,9 +82,9 @@ const LoyaltyProgramForm: React.FC<LoyaltyProgramFormProps> = ({
 
   const handleSave = () => {
     if (program) {
-      updateLoyaltyProgram(program._id, formState);
+      updateTierBasedProgram(program._id!, formState);
     } else {
-      createLoyaltyProgram(formState);
+      createTierBasedProgram(formState);
     }
     onClose();
   };
@@ -116,27 +119,54 @@ const LoyaltyProgramForm: React.FC<LoyaltyProgramFormProps> = ({
       case 1:
         return (
           <Grid container spacing={2}>
+            {formState.tiers.map((tier, index) => (
+              <React.Fragment key={index}>
+                <Grid item xs={6}>
+                  <TextField
+                    label="Tier Name"
+                    value={tier.name}
+                    onChange={(e) => {
+                      const updatedTiers = [...formState.tiers];
+                      updatedTiers[index].name = e.target.value;
+                      setFormState((prev) => ({
+                        ...prev,
+                        tiers: updatedTiers,
+                      }));
+                    }}
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    label="Points Required"
+                    type="number"
+                    value={tier.pointsRequired}
+                    onChange={(e) => {
+                      const updatedTiers = [...formState.tiers];
+                      updatedTiers[index].pointsRequired = Number(
+                        e.target.value
+                      );
+                      setFormState((prev) => ({
+                        ...prev,
+                        tiers: updatedTiers,
+                      }));
+                    }}
+                    fullWidth
+                  />
+                </Grid>
+              </React.Fragment>
+            ))}
             <Grid item xs={12}>
-              <TextField
-                label="Points Per Purchase"
-                name="pointsPerPurchase"
-                type="number"
-                value={formState.pointsPerPurchase}
-                onChange={handleChange}
-                fullWidth
-                helperText="Number of points awarded for each purchase"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                label="Points Redemption Ratio"
-                name="pointsRedemptionRatio"
-                type="number"
-                value={formState.pointsRedemptionRatio}
-                onChange={handleChange}
-                fullWidth
-                helperText="Number of points needed to redeem a reward"
-              />
+              <Button
+                onClick={() =>
+                  setFormState((prev) => ({
+                    ...prev,
+                    tiers: [...prev.tiers, { name: "", pointsRequired: 0 }],
+                  }))
+                }
+              >
+                Add Tier
+              </Button>
             </Grid>
           </Grid>
         );
@@ -205,14 +235,12 @@ const LoyaltyProgramForm: React.FC<LoyaltyProgramFormProps> = ({
             <p>
               <strong>Description:</strong> {formState.description}
             </p>
-            <p>
-              <strong>Points Per Purchase:</strong>{" "}
-              {formState.pointsPerPurchase}
-            </p>
-            <p>
-              <strong>Points Redemption Ratio:</strong>{" "}
-              {formState.pointsRedemptionRatio}
-            </p>
+            {formState.tiers.map((tier, index) => (
+              <p key={index}>
+                <strong>{`Tier ${index + 1} Name:`}</strong> {tier.name},{" "}
+                <strong>Points Required:</strong> {tier.pointsRequired}
+              </p>
+            ))}
             <p>
               <strong>Eligibility Criteria:</strong>{" "}
               {formState.eligibilityCriteria}
@@ -239,7 +267,7 @@ const LoyaltyProgramForm: React.FC<LoyaltyProgramFormProps> = ({
   return (
     <Dialog open={open} onClose={onClose} fullWidth maxWidth="md">
       <DialogTitle>
-        {program ? "Edit Loyalty Program" : "Create Loyalty Program"}
+        {program ? "Edit Tier-Based Program" : "Create Tier-Based Program"}
       </DialogTitle>
       <DialogContent>
         <Stepper activeStep={activeStep}>
@@ -268,4 +296,4 @@ const LoyaltyProgramForm: React.FC<LoyaltyProgramFormProps> = ({
   );
 };
 
-export default LoyaltyProgramForm;
+export default TierBasedProgramForm;
